@@ -4,6 +4,12 @@ export type DivisionId =
   | "labs"
   | "sports";
 
+export type DivisionMedia = {
+  image: string;
+  video?: string;
+  objectPosition?: string;
+};
+
 export type Division = {
   id: DivisionId;
 
@@ -16,4 +22,9 @@ export type Division = {
 
   title: string;
   description: string;
+
+  homeTagline: string;
+  homeLogo: string;
+
+  homeMedia: DivisionMedia;
 };

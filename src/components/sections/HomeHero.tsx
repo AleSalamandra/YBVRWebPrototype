@@ -11,16 +11,19 @@ export default function HomeHero() {
 
         logoHeight={0.94}
 
-        dissolveRadius={0.2}
-        dissolveAmount={0.82}
+        interactionRadius={0.25}
 
-        particleIntensity={0.82}
+        blobReach={125}
+        blobIntensity={0.96}
+
+        attractionStrength={84}
+
         lightIntensity={1}
 
         sweepDelay={0.8}
         sweepDuration={10}
 
-        edgeSampleStep={2}
+        renderScale={0.72}
       />
 
       <div

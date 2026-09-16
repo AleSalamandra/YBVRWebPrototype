@@ -7,16 +7,16 @@ import {
   useState,
 } from "react";
 
+import {
+  buildSignedDistanceField,
+  type SignedDistanceField,
+} from "@/components/effects/dissolve/distanceField";
 
-type EdgePoint = {
-  x: number;
-  y: number;
-
-  nx: number;
-  ny: number;
-
-  seed: number;
-};
+import {
+  createNoiseTile,
+  sampleNoise,
+  type NoiseTile,
+} from "@/components/effects/dissolve/noise";
 
 
 type ReactiveDissolveLogoProps = {
@@ -29,16 +29,19 @@ type ReactiveDissolveLogoProps = {
   logoOffsetX?: number;
   logoOffsetY?: number;
 
-  dissolveRadius?: number;
-  dissolveAmount?: number;
+  interactionRadius?: number;
 
-  particleIntensity?: number;
+  blobReach?: number;
+  blobIntensity?: number;
+
+  attractionStrength?: number;
+
   lightIntensity?: number;
 
   sweepDelay?: number;
   sweepDuration?: number;
 
-  edgeSampleStep?: number;
+  renderScale?: number;
 };
 
 
@@ -66,20 +69,30 @@ function lerp(
 }
 
 
-function hash(
-  x: number,
-  y: number
+function smoothstep(
+  edge0: number,
+  edge1: number,
+  value: number
 ) {
-  const value =
-    Math.sin(
-      x * 12.9898 +
-      y * 78.233
-    ) *
-    43758.5453;
+  if (edge0 === edge1) {
+    return value < edge0
+      ? 0
+      : 1;
+  }
+
+  const t =
+    clamp(
+      (value - edge0) /
+        (edge1 - edge0),
+
+      0,
+      1
+    );
 
   return (
-    value -
-    Math.floor(value)
+    t *
+    t *
+    (3 - 2 * t)
   );
 }
 
@@ -94,18 +107,20 @@ export default function ReactiveDissolveLogo({
   logoOffsetX = 0,
   logoOffsetY = 0,
 
-  dissolveRadius = 0.2,
-  dissolveAmount = 0.78,
+  interactionRadius = 0.24,
 
-  particleIntensity = 0.72,
+  blobReach = 110,
+  blobIntensity = 0.92,
+
+  attractionStrength = 72,
+
   lightIntensity = 1,
 
   sweepDelay = 0.8,
   sweepDuration = 10,
 
-  edgeSampleStep = 2,
+  renderScale = 0.72,
 }: ReactiveDissolveLogoProps) {
-
   const rootRef =
     useRef<HTMLDivElement>(null);
 
@@ -160,13 +175,14 @@ export default function ReactiveDissolveLogo({
 
 
     /* =====================================
-       POINTER STATE
+       POINTER
     ===================================== */
 
     const mouseTarget = {
       x: 0,
       y: 0,
     };
+
 
     const mouseCurrent = {
       x: 0,
@@ -179,8 +195,11 @@ export default function ReactiveDissolveLogo({
 
 
     /* =====================================
-       LOGO GEOMETRY
+       CSS GEOMETRY
     ===================================== */
+
+    let cssWidth = 1;
+    let cssHeight = 1;
 
     let drawX = 0;
     let drawY = 0;
@@ -188,21 +207,135 @@ export default function ReactiveDissolveLogo({
     let drawWidth = 1;
     let drawHeight = 1;
 
-    let cssWidth = 1;
-    let cssHeight = 1;
 
-    let edgePoints:
-      EdgePoint[] = [];
+    /* =====================================
+       EFFECT BOX
+    ===================================== */
+
+    let boxX = 0;
+    let boxY = 0;
+
+    let boxWidth = 1;
+    let boxHeight = 1;
+
+    let paddingCss = 1;
 
 
     /* =====================================
-       TIMING
+       ANALYSIS GEOMETRY
+    ===================================== */
+
+    let analysisScale = 1;
+
+    let analysisWidth = 1;
+    let analysisHeight = 1;
+
+
+    /* =====================================
+       ANALYSIS CANVAS
+    ===================================== */
+
+    const analysisCanvas =
+      document.createElement("canvas");
+
+    const analysisContext =
+      analysisCanvas.getContext(
+        "2d",
+        {
+          alpha: true,
+          willReadFrequently: true,
+        }
+      );
+
+
+    if (!analysisContext) {
+      return;
+    }
+
+
+    /* =====================================
+       BLOB BUFFER
+    ===================================== */
+
+    const blobCanvas =
+      document.createElement("canvas");
+
+    const blobContext =
+      blobCanvas.getContext(
+        "2d",
+        {
+          alpha: true,
+        }
+      );
+
+
+    if (!blobContext) {
+      return;
+    }
+
+
+    let blobFrame:
+      ImageData |
+      null = null;
+
+
+    /* =====================================
+       DISTANCE FIELD
+    ===================================== */
+
+    let signedField:
+      SignedDistanceField |
+      null = null;
+
+
+    let alpha =
+      new Uint8ClampedArray(1);
+
+
+    /* =====================================
+       NOISE
+    ===================================== */
+
+    const noiseLarge:
+      NoiseTile =
+      createNoiseTile(
+        128,
+        917,
+        8
+      );
+
+
+    const noiseMedium:
+      NoiseTile =
+      createNoiseTile(
+        128,
+        3141,
+        5
+      );
+
+
+    const noiseFine:
+      NoiseTile =
+      createNoiseTile(
+        128,
+        8128,
+        2
+      );
+
+
+    /* =====================================
+       TIME
     ===================================== */
 
     let previousTime =
       performance.now();
 
+
     let startTime =
+      previousTime;
+
+
+    let lastBlobRender =
       previousTime;
 
 
@@ -246,6 +379,7 @@ export default function ReactiveDissolveLogo({
         event.clientX -
         bounds.left;
 
+
       mouseTarget.y =
         event.clientY -
         bounds.top;
@@ -281,15 +415,18 @@ export default function ReactiveDissolveLogo({
       }
     );
 
+
     window.addEventListener(
       "blur",
       deactivate
     );
 
+
     document.addEventListener(
       "mouseout",
       handleWindowMouseOut
     );
+
 
     document.addEventListener(
       "visibilitychange",
@@ -298,10 +435,10 @@ export default function ReactiveDissolveLogo({
 
 
     /* =====================================
-       BUILD SVG EDGE MAP
+       REBUILD
     ===================================== */
 
-    const buildEdgeMap = () => {
+    const rebuild = () => {
       if (
         !image.complete ||
         image.naturalWidth === 0 ||
@@ -336,58 +473,120 @@ export default function ReactiveDissolveLogo({
           cssHeight -
           drawHeight
         ) *
-        0.5
-        +
+          0.5 +
         cssHeight *
-        logoOffsetY;
+          logoOffsetY;
 
 
-      const analysisWidth =
+      /*
+        Generous space around the SVG.
+
+        This is where the lava / blob
+        material is allowed to exist.
+      */
+
+      paddingCss =
+        Math.max(
+          blobReach * 1.5,
+
+          Math.min(
+            cssWidth,
+            cssHeight
+          ) * 0.2
+        );
+
+
+      boxX =
+        drawX -
+        paddingCss;
+
+
+      boxY =
+        drawY -
+        paddingCss;
+
+
+      boxWidth =
+        drawWidth +
+        paddingCss * 2;
+
+
+      boxHeight =
+        drawHeight +
+        paddingCss * 2;
+
+
+      /* ===================================
+         ANALYSIS RESOLUTION
+      =================================== */
+
+      const largestDimension =
+        Math.max(
+          boxWidth,
+          boxHeight
+        );
+
+
+      const maxAnalysisDimension =
+        1100;
+
+
+      analysisScale =
+        Math.min(
+          renderScale,
+
+          maxAnalysisDimension /
+            Math.max(
+              largestDimension,
+              1
+            )
+        );
+
+
+      analysisScale =
+        Math.max(
+          0.35,
+          analysisScale
+        );
+
+
+      analysisWidth =
         Math.max(
           1,
           Math.round(
-            drawWidth
+            boxWidth *
+            analysisScale
           )
         );
 
 
-      const analysisHeight =
+      analysisHeight =
         Math.max(
           1,
           Math.round(
-            drawHeight
+            boxHeight *
+            analysisScale
           )
         );
 
 
-      const maskCanvas =
-        document.createElement(
-          "canvas"
-        );
-
-
-      maskCanvas.width =
+      analysisCanvas.width =
         analysisWidth;
 
-      maskCanvas.height =
+
+      analysisCanvas.height =
         analysisHeight;
 
 
-      const maskContext =
-        maskCanvas.getContext(
-          "2d",
-          {
-            willReadFrequently: true,
-          }
-        );
+      blobCanvas.width =
+        analysisWidth;
 
 
-      if (!maskContext) {
-        return;
-      }
+      blobCanvas.height =
+        analysisHeight;
 
 
-      maskContext.clearRect(
+      analysisContext.clearRect(
         0,
         0,
         analysisWidth,
@@ -395,195 +594,82 @@ export default function ReactiveDissolveLogo({
       );
 
 
-      maskContext.drawImage(
+      const logoX =
+        paddingCss *
+        analysisScale;
+
+
+      const logoY =
+        paddingCss *
+        analysisScale;
+
+
+      const logoWidth =
+        drawWidth *
+        analysisScale;
+
+
+      const logoHeightPixels =
+        drawHeight *
+        analysisScale;
+
+
+      analysisContext.drawImage(
         image,
-        0,
-        0,
-        analysisWidth,
-        analysisHeight
+
+        logoX,
+        logoY,
+
+        logoWidth,
+        logoHeightPixels
       );
 
 
-      const pixels =
-        maskContext.getImageData(
+      const imageData =
+        analysisContext.getImageData(
           0,
           0,
+
           analysisWidth,
           analysisHeight
-        ).data;
-
-
-      const alphaAt = (
-        x: number,
-        y: number
-      ) => {
-        if (
-          x < 0 ||
-          y < 0 ||
-          x >= analysisWidth ||
-          y >= analysisHeight
-        ) {
-          return 0;
-        }
-
-
-        const index =
-          (
-            y *
-            analysisWidth +
-            x
-          ) *
-          4
-          +
-          3;
-
-
-        return pixels[index];
-      };
-
-
-      const points:
-        EdgePoint[] = [];
-
-
-      const step =
-        Math.max(
-          1,
-          Math.round(
-            edgeSampleStep
-          )
         );
 
 
-      const gradientDistance =
-        Math.max(
-          2,
-          step
+      alpha =
+        new Uint8ClampedArray(
+          analysisWidth *
+          analysisHeight
         );
 
 
       for (
-        let y = step;
-        y < analysisHeight - step;
-        y += step
+        let index = 0;
+        index < alpha.length;
+        index += 1
       ) {
-        for (
-          let x = step;
-          x < analysisWidth - step;
-          x += step
-        ) {
-          const alpha =
-            alphaAt(
-              x,
-              y
-            );
-
-
-          if (alpha < 40) {
-            continue;
-          }
-
-
-          const left =
-            alphaAt(
-              x - gradientDistance,
-              y
-            );
-
-          const right =
-            alphaAt(
-              x + gradientDistance,
-              y
-            );
-
-          const top =
-            alphaAt(
-              x,
-              y - gradientDistance
-            );
-
-          const bottom =
-            alphaAt(
-              x,
-              y + gradientDistance
-            );
-
-
-          const minimumNeighbour =
-            Math.min(
-              left,
-              right,
-              top,
-              bottom
-            );
-
-
-          if (
-            minimumNeighbour >
-            210
-          ) {
-            continue;
-          }
-
-
-          const gradientX =
-            right -
-            left;
-
-          const gradientY =
-            bottom -
-            top;
-
-
-          const length =
-            Math.hypot(
-              gradientX,
-              gradientY
-            );
-
-
-          let normalX = 0;
-          let normalY = -1;
-
-
-          if (length > 0.001) {
-            normalX =
-              -gradientX /
-              length;
-
-            normalY =
-              -gradientY /
-              length;
-          }
-
-
-          points.push({
-            x:
-              drawX +
-              x,
-
-            y:
-              drawY +
-              y,
-
-            nx:
-              normalX,
-
-            ny:
-              normalY,
-
-            seed:
-              hash(
-                x,
-                y
-              ),
-          });
-        }
+        alpha[index] =
+          imageData.data[
+            index * 4 + 3
+          ];
       }
 
 
-      edgePoints =
-        points;
+      signedField =
+        buildSignedDistanceField(
+          alpha,
+
+          analysisWidth,
+          analysisHeight,
+
+          24
+        );
+
+
+      blobFrame =
+        blobContext.createImageData(
+          analysisWidth,
+          analysisHeight
+        );
     };
 
 
@@ -602,6 +688,7 @@ export default function ReactiveDissolveLogo({
           bounds.width
         );
 
+
       cssHeight =
         Math.max(
           1,
@@ -611,10 +698,8 @@ export default function ReactiveDissolveLogo({
 
       const pixelRatio =
         Math.min(
-          window.devicePixelRatio ||
-          1,
-
-          1.5
+          window.devicePixelRatio || 1,
+          1.75
         );
 
 
@@ -623,6 +708,7 @@ export default function ReactiveDissolveLogo({
           cssWidth *
           pixelRatio
         );
+
 
       canvas.height =
         Math.round(
@@ -633,6 +719,7 @@ export default function ReactiveDissolveLogo({
 
       canvas.style.width =
         `${cssWidth}px`;
+
 
       canvas.style.height =
         `${cssHeight}px`;
@@ -648,30 +735,606 @@ export default function ReactiveDissolveLogo({
       );
 
 
-      buildEdgeMap();
+      context.imageSmoothingEnabled =
+        true;
+
+
+      context.imageSmoothingQuality =
+        "high";
+
+
+      rebuild();
     };
 
 
     /* =====================================
-       MATERIAL
+       MOVING FBM-LIKE NOISE
     ===================================== */
 
-    const drawMaterial = (
+    const getAnimatedNoise = (
+      x: number,
+      y: number,
+
+      time: number,
+
+      warpX: number,
+      warpY: number
+    ) => {
+      const px =
+        x + warpX;
+
+
+      const py =
+        y + warpY;
+
+
+      /*
+        Big slow clouds.
+      */
+
+      const large =
+        sampleNoise(
+          noiseLarge,
+
+          px * 0.052 +
+            time * 0.65,
+
+          py * 0.052 -
+            time * 0.37
+        );
+
+
+      /*
+        Medium moving volume.
+      */
+
+      const medium =
+        sampleNoise(
+          noiseMedium,
+
+          px * 0.105 -
+            time * 0.92,
+
+          py * 0.105 +
+            time * 0.61
+        );
+
+
+      /*
+        Small organic detail.
+      */
+
+      const fine =
+        sampleNoise(
+          noiseFine,
+
+          px * 0.22 +
+            time * 1.75,
+
+          py * 0.22 +
+            time * 1.08
+        );
+
+
+      return (
+        large * 0.58 +
+        medium * 0.29 +
+        fine * 0.13
+      );
+    };
+
+
+    /* =====================================
+       BUILD EXTERNAL BLOB ONLY
+    ===================================== */
+
+    const buildBlobFrame = (
       elapsed: number
     ) => {
+      if (
+        !signedField ||
+        !blobFrame
+      ) {
+        return;
+      }
+
+
+      blobFrame.data.fill(0);
+
+
+      if (
+        activeCurrent <= 0.002 ||
+        prefersReducedMotion
+      ) {
+        blobContext.putImageData(
+          blobFrame,
+          0,
+          0
+        );
+
+        return;
+      }
+
+
+      const cursorX =
+        (
+          mouseCurrent.x -
+          boxX
+        ) *
+        analysisScale;
+
+
+      const cursorY =
+        (
+          mouseCurrent.y -
+          boxY
+        ) *
+        analysisScale;
+
+
+      const radius =
+        Math.min(
+          cssWidth,
+          cssHeight
+        ) *
+        interactionRadius *
+        analysisScale;
+
+
+      const reach =
+        blobReach *
+        analysisScale;
+
+
+      const attraction =
+        attractionStrength *
+        analysisScale;
+
+
+      const boundsPadding =
+        radius +
+        reach +
+        attraction;
+
+
+      const minX =
+        Math.max(
+          0,
+
+          Math.floor(
+            cursorX -
+            boundsPadding
+          )
+        );
+
+
+      const maxX =
+        Math.min(
+          analysisWidth - 1,
+
+          Math.ceil(
+            cursorX +
+            boundsPadding
+          )
+        );
+
+
+      const minY =
+        Math.max(
+          0,
+
+          Math.floor(
+            cursorY -
+            boundsPadding
+          )
+        );
+
+
+      const maxY =
+        Math.min(
+          analysisHeight - 1,
+
+          Math.ceil(
+            cursorY +
+            boundsPadding
+          )
+        );
+
+
+      for (
+        let y = minY;
+        y <= maxY;
+        y += 1
+      ) {
+        for (
+          let x = minX;
+          x <= maxX;
+          x += 1
+        ) {
+          const index =
+            y *
+              analysisWidth +
+            x;
+
+
+          const signedDistance =
+            signedField.distance[
+              index
+            ];
+
+
+          /*
+            Critical change:
+
+            We NEVER touch anything inside
+            the original SVG.
+          */
+
+          if (
+            signedDistance >= 0
+          ) {
+            continue;
+          }
+
+
+          const outsideDistance =
+            -signedDistance;
+
+
+          if (
+            outsideDistance >
+            reach
+          ) {
+            continue;
+          }
+
+
+          /* =================================
+             CURSOR DISTANCE
+          ================================= */
+
+          const dx =
+            cursorX - x;
+
+
+          const dy =
+            cursorY - y;
+
+
+          const distance =
+            Math.hypot(
+              dx,
+              dy
+            );
+
+
+          /*
+            The interaction radius itself
+            is distorted by slow noise.
+
+            No perfect circular brush.
+          */
+
+          const radiusNoise =
+            sampleNoise(
+              noiseLarge,
+
+              x * 0.041 +
+                elapsed * 0.48,
+
+              y * 0.041 -
+                elapsed * 0.29
+            );
+
+
+          const localRadius =
+            radius *
+            (
+              0.76 +
+              radiusNoise * 0.48
+            );
+
+
+          const cursorInfluence =
+            (
+              1 -
+              smoothstep(
+                localRadius * 0.1,
+                localRadius,
+                distance
+              )
+            ) *
+            activeCurrent;
+
+
+          if (
+            cursorInfluence <= 0.001
+          ) {
+            continue;
+          }
+
+
+          /* =================================
+             OUTSIDE DISTANCE FALLOFF
+          ================================= */
+
+          const depth01 =
+            clamp(
+              outsideDistance /
+                Math.max(
+                  reach,
+                  0.001
+                ),
+
+              0,
+              1
+            );
+
+
+          /*
+            Strong attachment near the edge,
+            increasingly free/cloud-like
+            toward the outside.
+          */
+
+          const edgeAttachment =
+            Math.pow(
+              1 - depth01,
+              0.72
+            );
+
+
+          /* =================================
+             DOMAIN WARP TOWARD CURSOR
+          ================================= */
+
+          const safeDistance =
+            Math.max(
+              distance,
+              0.001
+            );
+
+
+          const directionX =
+            dx /
+            safeDistance;
+
+
+          const directionY =
+            dy /
+            safeDistance;
+
+
+          const tangentX =
+            -directionY;
+
+
+          const tangentY =
+            directionX;
+
+
+          /*
+            Pull gets stronger toward the
+            centre of the cursor influence.
+          */
+
+          const pull =
+            cursorInfluence *
+            attraction *
+            (
+              0.45 +
+              edgeAttachment *
+                0.55
+            );
+
+
+          const curlNoise =
+            sampleNoise(
+              noiseMedium,
+
+              x * 0.08 -
+                elapsed * 0.48,
+
+              y * 0.08 +
+                elapsed * 0.35
+            ) -
+            0.5;
+
+
+          const curl =
+            curlNoise *
+            attraction *
+            0.65 *
+            cursorInfluence;
+
+
+          const warpX =
+            -directionX *
+              pull +
+            tangentX *
+              curl;
+
+
+          const warpY =
+            -directionY *
+              pull +
+            tangentY *
+              curl;
+
+
+          /* =================================
+             LAVA NOISE
+          ================================= */
+
+          const animatedNoise =
+            getAnimatedNoise(
+              x,
+              y,
+
+              elapsed,
+
+              warpX,
+              warpY
+            );
+
+
+          /*
+            Bias near the contour means
+            blobs remain physically attached
+            to the original object instead
+            of looking like random smoke.
+          */
+
+          const attachmentBias =
+            edgeAttachment *
+            0.17;
+
+
+          const blobField =
+            animatedNoise +
+            attachmentBias;
+
+
+          /*
+            Soft threshold:
+            connected fluid shapes instead
+            of individual particles.
+          */
+
+          const cloud =
+            smoothstep(
+              0.43,
+              0.69,
+              blobField
+            );
+
+
+          if (
+            cloud <= 0.001
+          ) {
+            continue;
+          }
+
+
+          /*
+            Organic fade outside.
+
+            Not a hard contour.
+          */
+
+          const reachFade =
+            Math.pow(
+              1 - depth01,
+              1.1
+            );
+
+
+          const alphaValue =
+            clamp(
+              cloud *
+              reachFade *
+              cursorInfluence *
+              blobIntensity,
+
+              0,
+              0.88
+            );
+
+
+          if (
+            alphaValue <=
+            0.002
+          ) {
+            continue;
+          }
+
+
+          const pixelIndex =
+            index * 4;
+
+
+          /*
+            Dark mineral material.
+
+            It will be revealed much more
+            by the interactive light later.
+          */
+
+          const materialValue =
+            Math.round(
+              22 +
+              animatedNoise *
+                44 +
+              edgeAttachment *
+                12
+            );
+
+
+          blobFrame.data[
+            pixelIndex
+          ] =
+            materialValue;
+
+
+          blobFrame.data[
+            pixelIndex + 1
+          ] =
+            materialValue + 1;
+
+
+          blobFrame.data[
+            pixelIndex + 2
+          ] =
+            materialValue + 3;
+
+
+          blobFrame.data[
+            pixelIndex + 3
+          ] =
+            Math.round(
+              alphaValue *
+              255
+            );
+        }
+      }
+
+
+      blobContext.putImageData(
+        blobFrame,
+        0,
+        0
+      );
+    };
+
+
+    /* =====================================
+       CRISP BASE LOGO
+    ===================================== */
+
+    const drawBaseMaterial = () => {
       context.save();
 
 
+      /*
+        Original SVG goes straight into
+        the final canvas.
+
+        Nothing ever masks or erodes it.
+      */
+
       context.globalCompositeOperation =
         "source-over";
+
 
       context.globalAlpha = 1;
 
 
       context.drawImage(
         image,
+
         drawX,
         drawY,
+
         drawWidth,
         drawHeight
       );
@@ -698,25 +1361,30 @@ export default function ReactiveDissolveLogo({
         "#020202"
       );
 
-      materialGradient.addColorStop(
-        0.23,
-        "#0a0a0a"
-      );
 
       materialGradient.addColorStop(
-        0.46,
-        "#171717"
-      );
-
-      materialGradient.addColorStop(
-        0.66,
+        0.2,
         "#080808"
       );
 
+
       materialGradient.addColorStop(
-        0.84,
+        0.42,
+        "#161616"
+      );
+
+
+      materialGradient.addColorStop(
+        0.62,
+        "#090909"
+      );
+
+
+      materialGradient.addColorStop(
+        0.82,
         "#141414"
       );
+
 
       materialGradient.addColorStop(
         1,
@@ -736,187 +1404,47 @@ export default function ReactiveDissolveLogo({
       );
 
 
-      /* ===================================
-         CURSOR LIGHT
-      =================================== */
+      context.restore();
+    };
 
+
+    /* =====================================
+       DRAW BLOB
+    ===================================== */
+
+    const drawBlob = () => {
       if (
-        activeCurrent >
-        0.001
+        activeCurrent <= 0.002 ||
+        prefersReducedMotion
       ) {
-        context.globalCompositeOperation =
-          "source-atop";
-
-
-        const lightRadius =
-          Math.min(
-            cssWidth,
-            cssHeight
-          ) *
-          0.2;
-
-
-        const light =
-          context.createRadialGradient(
-            mouseCurrent.x,
-            mouseCurrent.y,
-            0,
-
-            mouseCurrent.x,
-            mouseCurrent.y,
-            lightRadius
-          );
-
-
-        const strength =
-          activeCurrent *
-          lightIntensity;
-
-
-        light.addColorStop(
-          0,
-          `rgba(255,255,255,${
-            0.34 *
-            strength
-          })`
-        );
-
-        light.addColorStop(
-          0.22,
-          `rgba(245,248,255,${
-            0.18 *
-            strength
-          })`
-        );
-
-        light.addColorStop(
-          0.55,
-          `rgba(220,225,235,${
-            0.055 *
-            strength
-          })`
-        );
-
-        light.addColorStop(
-          1,
-          "rgba(255,255,255,0)"
-        );
-
-
-        context.fillStyle =
-          light;
-
-
-        context.fillRect(
-          0,
-          0,
-          cssWidth,
-          cssHeight
-        );
+        return;
       }
 
 
-      /* ===================================
-         INTRO SWEEP
-      =================================== */
-
-      if (
-        !prefersReducedMotion
-      ) {
-        const sweepTime =
-          (
-            elapsed -
-            sweepDelay
-          ) /
-          sweepDuration;
+      context.save();
 
 
-        if (
-          sweepTime >= 0 &&
-          sweepTime <= 1
-        ) {
-          const progress =
-            sweepTime *
-            sweepTime *
-            (
-              3 -
-              2 *
-              sweepTime
-            );
+      context.imageSmoothingEnabled =
+        true;
 
 
-          const sweepX =
-            lerp(
-              -cssWidth * 0.2,
-
-              cssWidth * 1.2,
-
-              progress
-            );
+      context.imageSmoothingQuality =
+        "high";
 
 
-          const band =
-            Math.max(
-              100,
-              cssWidth *
-              0.09
-            );
+      context.globalCompositeOperation =
+        "source-over";
 
 
-          context.globalCompositeOperation =
-            "source-atop";
+      context.drawImage(
+        blobCanvas,
 
+        boxX,
+        boxY,
 
-          const sweep =
-            context.createLinearGradient(
-              sweepX -
-              band,
-              cssHeight,
-
-              sweepX +
-              band,
-              0
-            );
-
-
-          sweep.addColorStop(
-            0,
-            "rgba(255,255,255,0)"
-          );
-
-          sweep.addColorStop(
-            0.38,
-            "rgba(255,255,255,0.025)"
-          );
-
-          sweep.addColorStop(
-            0.5,
-            "rgba(255,255,255,0.52)"
-          );
-
-          sweep.addColorStop(
-            0.58,
-            "rgba(255,255,255,0.10)"
-          );
-
-          sweep.addColorStop(
-            1,
-            "rgba(255,255,255,0)"
-          );
-
-
-          context.fillStyle =
-            sweep;
-
-
-          context.fillRect(
-            0,
-            0,
-            cssWidth,
-            cssHeight
-          );
-        }
-      }
+        boxWidth,
+        boxHeight
+      );
 
 
       context.restore();
@@ -924,19 +1452,28 @@ export default function ReactiveDissolveLogo({
 
 
     /* =====================================
-       DISSOLVE
+       INTERACTIVE LIGHT
     ===================================== */
 
-    const drawDissolve = (
-      elapsed: number
-    ) => {
+    const drawInteractiveLight = () => {
       if (
-        prefersReducedMotion ||
-        activeCurrent <
-        0.01
+        activeCurrent <= 0.002
       ) {
         return;
       }
+
+
+      context.save();
+
+
+      /*
+        Because the blob is already drawn,
+        the same light naturally reveals
+        both logo and external material.
+      */
+
+      context.globalCompositeOperation =
+        "source-atop";
 
 
       const radius =
@@ -944,574 +1481,224 @@ export default function ReactiveDissolveLogo({
           cssWidth,
           cssHeight
         ) *
-        dissolveRadius;
+        0.21;
 
 
-      const maxInwardDepth =
-        Math.max(
-          14,
-          radius *
-          0.26
+      const light =
+        context.createRadialGradient(
+          mouseCurrent.x,
+          mouseCurrent.y,
+          0,
+
+          mouseCurrent.x,
+          mouseCurrent.y,
+          radius
         );
 
 
-      const maxParticleTravel =
-        Math.max(
-          32,
-          radius *
-          0.95
-        );
+      const strength =
+        activeCurrent *
+        lightIntensity;
 
 
-      /* ===================================
-         SHARED PARTICLE SCALE
-
-         Both erosion and exterior particles
-         use the same visual scale.
-      =================================== */
-
-      const getDotSize = (
-        seed: number,
-        influence: number
-      ) => {
-        return (
-          0.45 +
-          seed * 0.75 +
-          influence * 0.42
-        );
-      };
+      light.addColorStop(
+        0,
+        `rgba(255,255,255,${
+          0.36 *
+          strength
+        })`
+      );
 
 
-      /* ===================================
-         PASS 1
-         MICRO EROSION INTO LOGO
-      =================================== */
+      light.addColorStop(
+        0.16,
+        `rgba(250,252,255,${
+          0.24 *
+          strength
+        })`
+      );
 
-      context.save();
+
+      light.addColorStop(
+        0.4,
+        `rgba(225,230,238,${
+          0.085 *
+          strength
+        })`
+      );
 
 
-      context.globalCompositeOperation =
-        "destination-out";
+      light.addColorStop(
+        0.72,
+        `rgba(210,215,225,${
+          0.025 *
+          strength
+        })`
+      );
+
+
+      light.addColorStop(
+        1,
+        "rgba(255,255,255,0)"
+      );
 
 
       context.fillStyle =
-        "#000000";
+        light;
 
 
-      for (
-        const point
-        of edgePoints
-      ) {
-        const dx =
-          point.x -
-          mouseCurrent.x;
-
-        const dy =
-          point.y -
-          mouseCurrent.y;
-
-
-        const distance =
-          Math.hypot(
-            dx,
-            dy
-          );
-
-
-        if (
-          distance >
-          radius
-        ) {
-          continue;
-        }
-
-
-        const proximity =
-          1 -
-          distance /
-          radius;
-
-
-        const influence =
-          Math.pow(
-            proximity,
-            1.15
-          ) *
-          activeCurrent *
-          dissolveAmount;
-
-
-        /*
-          Much less restrictive than before.
-
-          More contour points participate,
-          but every cut remains tiny.
-        */
-
-        const erosionGate =
-          clamp(
-            0.18 +
-            influence *
-            0.82,
-
-            0,
-            0.96
-          );
-
-
-        if (
-          point.seed >
-          erosionGate
-        ) {
-          continue;
-        }
-
-
-        const inwardDepth =
-          influence *
-          (
-            8 +
-            point.seed *
-            maxInwardDepth
-          );
-
-
-        const layers =
-          3 +
-          Math.floor(
-            influence *
-            8
-          );
-
-
-        const tangentX =
-          -point.ny;
-
-        const tangentY =
-          point.nx;
-
-
-        for (
-          let layer = 0;
-          layer < layers;
-          layer += 1
-        ) {
-          const layerSeed =
-            hash(
-              point.x +
-              layer *
-              17.31,
-
-              point.y +
-              layer *
-              41.73
-            );
-
-
-          const t =
-            layers <= 1
-              ? 0
-              : layer /
-                (
-                  layers -
-                  1
-                );
-
-
-          const inwardDistance =
-            inwardDepth *
-            t;
-
-
-          const sideways =
-            (
-              layerSeed -
-              0.5
-            ) *
-            (
-              2 +
-              influence *
-              6
-            );
-
-
-          const cutX =
-            point.x -
-            point.nx *
-            inwardDistance +
-            tangentX *
-            sideways;
-
-
-          const cutY =
-            point.y -
-            point.ny *
-            inwardDistance +
-            tangentY *
-            sideways;
-
-
-          const dotSize =
-            getDotSize(
-              layerSeed,
-              influence
-            );
-
-
-          context.globalAlpha =
-            clamp(
-              0.3 +
-              influence *
-              0.68,
-
-              0,
-              0.95
-            );
-
-
-          context.beginPath();
-
-
-          context.arc(
-            cutX,
-            cutY,
-            dotSize,
-            0,
-            Math.PI *
-            2
-          );
-
-
-          context.fill();
-        }
-      }
+      context.fillRect(
+        0,
+        0,
+        cssWidth,
+        cssHeight
+      );
 
 
       context.restore();
+    };
 
 
-      /* ===================================
-         PASS 2
-         HIGH-DENSITY EXTERIOR PARTICLES
-      =================================== */
+    /* =====================================
+       INITIAL LIGHT SWEEP
+    ===================================== */
+
+    const drawSweep = (
+      elapsed: number
+    ) => {
+      if (
+        prefersReducedMotion
+      ) {
+        return;
+      }
+
+
+      const sweepTime =
+        (
+          elapsed -
+          sweepDelay
+        ) /
+        sweepDuration;
+
+
+      if (
+        sweepTime < 0 ||
+        sweepTime > 1
+      ) {
+        return;
+      }
+
+
+      const progress =
+        smoothstep(
+          0,
+          1,
+          sweepTime
+        );
+
+
+      const sweepX =
+        lerp(
+          -cssWidth * 0.2,
+
+          cssWidth * 1.2,
+
+          progress
+        );
+
+
+      const band =
+        Math.max(
+          100,
+          cssWidth * 0.09
+        );
+
 
       context.save();
 
 
       context.globalCompositeOperation =
-        "source-over";
+        "source-atop";
 
 
-      for (
-        const point
-        of edgePoints
-      ) {
-        const dx =
-          point.x -
-          mouseCurrent.x;
+      const sweep =
+        context.createLinearGradient(
+          sweepX - band,
+          cssHeight,
 
-        const dy =
-          point.y -
-          mouseCurrent.y;
+          sweepX + band,
+          0
+        );
 
 
-        const distance =
-          Math.hypot(
-            dx,
-            dy
-          );
-
-
-        if (
-          distance >
-          radius
-        ) {
-          continue;
-        }
-
-
-        const proximity =
-          1 -
-          distance /
-          radius;
-
-
-        const influence =
-          Math.pow(
-            proximity,
-            1.25
-          ) *
-          activeCurrent *
-          dissolveAmount;
-
-
-        /*
-          Much higher emission density.
-
-          Even low influence produces some
-          particles, while the centre of the
-          effect becomes substantially denser.
-        */
-
-        const emissionGate =
-          clamp(
-            0.22 +
-            influence *
-            particleIntensity *
-            1.35,
-
-            0,
-            0.98
-          );
-
-
-        if (
-          point.seed >
-          emissionGate
-        ) {
-          continue;
-        }
-
-
-        const tangentX =
-          -point.ny;
-
-        const tangentY =
-          point.nx;
-
-
-        /*
-          Each valid edge point can spawn
-          several independent particles.
-        */
-
-        const particleCount =
-          2 +
-          Math.floor(
-            influence *
-            5
-          );
-
-
-        for (
-          let copy = 0;
-          copy < particleCount;
-          copy += 1
-        ) {
-          const particleSeed =
-            hash(
-              point.x +
-              copy *
-              29.17,
-
-              point.y +
-              copy *
-              63.41
-            );
-
-
-          const phase =
-            (
-              elapsed *
-              (
-                0.28 +
-                particleSeed *
-                0.18
-              )
-              +
-              particleSeed *
-              13.7
-            )
-            %
-            1;
-
-
-          /*
-            Particles still follow the cursor,
-            but not all by the exact same path.
-        */
-
-          const followStrength =
-            clamp(
-              0.18 +
-              influence *
-              (
-                0.56 +
-                particleSeed *
-                0.22
-              ),
-
-              0,
-              0.9
-            );
-
-
-          const targetX =
-            lerp(
-              point.x,
-              mouseCurrent.x,
-              followStrength
-            );
-
-
-          const targetY =
-            lerp(
-              point.y,
-              mouseCurrent.y,
-              followStrength
-            );
-
-
-          const outwardBias =
-            (
-              2 +
-              influence *
-              maxParticleTravel *
-              (
-                0.16 +
-                particleSeed *
-                0.2
-              )
-            )
-            *
-            phase;
-
-
-          const tangentSpread =
-            (
-              particleSeed -
-              0.5
-            )
-            *
-            (
-              10 +
-              influence *
-              24
-            );
-
-
-          const particleX =
-            lerp(
-              point.x,
-              targetX,
-              phase
-            )
-            +
-            point.nx *
-            outwardBias
-            +
-            tangentX *
-            tangentSpread *
-            phase;
-
-
-          const particleY =
-            lerp(
-              point.y,
-              targetY,
-              phase
-            )
-            +
-            point.ny *
-            outwardBias
-            +
-            tangentY *
-            tangentSpread *
-            phase;
-
-
-          /*
-            EXACT SAME SCALE LANGUAGE
-            as the internal erosion.
-          */
-
-          const dotSize =
-            getDotSize(
-              particleSeed,
-              influence
-            );
-
-
-          const fadeIn =
-            clamp(
-              phase /
-              0.12,
-
-              0,
-              1
-            );
-
-
-          const fadeOut =
-            1 -
-            clamp(
-              (
-                phase -
-                0.55
-              ) /
-              0.45,
-
-              0,
-              1
-            );
-
-
-          const alpha =
-            fadeIn *
-            fadeOut *
-            influence *
-            (
-              0.45 +
-              particleSeed *
-              0.35
-            );
-
-
-          context.globalAlpha =
-            clamp(
-              alpha,
-              0,
-              0.72
-            );
-
-
-          if (
-            particleSeed >
-            0.78
-          ) {
-            context.fillStyle =
-              "#d3d6da";
-          } else if (
-            particleSeed >
-            0.46
-          ) {
-            context.fillStyle =
-              "#92969b";
-          } else {
-            context.fillStyle =
-              "#5f6368";
-          }
-
-
-          context.beginPath();
-
-
-          context.arc(
-            particleX,
-            particleY,
-            dotSize,
-            0,
-            Math.PI *
-            2
-          );
-
-
-          context.fill();
-        }
-      }
+      sweep.addColorStop(
+        0,
+        "rgba(255,255,255,0)"
+      );
+
+
+      sweep.addColorStop(
+        0.38,
+        "rgba(255,255,255,0.025)"
+      );
+
+
+      sweep.addColorStop(
+        0.5,
+        "rgba(255,255,255,0.50)"
+      );
+
+
+      sweep.addColorStop(
+        0.58,
+        "rgba(255,255,255,0.10)"
+      );
+
+
+      sweep.addColorStop(
+        1,
+        "rgba(255,255,255,0)"
+      );
+
+
+      context.fillStyle =
+        sweep;
+
+
+      context.fillRect(
+        0,
+        0,
+        cssWidth,
+        cssHeight
+      );
 
 
       context.restore();
+    };
+
+
+    /* =====================================
+       FRAME
+    ===================================== */
+
+    const drawFrame = (
+      elapsed: number
+    ) => {
+      context.clearRect(
+        0,
+        0,
+        cssWidth,
+        cssHeight
+      );
+
+
+      drawBaseMaterial();
+
+      drawBlob();
+
+      drawInteractiveLight();
+
+      drawSweep(elapsed);
     };
 
 
@@ -1551,11 +1738,14 @@ export default function ReactiveDissolveLogo({
         1000;
 
 
+      /* ===================================
+         SMOOTH CURSOR
+      =================================== */
+
       const pointerFollow =
         1 -
         Math.exp(
-          -delta *
-          15
+          -delta * 13
         );
 
 
@@ -1575,11 +1765,14 @@ export default function ReactiveDissolveLogo({
         );
 
 
+      /* ===================================
+         SMOOTH ACTIVATION
+      =================================== */
+
       const activeFollow =
         1 -
         Math.exp(
-          -delta *
-          13
+          -delta * 10
         );
 
 
@@ -1591,20 +1784,30 @@ export default function ReactiveDissolveLogo({
         );
 
 
-      context.clearRect(
-        0,
-        0,
-        cssWidth,
-        cssHeight
-      );
+      /*
+        Heavy procedural field runs at
+        roughly 30fps.
+
+        Final compositing remains at the
+        browser refresh rate.
+      */
+
+      if (
+        now -
+          lastBlobRender >=
+        32
+      ) {
+        lastBlobRender =
+          now;
 
 
-      drawMaterial(
-        elapsed
-      );
+        buildBlobFrame(
+          elapsed
+        );
+      }
 
 
-      drawDissolve(
+      drawFrame(
         elapsed
       );
 
@@ -1617,7 +1820,7 @@ export default function ReactiveDissolveLogo({
 
 
     /* =====================================
-       IMAGE LOAD
+       LOAD
     ===================================== */
 
     image.onload = () => {
@@ -1631,17 +1834,17 @@ export default function ReactiveDissolveLogo({
 
       mouseTarget.x =
         drawX +
-        drawWidth *
-        0.35;
+        drawWidth * 0.35;
+
 
       mouseTarget.y =
         drawY +
-        drawHeight *
-        0.5;
+        drawHeight * 0.5;
 
 
       mouseCurrent.x =
         mouseTarget.x;
+
 
       mouseCurrent.y =
         mouseTarget.y;
@@ -1650,8 +1853,13 @@ export default function ReactiveDissolveLogo({
       startTime =
         performance.now();
 
+
       previousTime =
         startTime;
+
+
+      lastBlobRender =
+        startTime - 100;
 
 
       resizeObserver =
@@ -1665,9 +1873,7 @@ export default function ReactiveDissolveLogo({
       );
 
 
-      setCanvasReady(
-        true
-      );
+      setCanvasReady(true);
 
 
       animationFrame =
@@ -1678,9 +1884,7 @@ export default function ReactiveDissolveLogo({
 
 
     image.onerror = () => {
-      setCanvasReady(
-        false
-      );
+      setCanvasReady(false);
     };
 
 
@@ -1709,15 +1913,18 @@ export default function ReactiveDissolveLogo({
         handlePointerMove
       );
 
+
       window.removeEventListener(
         "blur",
         deactivate
       );
 
+
       document.removeEventListener(
         "mouseout",
         handleWindowMouseOut
       );
+
 
       document.removeEventListener(
         "visibilitychange",
@@ -1732,16 +1939,19 @@ export default function ReactiveDissolveLogo({
     logoOffsetX,
     logoOffsetY,
 
-    dissolveRadius,
-    dissolveAmount,
+    interactionRadius,
 
-    particleIntensity,
+    blobReach,
+    blobIntensity,
+
+    attractionStrength,
+
     lightIntensity,
 
     sweepDelay,
     sweepDuration,
 
-    edgeSampleStep,
+    renderScale,
   ]);
 
 

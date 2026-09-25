@@ -3,25 +3,53 @@
 ======================================== */
 
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
+  --background: #09090d;
+  --foreground: #f3f0ea;
 
-  --grey-100: rgba(255, 255, 255, 0.72);
-  --grey-200: rgba(255, 255, 255, 0.48);
-  --grey-300: rgba(255, 255, 255, 0.24);
-  --grey-400: rgba(255, 255, 255, 0.12);
+  --grey-100:
+    rgba(
+      243,
+      240,
+      234,
+      0.72
+    );
 
-  --border: rgba(255, 255, 255, 0.14);
+  --grey-200:
+    rgba(
+      243,
+      240,
+      234,
+      0.48
+    );
 
-  --page-padding: clamp(
-    20px,
-    4vw,
-    64px
-  );
+  --grey-300:
+    rgba(
+      243,
+      240,
+      234,
+      0.24
+    );
 
-  --max-width: 1600px;
+  --border:
+    rgba(
+      243,
+      240,
+      234,
+      0.12
+    );
 
-  --header-height: 80px;
+  --page-padding:
+    clamp(
+      32px,
+      7vw,
+      90px
+    );
+
+  --max-width:
+    1800px;
+
+  --header-height:
+    78px;
 
   --font-primary:
     "oook-variable",
@@ -50,7 +78,8 @@ html {
   background:
     var(--background);
 
-  scroll-behavior: smooth;
+  scroll-behavior:
+    smooth;
 }
 
 
@@ -100,17 +129,6 @@ select {
 }
 
 
-button {
-  padding: 0;
-
-  border: 0;
-
-  background: transparent;
-
-  color: inherit;
-}
-
-
 img,
 video,
 canvas,
@@ -127,6 +145,9 @@ svg {
 
 main {
   min-height: 100vh;
+
+  background:
+    var(--background);
 }
 
 
@@ -136,523 +157,11 @@ main {
   max-width:
     var(--max-width);
 
-  margin-inline: auto;
+  margin-inline:
+    auto;
 
   padding-inline:
     var(--page-padding);
-}
-
-
-.eyebrow {
-  margin: 0;
-
-  color:
-    var(--grey-200);
-
-  font-family:
-    var(--font-primary);
-
-  font-size: 0.72rem;
-  font-weight: 500;
-
-  line-height: 1;
-
-  letter-spacing: 0.12em;
-
-  text-transform: uppercase;
-}
-
-
-/* ========================================
-   HEADER
-======================================== */
-
-.site-header {
-  position: fixed;
-
-  z-index: 1000;
-
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  height:
-    var(--header-height);
-
-  background:
-    rgba(
-      0,
-      0,
-      0,
-      0.72
-    );
-
-  border-bottom:
-    1px solid
-    rgba(
-      255,
-      255,
-      255,
-      0.08
-    );
-
-  backdrop-filter:
-    blur(20px);
-
-  -webkit-backdrop-filter:
-    blur(20px);
-}
-
-
-.header-inner {
-  height: 100%;
-
-  display: grid;
-
-  grid-template-columns:
-    1fr
-    auto
-    1fr;
-
-  align-items: center;
-}
-
-
-.brand {
-  justify-self: start;
-
-  font-size: 1.2rem;
-  font-weight: 600;
-
-  line-height: 1;
-
-  letter-spacing:
-    -0.04em;
-}
-
-
-.main-nav {
-  display: flex;
-
-  align-items: center;
-
-  gap:
-    clamp(
-      20px,
-      3vw,
-      48px
-    );
-}
-
-
-.main-nav a,
-.header-contact {
-  color:
-    var(--grey-100);
-
-  font-size: 0.82rem;
-  font-weight: 400;
-
-  line-height: 1;
-
-  transition:
-    color 180ms ease,
-    opacity 180ms ease;
-}
-
-
-.main-nav a:hover,
-.header-contact:hover {
-  color:
-    var(--foreground);
-}
-
-
-.header-contact {
-  justify-self: end;
-}
-
-
-/* ========================================
-   HOME HERO
-======================================== */
-
-.home-hero {
-  position: relative;
-
-  min-height: 100svh;
-
-  display: flex;
-
-  align-items:
-    flex-end;
-
-  padding-top:
-    var(--header-height);
-
-  padding-bottom:
-    clamp(
-      48px,
-      8vh,
-      110px
-    );
-
-  overflow: hidden;
-
-  isolation: isolate;
-
-  background:
-    radial-gradient(
-      circle at 32% 48%,
-
-      rgba(
-        255,
-        255,
-        255,
-        0.018
-      ),
-
-      transparent 44%
-    ),
-    var(--background);
-}
-
-
-/* ========================================
-   REACTIVE LOGO
-======================================== */
-
-.reactive-dissolve-logo {
-  position: absolute;
-
-  z-index: 0;
-
-  top:
-    var(--header-height);
-
-  right: 0;
-  bottom: 0;
-  left: 0;
-
-  overflow: hidden;
-
-  pointer-events: none;
-}
-
-
-.reactive-dissolve-logo__canvas {
-  position: absolute;
-
-  inset: 0;
-
-  width: 100%;
-  height: 100%;
-
-  opacity: 0;
-
-  pointer-events: none;
-
-  transition:
-    opacity 240ms ease;
-
-  filter:
-    drop-shadow(
-      8px
-      10px
-      12px
-      rgba(
-        0,
-        0,
-        0,
-        0.7
-      )
-    );
-}
-
-
-.reactive-dissolve-logo__canvas.is-ready {
-  opacity: 1;
-}
-
-
-.reactive-dissolve-logo__fallback {
-  position: absolute;
-
-  left:
-    var(
-      --reactive-logo-offset-x,
-      0%
-    );
-
-  top:
-    calc(
-      (
-        100% -
-        var(
-          --reactive-logo-height,
-          94%
-        )
-      )
-      /
-      2
-      +
-      var(
-        --reactive-logo-offset-y,
-        0%
-      )
-    );
-
-  width: auto;
-
-  height:
-    var(
-      --reactive-logo-height,
-      94%
-    );
-
-  max-width: none;
-
-  opacity: 0.8;
-
-  pointer-events: none;
-
-  filter:
-    grayscale(1)
-    brightness(0.11)
-    contrast(1.15);
-
-  transition:
-    opacity 200ms ease;
-}
-
-
-.reactive-dissolve-logo__fallback.is-hidden {
-  opacity: 0;
-}
-
-
-/* ========================================
-   HERO VIGNETTE
-======================================== */
-
-.hero-vignette {
-  position: absolute;
-
-  z-index: 1;
-
-  inset: 0;
-
-  pointer-events: none;
-
-  background:
-    radial-gradient(
-      circle at 30% 48%,
-
-      transparent 0%,
-
-      transparent 26%,
-
-      rgba(
-        0,
-        0,
-        0,
-        0.06
-      )
-      48%,
-
-      rgba(
-        0,
-        0,
-        0,
-        0.4
-      )
-      77%,
-
-      rgba(
-        0,
-        0,
-        0,
-        0.82
-      )
-      100%
-    );
-}
-
-
-/* ========================================
-   HERO GRAIN
-======================================== */
-
-.hero-grain {
-  position: absolute;
-
-  z-index: 2;
-
-  inset: 0;
-
-  pointer-events: none;
-
-  opacity: 0.035;
-
-  background-image:
-    url(
-      "data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.7'/%3E%3C/svg%3E"
-    );
-
-  background-repeat: repeat;
-
-  background-size:
-    180px
-    180px;
-
-  mix-blend-mode:
-    soft-light;
-}
-
-
-/* ========================================
-   HERO CONTENT
-======================================== */
-
-.hero-inner {
-  position: relative;
-
-  z-index: 10;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items:
-    flex-start;
-}
-
-
-.home-hero .eyebrow {
-  color:
-    rgba(
-      255,
-      255,
-      255,
-      0.48
-    );
-
-  animation:
-    hero-content-in
-    900ms
-    cubic-bezier(
-      0.16,
-      1,
-      0.3,
-      1
-    )
-    150ms
-    both;
-}
-
-
-.home-hero h1 {
-  max-width: 1180px;
-
-  margin:
-    clamp(
-      18px,
-      3vh,
-      34px
-    )
-    0
-    0;
-
-  font-size:
-    clamp(
-      3.4rem,
-      6.4vw,
-      7.2rem
-    );
-
-  font-weight: 400;
-
-  line-height: 0.92;
-
-  letter-spacing:
-    -0.052em;
-
-  text-wrap:
-    balance;
-
-  animation:
-    hero-content-in
-    1200ms
-    cubic-bezier(
-      0.16,
-      1,
-      0.3,
-      1
-    )
-    220ms
-    both;
-}
-
-
-.hero-description {
-  max-width: 520px;
-
-  margin:
-    clamp(
-      28px,
-      4.5vh,
-      54px
-    )
-    0
-    0;
-
-  color:
-    var(--grey-100);
-
-  font-size:
-    clamp(
-      1rem,
-      1.35vw,
-      1.25rem
-    );
-
-  font-weight: 400;
-
-  line-height: 1.45;
-
-  animation:
-    hero-content-in
-    1000ms
-    cubic-bezier(
-      0.16,
-      1,
-      0.3,
-      1
-    )
-    380ms
-    both;
-}
-
-
-@keyframes hero-content-in {
-
-  from {
-    opacity: 0;
-
-    transform:
-      translateY(
-        18px
-      );
-  }
-
-  to {
-    opacity: 1;
-
-    transform:
-      translateY(
-        0
-      );
-  }
 }
 
 
@@ -668,7 +177,7 @@ main {
   overflow: hidden;
 
   background:
-    #050505;
+    var(--background);
 }
 
 
@@ -697,7 +206,7 @@ main {
 
   transition:
     opacity
-    700ms
+    800ms
     cubic-bezier(
       0.16,
       1,
@@ -713,169 +222,161 @@ main {
 
 
 /* ========================================
-   HOME DIVISIONS
+   HEADER
 ======================================== */
 
-.home-divisions {
-  position: relative;
+.site-header {
+  position: fixed;
 
-  z-index: 20;
-
-  background:
-    var(--background);
-}
-
-
-.home-divisions-sequence {
-  position: relative;
-}
-
-
-/* ========================================
-   CONTINUOUS STEPS
-======================================== */
-
-.home-divisions-step {
-  position: relative;
-
-  min-height: 130svh;
-
-  margin-top: -1px;
-}
-
-
-.home-divisions-step--intro {
-  min-height: 118svh;
-}
-
-
-.home-divisions-sticky {
-  position: sticky;
+  z-index: 99999;
 
   top: 0;
+  left: 0;
 
-  min-height: 100svh;
-  height: 100svh;
+  width: 100%;
+  height:
+    var(--header-height);
 
-  overflow: hidden;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(9, 9, 13, 0.96) 0%,
+      rgba(9, 9, 13, 0.76) 32%,
+      rgba(9, 9, 13, 0.38) 68%,
+      rgba(9, 9, 13, 0) 100%
+    );
+
+  pointer-events: none;
 }
 
 
 /* ========================================
-   SECTION 02 GLOBAL TYPE SCALE
+   HEADER CONTENT
 ======================================== */
 
-.home-divisions .eyebrow {
-  font-size: 0.62rem;
+.site-header__inner {
+  position: relative;
 
-  letter-spacing: 0.14em;
-}
-
-
-/* ========================================
-   INTRO
-======================================== */
-
-.home-divisions-intro {
-  min-height: 100%;
+  width: 100%;
   height: 100%;
 
   display: flex;
 
-  flex-direction: column;
+  align-items:
+    center;
 
   justify-content:
     flex-end;
 
-  padding-top:
-    calc(
-      var(--header-height)
-      +
-      48px
-    );
-
-  padding-bottom:
-    clamp(
-      54px,
-      8vh,
-      90px
-    );
-
-  background:
-    var(--background);
+  pointer-events: none;
 }
 
 
-.home-divisions-intro h2 {
-  max-width: 1080px;
+/* ========================================
+   NAVIGATION
+======================================== */
 
-  margin:
+.site-header__nav {
+  display: flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    flex-end;
+
+  gap:
     clamp(
-      22px,
-      3.5vh,
-      40px
-    )
-    0
-    0;
+      30px,
+      3.2vw,
+      58px
+    );
+
+  background:
+    transparent;
+
+  pointer-events:
+    auto;
+}
+
+
+/* ========================================
+   NAV LINKS
+======================================== */
+
+.site-header__nav-link {
+  position: relative;
+
+  display: inline-flex;
+
+  align-items:
+    center;
+
+  height:
+    32px;
+
+  color:
+    var(--foreground);
 
   font-size:
     clamp(
-      2.5rem,
-      5vw,
-      5.2rem
+      0.62rem,
+      0.74vw,
+      0.76rem
     );
 
-  font-weight: 400;
+  font-weight:
+    500;
 
-  line-height: 0.96;
+  line-height:
+    1;
 
   letter-spacing:
-    -0.047em;
+    0.15em;
 
-  text-wrap: balance;
+  text-transform:
+    uppercase;
+
+  white-space:
+    nowrap;
+
+  opacity:
+    0.72;
+
+  transition:
+    opacity
+    180ms ease;
 }
 
 
 /* ========================================
-   DIVISION PANEL
+   NAV LINK UNDERLINE
 ======================================== */
 
-.home-division-panel {
-  isolation: isolate;
+.site-header__nav-link::after {
+  content: "";
+
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  height:
+    1px;
 
   background:
-    #050505;
+    var(--foreground);
 
-  border-top:
-    1px solid
-    rgba(
-      255,
-      255,
-      255,
-      0.08
-    );
-}
-
-
-/* ========================================
-   PANEL MEDIA
-======================================== */
-
-.home-division-panel__media {
-  z-index: 0;
-}
-
-
-.home-division-panel
-.background-media__image,
-.home-division-panel
-.background-media__video {
   transform:
-    scale(1.01);
+    scaleX(0);
+
+  transform-origin:
+    center;
 
   transition:
     transform
-    1600ms
+    250ms
     cubic-bezier(
       0.16,
       1,
@@ -885,126 +386,108 @@ main {
 }
 
 
-.home-division-panel:hover
-.background-media__image,
-.home-division-panel:hover
-.background-media__video {
+/* ========================================
+   NAV STATES
+======================================== */
+
+.site-header__nav-link:hover,
+.site-header__nav-link.is-active {
+  opacity: 1;
+}
+
+
+.site-header__nav-link:hover::after,
+.site-header__nav-link.is-active::after {
   transform:
-    scale(1.025);
+    scaleX(1);
 }
 
 
 /* ========================================
-   PANEL OVERLAYS
+   HOME HERO
 ======================================== */
 
-.home-division-panel__scrim {
-  position: absolute;
+.home-hero {
+  position: relative;
 
-  z-index: 1;
+  min-height:
+    100svh;
 
-  inset: 0;
+  overflow:
+    hidden;
 
-  pointer-events: none;
-
-  background:
-    linear-gradient(
-      to top,
-
-      rgba(
-        0,
-        0,
-        0,
-        0.93
-      )
-      0%,
-
-      rgba(
-        0,
-        0,
-        0,
-        0.76
-      )
-      22%,
-
-      rgba(
-        0,
-        0,
-        0,
-        0.30
-      )
-      52%,
-
-      rgba(
-        0,
-        0,
-        0,
-        0.10
-      )
-      74%,
-
-      rgba(
-        0,
-        0,
-        0,
-        0.20
-      )
-      100%
-    );
-}
-
-
-.home-division-panel__scrim::after {
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
+  isolation:
+    isolate;
 
   background:
-    linear-gradient(
-      to right,
-
-      rgba(
-        0,
-        0,
-        0,
-        0.42
-      )
-      0%,
-
-      rgba(
-        0,
-        0,
-        0,
-        0.14
-      )
-      34%,
-
-      transparent
-      66%
-    );
+    var(--background);
 }
 
 
 /* ========================================
-   PANEL TEXTURE
+   HERO MEDIA
 ======================================== */
 
-.home-division-panel__texture {
+.home-hero__media {
+  z-index:
+    0;
+}
+
+
+/* ========================================
+   HERO PROVIDED GRADIENT
+======================================== */
+
+.home-hero__overlay {
   position: absolute;
 
-  z-index: 2;
+  z-index:
+    1;
 
-  inset: 0;
+  inset:
+    0;
 
-  pointer-events: none;
-
-  opacity: 0.03;
+  pointer-events:
+    none;
 
   background-image:
     url(
-      "data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.88' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.7'/%3E%3C/svg%3E"
+      "/media/home/gradient_home_header_background.png"
+    );
+
+  background-position:
+    center center;
+
+  background-repeat:
+    no-repeat;
+
+  background-size:
+    cover;
+}
+
+
+/* ========================================
+   HERO GRAIN
+======================================== */
+
+.home-hero__grain {
+  position: absolute;
+
+  z-index:
+    2;
+
+  inset:
+    0;
+
+  pointer-events:
+    none;
+
+  opacity:
+    0.018;
+
+  background-image:
+    url(
+      "data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.7'/%3E%3C/svg%3E"
     );
 
   background-size:
@@ -1017,74 +500,238 @@ main {
 
 
 /* ========================================
-   PANEL CONTENT
+   HERO CONTENT
 ======================================== */
 
-.home-division-panel__content {
+.home-hero__content {
   position: relative;
 
-  z-index: 3;
+  z-index:
+    3;
 
-  height: 100%;
+  min-height:
+    100svh;
 
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content:
-    space-between;
+  display:
+    block;
 
   padding-top:
-    calc(
-      var(--header-height)
-      +
-      clamp(
-        18px,
-        2.5vh,
-        32px
-      )
-    );
+    var(--header-height);
 
   padding-bottom:
-    clamp(
-      30px,
-      5vh,
-      58px
-    );
+    40px;
 }
 
 
 /* ========================================
-   PANEL META
+   HERO IDENTITY
 ======================================== */
 
-.home-division-panel__meta {
-  display: flex;
+.home-hero__identity {
+  position: absolute;
 
-  justify-content:
-    space-between;
+  top:
+    clamp(
+      92px,
+      13vh,
+      120px
+    );
+
+  left:
+    var(--page-padding);
+
+  display: flex;
 
   align-items:
     center;
+}
 
-  gap: 24px;
 
-  color:
-    rgba(
-      255,
-      255,
-      255,
-      0.56
+.home-hero__symbol {
+  width:
+    auto;
+
+  height:
+    clamp(
+      70px,
+      7.5vh,
+      86px
     );
 
-  font-size: 0.6rem;
+  flex:
+    none;
 
-  font-weight: 500;
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(94%)
+    sepia(5%)
+    saturate(245%)
+    hue-rotate(339deg)
+    brightness(103%)
+    contrast(91%);
+}
 
-  line-height: 1;
+
+.home-hero__identity-divider {
+  width:
+    1px;
+
+  height:
+    clamp(
+      70px,
+      7.5vh,
+      86px
+    );
+
+  flex:
+    none;
+
+  margin-left:
+    clamp(
+      36px,
+      3vw,
+      52px
+    );
+
+  background:
+    var(--foreground);
+
+  opacity:
+    0.62;
+}
+
+
+.home-hero__identity-copy {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  min-width:
+    200px;
+
+  margin-left:
+    clamp(
+      20px,
+      1.6vw,
+      28px
+    );
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      0.58rem,
+      0.7vw,
+      0.72rem
+    );
+
+  font-weight:
+    400;
+
+  line-height:
+    1.38;
+
+  text-transform:
+    uppercase;
+}
+
+
+.home-hero__identity-copy strong {
+  color:
+    var(--foreground);
+
+  font-weight:
+    600;
+}
+
+
+/* ========================================
+   HERO HEADLINE
+======================================== */
+
+.home-hero__headline {
+  position:
+    absolute;
+
+  left:
+    var(--page-padding);
+
+  bottom:
+    clamp(
+      118px,
+      16vh,
+      154px
+    );
+
+  width:
+    min(
+      1040px,
+      calc(
+        100vw -
+        var(--page-padding) * 2
+      )
+    );
+}
+
+
+.home-hero__headline h1 {
+  margin: 0;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      2.9rem,
+      4.3vw,
+      4.65rem
+    );
+
+  font-weight:
+    420;
+
+  line-height:
+    0.98;
 
   letter-spacing:
-    0.11em;
+    -0.026em;
+
+  text-transform:
+    uppercase;
+
+  white-space:
+    nowrap;
+}
+
+
+.home-hero__headline p {
+  margin:
+    24px
+    0
+    0;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      0.78rem,
+      1vw,
+      0.98rem
+    );
+
+  font-weight:
+    400;
+
+  line-height:
+    1.3;
+
+  letter-spacing:
+    0.15em;
 
   text-transform:
     uppercase;
@@ -1092,180 +739,166 @@ main {
 
 
 /* ========================================
-   PANEL MAIN
+   HOME DIVISIONS
 ======================================== */
 
-.home-division-panel__main {
-  display: grid;
+.home-divisions {
+  position:
+    relative;
 
-  grid-template-columns:
-    minmax(
-      0,
-      1.25fr
-    )
-    minmax(
-      220px,
-      0.42fr
-    );
+  background:
+    var(--background);
+}
+
+
+/* ========================================
+   DIVISIONS HEADING
+======================================== */
+
+.home-divisions__heading {
+  display:
+    flex;
 
   align-items:
-    end;
+    center;
 
-  gap:
+  justify-content:
+    center;
+
+  min-height:
     clamp(
-      32px,
-      6vw,
-      96px
+      110px,
+      10vw,
+      154px
     );
+
+  padding:
+    24px
+    var(--page-padding);
+
+  background:
+    var(--background);
+
+  text-align:
+    center;
 }
 
 
-/* ========================================
-   PANEL BRAND
-======================================== */
+.home-divisions__heading h2 {
+  margin:
+    0;
 
-.home-division-panel__brand {
-  align-self: end;
-
-  display: flex;
-
-  align-items: flex-end;
-
-  min-width: 0;
-}
-
-
-/*
-  IMPORTANTE:
-
-  Todos los logos tienen EXACTAMENTE
-  la misma altura visual de caja.
-
-  El ancho queda libre y depende de
-  la proporción natural de cada SVG.
-*/
-
-.home-division-panel__logo {
-  width: auto;
-
-  height:
-    clamp(
-      54px,
-      5vw,
-      82px
-    );
-
-  max-width:
-    min(
-      46vw,
-      520px
-    );
-
-  object-fit: contain;
-
-  object-position:
-    left center;
-
-  opacity: 0.98;
-
-  filter:
-    brightness(0)
-    invert(1);
-}
-
-
-/* ========================================
-   PANEL COPY
-======================================== */
-
-.home-division-panel__copy {
-  align-self: end;
-
-  padding-bottom:
-    clamp(
-      0px,
-      0.8vw,
-      10px
-    );
-}
-
-
-.home-division-panel__copy p {
-  max-width: 290px;
-
-  margin: 0;
+  color:
+    var(--foreground);
 
   font-size:
     clamp(
-      0.9rem,
-      1.05vw,
-      1.12rem
+      1.65rem,
+      2.2vw,
+      2.35rem
     );
 
-  font-weight: 400;
+  font-weight:
+    430;
 
-  line-height: 1.2;
+  line-height:
+    1.05;
 
   letter-spacing:
-    -0.017em;
+    -0.02em;
 
-  text-wrap: balance;
+  text-transform:
+    uppercase;
 }
 
 
 /* ========================================
-   PANEL LINK
+   DIVISIONS GRID
 ======================================== */
 
-.home-division-panel__link {
-  width: fit-content;
+.home-divisions__grid {
+  display:
+    grid;
 
-  display: inline-flex;
+  grid-template-columns:
+    repeat(
+      4,
+      minmax(
+        0,
+        1fr
+      )
+    );
 
-  align-items: center;
+  width:
+    100%;
 
-  gap: 10px;
-
-  margin-top:
+  min-height:
     clamp(
-      18px,
-      2.7vh,
-      30px
+      320px,
+      31vw,
+      520px
     );
-
-  padding-bottom: 5px;
-
-  border-bottom:
-    1px solid
-    rgba(
-      255,
-      255,
-      255,
-      0.34
-    );
-
-  color:
-    rgba(
-      255,
-      255,
-      255,
-      0.7
-    );
-
-  font-size: 0.68rem;
-
-  transition:
-    color 220ms ease,
-    border-color 220ms ease;
 }
 
 
-.home-division-panel__arrow {
-  display: inline-block;
+/* ========================================
+   DIVISION CARD
+======================================== */
+
+.division-card {
+  position:
+    relative;
+
+  min-width:
+    0;
+
+  min-height:
+    clamp(
+      320px,
+      31vw,
+      520px
+    );
+
+  overflow:
+    hidden;
+
+  isolation:
+    isolate;
+
+  background:
+    var(--background);
+
+  border-right:
+    1px solid
+    rgba(
+      243,
+      240,
+      234,
+      0.08
+    );
+}
+
+
+.division-card:last-child {
+  border-right:
+    0;
+}
+
+
+/* ========================================
+   DIVISION IMAGE
+======================================== */
+
+.division-card__image {
+  z-index:
+    0;
+
+  object-fit:
+    cover;
 
   transition:
     transform
-    320ms
+    900ms
     cubic-bezier(
       0.16,
       1,
@@ -1275,110 +908,256 @@ main {
 }
 
 
-.home-division-panel__link:hover {
-  color: #ffffff;
-
-  border-color:
-    #ffffff;
+.division-card:hover
+.division-card__image {
+  transform:
+    scale(1.025);
 }
 
 
-.home-division-panel__link:hover
-.home-division-panel__arrow {
-  transform:
-    translate(
-      4px,
-      -4px
+/* ========================================
+   PROVIDED CARD GRADIENT
+======================================== */
+
+.division-card__gradient {
+  position:
+    absolute;
+
+  z-index:
+    1;
+
+  inset:
+    0;
+
+  pointer-events:
+    none;
+
+  background-image:
+    url(
+      "/media/home/gradient_home_section.png"
+    );
+
+  background-position:
+    center center;
+
+  background-repeat:
+    no-repeat;
+
+  background-size:
+    cover;
+}
+
+
+/* ========================================
+   DIVISION CONTENT
+======================================== */
+
+.division-card__content {
+  position:
+    relative;
+
+  z-index:
+    2;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+  min-height:
+    inherit;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  justify-content:
+    space-between;
+
+  padding:
+    clamp(
+      26px,
+      2vw,
+      36px
     );
 }
 
 
 /* ========================================
-   DIVISION HERO
+   DIVISION TOP
 ======================================== */
 
-.division-hero {
-  min-height: 100svh;
+.division-card__top {
+  display:
+    flex;
 
-  display: flex;
+  align-items:
+    flex-start;
+
+  width:
+    100%;
+
+  min-width:
+    0;
+}
+
+
+/* ========================================
+   DIVISION LOGO
+======================================== */
+
+.division-card__logo {
+  display:
+    block;
+
+  width:
+    auto;
+
+  height:
+    clamp(
+      27px,
+      2vw,
+      32px
+    );
+
+  max-width:
+    none;
+
+  flex:
+    none;
+
+  object-fit:
+    contain;
+
+  object-position:
+    left center;
+
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(94%)
+    sepia(5%)
+    saturate(245%)
+    hue-rotate(339deg)
+    brightness(103%)
+    contrast(91%);
+}
+
+
+/* ========================================
+   CARD BOTTOM
+======================================== */
+
+.division-card__bottom {
+  display:
+    flex;
 
   align-items:
     flex-end;
 
-  padding:
-    calc(
-      var(--header-height)
-      +
-      80px
-    )
-    0
-    clamp(
-      60px,
-      10vh,
-      140px
-    );
+  justify-content:
+    space-between;
+
+  gap:
+    24px;
 }
 
 
-.division-hero-inner {
-  width: 100%;
-}
+.division-card__description {
+  display:
+    flex;
 
+  flex-direction:
+    column;
 
-.division-hero h1 {
-  max-width: 1300px;
-
-  margin:
-    clamp(
-      24px,
-      4vh,
-      48px
-    )
-    0
-    0;
-
-  font-size:
-    clamp(
-      4rem,
-      10vw,
-      11rem
-    );
-
-  font-weight: 400;
-
-  line-height: 0.88;
-
-  letter-spacing:
-    -0.055em;
-}
-
-
-.division-description {
-  max-width: 680px;
-
-  margin:
-    clamp(
-      40px,
-      7vh,
-      80px
-    )
-    0
-    0
-    auto;
+  margin: 0;
 
   color:
-    var(--grey-100);
+    var(--foreground);
 
   font-size:
     clamp(
-      1.1rem,
-      1.8vw,
-      1.5rem
+      0.7rem,
+      0.75vw,
+      0.82rem
     );
 
-  font-weight: 400;
+  font-weight:
+    400;
 
-  line-height: 1.4;
+  line-height:
+    1.22;
+
+  letter-spacing:
+    0;
+
+  text-transform:
+    uppercase;
+}
+
+
+.division-card__description span {
+  display:
+    block;
+}
+
+
+/* ========================================
+   CARD ARROW
+======================================== */
+
+.division-card__arrow {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  width:
+    34px;
+
+  height:
+    34px;
+
+  flex:
+    none;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    1.55rem;
+
+  font-weight:
+    300;
+
+  line-height:
+    1;
+
+  transition:
+    transform
+    280ms
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    );
+}
+
+
+.division-card:hover
+.division-card__arrow {
+  transform:
+    translateX(
+      6px
+    );
 }
 
 
@@ -1387,18 +1166,10 @@ main {
 ======================================== */
 
 .site-footer {
-  position: relative;
-
-  z-index: 100;
-
   padding:
-    clamp(
-      80px,
-      12vh,
-      160px
-    )
+    72px
     0
-    32px;
+    28px;
 
   background:
     var(--background);
@@ -1409,130 +1180,120 @@ main {
 }
 
 
-.footer-main {
-  display: flex;
+.site-footer__top {
+  display:
+    flex;
+
+  align-items:
+    flex-start;
 
   justify-content:
     space-between;
 
-  gap: 40px;
+  gap:
+    48px;
 
-  margin-bottom:
-    clamp(
-      80px,
-      15vh,
-      180px
-    );
+  padding-bottom:
+    80px;
 }
 
 
-.footer-brand {
-  margin: 0;
+.site-footer__brand {
+  color:
+    var(--foreground);
 
   font-size:
-    clamp(
-      4rem,
-      12vw,
-      12rem
-    );
+    2.4rem;
 
-  font-weight: 500;
+  font-weight:
+    500;
 
-  line-height: 0.8;
+  line-height:
+    1;
 
   letter-spacing:
-    -0.06em;
+    -0.05em;
 }
 
 
-.footer-copy {
-  max-width: 320px;
+.site-footer__nav {
+  display:
+    flex;
 
-  margin: 0;
+  flex-wrap:
+    wrap;
 
+  justify-content:
+    flex-end;
+
+  gap:
+    18px
+    30px;
+
+  max-width:
+    600px;
+}
+
+
+.site-footer__nav a {
   color:
-    var(--grey-100);
+    var(--foreground);
 
-  font-size: 1rem;
+  font-size:
+    0.7rem;
 
-  line-height: 1.4;
+  letter-spacing:
+    0.08em;
+
+  text-transform:
+    uppercase;
+
+  opacity:
+    0.72;
+
+  transition:
+    opacity
+    180ms ease;
 }
 
 
-.footer-bottom {
-  display: flex;
+.site-footer__nav a:hover {
+  opacity:
+    1;
+}
+
+
+.site-footer__bottom {
+  display:
+    flex;
 
   justify-content:
     space-between;
 
-  padding-top: 24px;
+  gap:
+    24px;
+
+  padding-top:
+    18px;
 
   border-top:
     1px solid
     var(--border);
 
   color:
-    var(--grey-200);
-
-  font-size: 0.75rem;
-}
-
-
-/* ========================================
-   404
-======================================== */
-
-.not-found {
-  min-height: 100svh;
-
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: center;
-
-  align-items: center;
-
-  gap: 24px;
-
-  padding-inline:
-    var(--page-padding);
-
-  text-align: center;
-}
-
-
-.not-found h1 {
-  margin: 0;
+    var(--foreground);
 
   font-size:
-    clamp(
-      4rem,
-      10vw,
-      10rem
-    );
-
-  font-weight: 400;
-
-  line-height: 0.9;
+    0.64rem;
 
   letter-spacing:
-    -0.055em;
-}
+    0.06em;
 
+  text-transform:
+    uppercase;
 
-.not-found a {
-  color:
-    var(--grey-100);
-
-  transition:
-    color 180ms ease;
-}
-
-
-.not-found a:hover {
-  color:
-    var(--foreground);
+  opacity:
+    0.48;
 }
 
 
@@ -1544,54 +1305,55 @@ main {
   max-width: 1100px
 ) {
 
-  .home-hero h1 {
+  :root {
+    --page-padding:
+      clamp(
+        28px,
+        5vw,
+        56px
+      );
+  }
+
+
+  .site-header__nav {
+    gap:
+      clamp(
+        20px,
+        2.6vw,
+        36px
+      );
+  }
+
+
+  .home-hero__headline {
+    width:
+      calc(
+        100vw -
+        var(--page-padding) * 2
+      );
+  }
+
+
+  .home-hero__headline h1 {
     font-size:
       clamp(
-        3.2rem,
-        7vw,
-        6rem
-      );
-  }
-
-
-  .home-divisions-intro h2 {
-    font-size:
-      clamp(
-        2.4rem,
-        5.7vw,
-        4.5rem
-      );
-  }
-
-
-  .home-division-panel__main {
-    grid-template-columns:
-      minmax(
-        0,
-        1fr
-      )
-      minmax(
-        200px,
-        0.4fr
-      );
-
-    gap: 38px;
-  }
-
-
-  .home-division-panel__logo {
-    height:
-      clamp(
-        50px,
+        2.7rem,
         5.4vw,
-        70px
+        4.2rem
       );
+  }
 
-    max-width:
-      48vw;
+
+  .division-card__logo {
+    height:
+      28px;
   }
 }
 
+
+/* ========================================
+   TABLET
+======================================== */
 
 @media (
   max-width: 800px
@@ -1599,222 +1361,276 @@ main {
 
   :root {
     --header-height:
-      68px;
+      64px;
+
+    --page-padding:
+      24px;
   }
 
 
-  .header-inner {
-    grid-template-columns:
-      1fr
-      auto;
+  .site-header__inner {
+    justify-content:
+      flex-start;
   }
 
 
-  .main-nav {
-    display: none;
+  .site-header__nav {
+    justify-content:
+      flex-start;
+
+    gap:
+      24px;
+
+    min-width:
+      max-content;
   }
 
 
-  .home-hero {
-    min-height:
-      100svh;
-
-    padding-bottom:
-      48px;
-  }
-
-
-  .home-hero h1 {
-    max-width: 680px;
-
-    font-size:
-      clamp(
-        3rem,
-        11vw,
-        5rem
-      );
-
-    letter-spacing:
-      -0.045em;
-  }
-
-
-  .home-divisions-step {
-    min-height:
-      120svh;
-  }
-
-
-  .home-divisions-step--intro {
-    min-height:
-      108svh;
-  }
-
-
-  .home-divisions-intro {
-    padding-top:
+  .home-hero__identity {
+    top:
       calc(
         var(--header-height)
         +
-        30px
+        34px
       );
-
-    padding-bottom:
-      44px;
   }
 
 
-  .home-divisions-intro h2 {
-    font-size:
-      clamp(
-        2.2rem,
-        9vw,
-        3.8rem
-      );
-
-    line-height: 0.98;
-
-    letter-spacing:
-      -0.042em;
+  .home-hero__symbol,
+  .home-hero__identity-divider {
+    height:
+      62px;
   }
 
 
-  .home-divisions .eyebrow {
+  .home-hero__identity-divider {
+    margin-left:
+      28px;
+  }
+
+
+  .home-hero__identity-copy {
+    min-width:
+      0;
+
+    margin-left:
+      18px;
+
     font-size:
       0.58rem;
   }
 
 
-  .home-division-panel__content {
-    padding-top:
-      calc(
-        var(--header-height)
-        +
-        18px
-      );
-
-    padding-bottom:
-      30px;
+  .home-hero__headline {
+    bottom:
+      100px;
   }
 
 
-  .home-division-panel__meta {
+  .home-hero__headline h1 {
     font-size:
-      0.56rem;
-  }
-
-
-  .home-division-panel__main {
-    display: flex;
-
-    flex-direction: column;
-
-    align-items:
-      flex-start;
-
-    gap: 24px;
-  }
-
-
-  .home-division-panel__logo {
-    height:
       clamp(
-        42px,
-        12vw,
-        58px
+        2rem,
+        7.6vw,
+        3.6rem
       );
 
-    width: auto;
+    white-space:
+      normal;
+  }
 
+
+  .home-hero__headline p {
     max-width:
-      72vw;
-  }
-
-
-  .home-division-panel__copy {
-    width: 100%;
-
-    padding-bottom: 0;
-  }
-
-
-  .home-division-panel__copy p {
-    max-width: 270px;
+      560px;
 
     font-size:
+      0.72rem;
+
+    letter-spacing:
+      0.11em;
+  }
+
+
+  .home-divisions__heading h2 {
+    font-size:
       clamp(
-        0.88rem,
-        3.7vw,
-        1.04rem
+        1.4rem,
+        4vw,
+        1.9rem
       );
   }
 
 
-  .home-division-panel__link {
-    font-size:
-      0.64rem;
+  .home-divisions__grid {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(
+          0,
+          1fr
+        )
+      );
   }
 
 
-  .division-hero h1 {
-    letter-spacing:
-      -0.045em;
+  .division-card {
+    min-height:
+      52vw;
+
+    border-bottom:
+      1px solid
+      rgba(
+        243,
+        240,
+        234,
+        0.08
+      );
   }
 
 
-  .division-description {
-    margin-left: 0;
-  }
-
-
-  .footer-main {
-    flex-direction:
-      column;
-  }
-
-
-  .footer-bottom {
-    flex-direction:
-      column;
-
-    gap: 8px;
+  .division-card__logo {
+    height:
+      28px;
   }
 }
 
 
 /* ========================================
-   REDUCED MOTION
+   MOBILE
 ======================================== */
 
 @media (
-  prefers-reduced-motion:
-  reduce
+  max-width: 560px
 ) {
 
-  html {
-    scroll-behavior:
-      auto;
+  :root {
+    --page-padding:
+      20px;
   }
 
 
-  *,
-  *::before,
-  *::after {
-    animation-duration:
-      0.01ms !important;
-
-    animation-iteration-count:
-      1 !important;
-
-    transition-duration:
-      0.01ms !important;
+  .home-hero__symbol,
+  .home-hero__identity-divider {
+    height:
+      54px;
   }
 
 
-  .home-division-panel
-  .background-media__image,
-  .home-division-panel
-  .background-media__video {
-    transform: none;
+  .home-hero__identity-divider {
+    margin-left:
+      20px;
+  }
+
+
+  .home-hero__identity-copy {
+    margin-left:
+      14px;
+
+    font-size:
+      0.5rem;
+  }
+
+
+  .home-hero__headline {
+    bottom:
+      70px;
+  }
+
+
+  .home-hero__headline h1 {
+    font-size:
+      clamp(
+        1.9rem,
+        9vw,
+        2.8rem
+      );
+
+    line-height:
+      1;
+  }
+
+
+  .home-hero__headline p {
+    margin-top:
+      18px;
+
+    max-width:
+      340px;
+
+    font-size:
+      0.64rem;
+
+    line-height:
+      1.45;
+  }
+
+
+  .home-divisions__heading {
+    justify-content:
+      flex-start;
+
+    min-height:
+      110px;
+
+    text-align:
+      left;
+  }
+
+
+  .home-divisions__heading h2 {
+    font-size:
+      1.4rem;
+  }
+
+
+  .home-divisions__grid {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .division-card {
+    min-height:
+      110vw;
+
+    border-right:
+      0;
+  }
+
+
+  .division-card__logo {
+    height:
+      27px;
+  }
+
+
+  .division-card__description {
+    font-size:
+      0.72rem;
+  }
+
+
+  .site-footer__top {
+    flex-direction:
+      column;
+
+    padding-bottom:
+      56px;
+  }
+
+
+  .site-footer__nav {
+    justify-content:
+      flex-start;
+  }
+
+
+  .site-footer__bottom {
+    flex-direction:
+      column;
+
+    gap:
+      6px;
   }
 }

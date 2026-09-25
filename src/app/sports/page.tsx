@@ -1,21 +1,21 @@
-import type { Metadata } from "next";
-
-import DivisionHero from "@/components/sections/DivisionHero";
-
-import { divisionMap } from "@/data/divisions";
-
-export const metadata: Metadata = {
-  title: "Sports",
-};
+import SportsBuiltFor from "@/components/sports/SportsBuiltFor";
+import SportsCapabilities from "@/components/sports/SportsCapabilities";
+import SportsCTA from "@/components/sports/SportsCTA";
+import SportsHero from "@/components/sports/SportsHero";
+import SportsManifesto from "@/components/sports/SportsManifesto";
+import SportsShowreel from "@/components/sports/SportsShowreel";
+import SportsValue from "@/components/sports/SportsValue";
 
 export default function SportsPage() {
-  const division = divisionMap.sports;
-
   return (
-    <DivisionHero
-      eyebrow={division.eyebrow}
-      title={division.title}
-      description={division.description}
-    />
+    <>
+      <SportsHero />
+      <SportsManifesto />
+      <SportsValue />
+      <SportsShowreel />
+      <SportsBuiltFor />
+      <SportsCapabilities />
+      <SportsCTA />
+    </>
   );
 }

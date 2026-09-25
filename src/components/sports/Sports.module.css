@@ -1,0 +1,1699 @@
+.hero,
+.manifesto,
+.value,
+.showreel,
+.builtFor,
+.capabilities,
+.cta {
+  background:
+    var(--background);
+
+  color:
+    var(--foreground);
+}
+
+
+/* ========================================
+   SHARED
+======================================== */
+
+.sectionLabel,
+.valueEyebrow,
+.ctaEyebrow {
+  font-size:
+    clamp(
+      0.58rem,
+      0.68vw,
+      0.74rem
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    1.2;
+
+  letter-spacing:
+    0.18em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.sectionLabel {
+  opacity:
+    0.66;
+}
+
+
+/* ========================================
+   HERO
+======================================== */
+
+.hero {
+  position:
+    relative;
+
+  min-height:
+    100svh;
+
+  overflow:
+    hidden;
+
+  background:
+    #09090d;
+}
+
+
+/* ========================================
+   HERO MEDIA
+======================================== */
+
+.heroMedia {
+  position:
+    absolute;
+
+  z-index:
+    0;
+
+  inset:
+    0;
+
+  background-color:
+    #09090d;
+
+  background-position:
+    center center;
+
+  background-size:
+    cover;
+
+  background-repeat:
+    no-repeat;
+}
+
+
+/* ========================================
+   HERO PROVIDED GRADIENT
+======================================== */
+
+.heroGradientOverlay {
+  position:
+    absolute;
+
+  z-index:
+    1;
+
+  inset:
+    0;
+
+  pointer-events:
+    none;
+
+  background:
+    url(
+      "/media/home/gradient_home_header_background.png"
+    )
+    center center /
+    cover
+    no-repeat;
+
+  opacity:
+    0.72;
+}
+
+
+/* ========================================
+   HERO SHADE
+======================================== */
+
+.heroShade {
+  position:
+    absolute;
+
+  z-index:
+    2;
+
+  inset:
+    0;
+
+  pointer-events:
+    none;
+
+  background:
+    linear-gradient(
+      180deg,
+
+      rgba(
+        9,
+        9,
+        13,
+        0.08
+      )
+      0%,
+
+      rgba(
+        9,
+        9,
+        13,
+        0
+      )
+      42%,
+
+      rgba(
+        9,
+        9,
+        13,
+        0.66
+      )
+      100%
+    );
+}
+
+
+/* ========================================
+   HERO TOP
+======================================== */
+
+.heroTop {
+  position:
+    absolute;
+
+  z-index:
+    3;
+
+  top:
+    clamp(
+      96px,
+      12vh,
+      132px
+    );
+
+  left:
+    var(--page-padding);
+
+  display:
+    flex;
+
+  align-items:
+    flex-start;
+
+  gap:
+    clamp(
+      34px,
+      4vw,
+      68px
+    );
+}
+
+
+/* ========================================
+   SPORTS LOGO
+======================================== */
+
+.sportsLogo {
+  display:
+    block;
+
+  width:
+    clamp(
+      220px,
+      18vw,
+      360px
+    );
+
+  height:
+    auto;
+
+  max-width:
+    none;
+
+  flex:
+    none;
+
+  object-fit:
+    contain;
+
+  object-position:
+    left center;
+}
+
+
+/* ========================================
+   HERO DESCRIPTOR
+======================================== */
+
+.heroDescriptor {
+  position:
+    relative;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  padding-top:
+    4px;
+
+  padding-left:
+    clamp(
+      18px,
+      1.6vw,
+      24px
+    );
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      0.54rem,
+      0.6vw,
+      0.68rem
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    1.16;
+
+  letter-spacing:
+    0.08em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.heroDescriptor::before {
+  content:
+    "";
+
+  position:
+    absolute;
+
+  top:
+    -10px;
+
+  bottom:
+    -10px;
+
+  left:
+    0;
+
+  width:
+    1px;
+
+  background:
+    rgba(
+      243,
+      240,
+      234,
+      0.54
+    );
+}
+
+
+/* ========================================
+   HERO BOTTOM
+======================================== */
+
+.heroBottom {
+  position:
+    absolute;
+
+  z-index:
+    3;
+
+  left:
+    var(--page-padding);
+
+  bottom:
+    clamp(
+      48px,
+      7vh,
+      78px
+    );
+
+  width:
+    min(
+      760px,
+      calc(
+        100vw -
+        var(--page-padding) * 2
+      )
+    );
+}
+
+
+.heroBottom h1 {
+  margin:
+    0;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      2.4rem,
+      4.5vw,
+      5.5rem
+    );
+
+  font-weight:
+    430;
+
+  line-height:
+    0.96;
+
+  letter-spacing:
+    -0.035em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.heroBottom p {
+  margin:
+    16px
+    0
+    0;
+
+  max-width:
+    660px;
+
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.68
+    );
+
+  font-size:
+    clamp(
+      0.82rem,
+      0.95vw,
+      1.05rem
+    );
+
+  line-height:
+    1.3;
+}
+
+
+/* ========================================
+   HERO BUTTON
+======================================== */
+
+.heroButton,
+.ctaButton {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    24px;
+
+  border:
+    1px solid
+    rgba(
+      243,
+      240,
+      234,
+      0.35
+    );
+
+  border-radius:
+    999px;
+
+  color:
+    var(--foreground);
+
+  font-weight:
+    500;
+
+  letter-spacing:
+    0.08em;
+
+  text-transform:
+    uppercase;
+
+  transition:
+    background
+    220ms ease,
+    border-color
+    220ms ease,
+    transform
+    220ms ease;
+}
+
+
+.heroButton {
+  min-width:
+    190px;
+
+  height:
+    54px;
+
+  margin-top:
+    24px;
+
+  padding:
+    0
+    24px;
+
+  font-size:
+    clamp(
+      0.58rem,
+      0.66vw,
+      0.72rem
+    );
+}
+
+
+.heroButton:hover,
+.ctaButton:hover {
+  border-color:
+    rgba(
+      243,
+      240,
+      234,
+      0.68
+    );
+
+  background:
+    rgba(
+      243,
+      240,
+      234,
+      0.08
+    );
+
+  transform:
+    translateY(
+      -1px
+    );
+}
+
+
+/* ========================================
+   MANIFESTO
+======================================== */
+
+.manifesto {
+  padding:
+    clamp(
+      48px,
+      5vw,
+      78px
+    )
+    var(--page-padding)
+    clamp(
+      64px,
+      7vw,
+      104px
+    );
+}
+
+
+.manifestoGrid {
+  display:
+    grid;
+
+  grid-template-columns:
+    minmax(
+      0,
+      1.45fr
+    )
+    minmax(
+      300px,
+      0.75fr
+    );
+
+  align-items:
+    end;
+
+  gap:
+    clamp(
+      60px,
+      10vw,
+      170px
+    );
+
+  margin-top:
+    clamp(
+      32px,
+      3vw,
+      50px
+    );
+}
+
+
+.manifestoTitle {
+  margin:
+    0;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      2.25rem,
+      3.6vw,
+      4.7rem
+    );
+
+  font-weight:
+    430;
+
+  line-height:
+    1.02;
+
+  letter-spacing:
+    -0.035em;
+}
+
+
+.manifestoCopy {
+  max-width:
+    470px;
+}
+
+
+.manifestoCopy p {
+  margin:
+    0;
+
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.70
+    );
+
+  font-size:
+    clamp(
+      0.86rem,
+      1vw,
+      1.1rem
+    );
+
+  line-height:
+    1.3;
+}
+
+
+.manifestoCopy span {
+  display:
+    block;
+
+  margin-top:
+    20px;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      0.58rem,
+      0.66vw,
+      0.72rem
+    );
+
+  font-weight:
+    500;
+
+  letter-spacing:
+    0.14em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* ========================================
+   VALUE
+======================================== */
+
+.value {
+  padding:
+    0
+    var(--page-padding)
+    clamp(
+      78px,
+      9vw,
+      132px
+    );
+}
+
+
+.valueGrid {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  gap:
+    clamp(
+      14px,
+      1.4vw,
+      22px
+    );
+
+  margin-top:
+    24px;
+}
+
+
+.valueCard {
+  position:
+    relative;
+
+  min-height:
+    clamp(
+      420px,
+      44vw,
+      680px
+    );
+
+  overflow:
+    hidden;
+
+  background:
+    #121116;
+}
+
+
+.valueMedia {
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  background-position:
+    center;
+
+  background-size:
+    cover;
+
+  background-repeat:
+    no-repeat;
+
+  transition:
+    transform
+    900ms
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    );
+}
+
+
+.valueCard:hover
+.valueMedia {
+  transform:
+    scale(
+      1.025
+    );
+}
+
+
+.valueContent {
+  position:
+    relative;
+
+  z-index:
+    1;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  min-height:
+    inherit;
+
+  padding:
+    clamp(
+      26px,
+      2.7vw,
+      46px
+    );
+}
+
+
+.valueEyebrow {
+  color:
+    var(--foreground);
+
+  opacity:
+    0.64;
+}
+
+
+.valueContent h3 {
+  margin:
+    clamp(
+      20px,
+      2vw,
+      30px
+    )
+    0
+    12px;
+
+  max-width:
+    420px;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      1.55rem,
+      2.25vw,
+      2.75rem
+    );
+
+  font-weight:
+    420;
+
+  line-height:
+    1.02;
+
+  letter-spacing:
+    -0.025em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.valueContent p {
+  margin:
+    0;
+
+  max-width:
+    330px;
+
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.72
+    );
+
+  font-size:
+    clamp(
+      0.78rem,
+      0.9vw,
+      1rem
+    );
+
+  line-height:
+    1.32;
+}
+
+
+/* ========================================
+   SHOWREEL
+======================================== */
+
+.showreel {
+  padding:
+    0
+    var(--page-padding)
+    clamp(
+      78px,
+      9vw,
+      132px
+    );
+}
+
+
+.showreelFrame {
+  position:
+    relative;
+
+  width:
+    100%;
+
+  aspect-ratio:
+    16 / 6.15;
+
+  margin-top:
+    24px;
+
+  overflow:
+    hidden;
+
+  background:
+    #09090d;
+}
+
+
+.showreelVideo {
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+  object-fit:
+    cover;
+
+  object-position:
+    center;
+}
+
+
+.showreelShade {
+  position:
+    absolute;
+
+  z-index:
+    1;
+
+  inset:
+    0;
+
+  pointer-events:
+    none;
+
+  background:
+    linear-gradient(
+      180deg,
+
+      rgba(
+        9,
+        9,
+        13,
+        0.04
+      )
+      0%,
+
+      rgba(
+        9,
+        9,
+        13,
+        0.24
+      )
+      100%
+    );
+}
+
+
+.showreelPlay {
+  position:
+    absolute;
+
+  z-index:
+    3;
+
+  top:
+    50%;
+
+  left:
+    50%;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+
+  gap:
+    17px;
+
+  padding:
+    0;
+
+  border:
+    0;
+
+  color:
+    var(--foreground);
+
+  background:
+    transparent;
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    );
+
+  cursor:
+    pointer;
+
+  font-size:
+    clamp(
+      0.72rem,
+      0.82vw,
+      0.9rem
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    1;
+
+  text-transform:
+    uppercase;
+
+  transition:
+    opacity
+    220ms ease;
+}
+
+
+.showreelPlayHidden {
+  opacity:
+    0;
+
+  pointer-events:
+    none;
+}
+
+
+.playIcon {
+  display:
+    grid;
+
+  width:
+    80px;
+
+  height:
+    80px;
+
+  place-items:
+    center;
+
+  border:
+    1px solid
+    rgba(
+      243,
+      240,
+      234,
+      0.78
+    );
+
+  border-radius:
+    50%;
+
+  color:
+    var(--foreground);
+
+  background:
+    rgba(
+      9,
+      9,
+      13,
+      0.1
+    );
+
+  font-size:
+    1.25rem;
+}
+
+
+.showreelClickArea {
+  position:
+    absolute;
+
+  z-index:
+    2;
+
+  inset:
+    0;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+  padding:
+    0;
+
+  border:
+    0;
+
+  background:
+    transparent;
+
+  cursor:
+    pointer;
+}
+
+
+/* ========================================
+   BUILT FOR
+======================================== */
+
+.builtFor {
+  padding:
+    0
+    var(--page-padding)
+    clamp(
+      72px,
+      8vw,
+      118px
+    );
+}
+
+
+.audienceGrid {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  gap:
+    clamp(
+      40px,
+      7vw,
+      120px
+    );
+
+  margin-top:
+    34px;
+}
+
+
+.audienceItem {
+  min-height:
+    92px;
+
+  padding-left:
+    18px;
+
+  border-left:
+    1px solid
+    rgba(
+      243,
+      240,
+      234,
+      0.36
+    );
+}
+
+
+.audienceItem h3 {
+  margin:
+    0
+    0
+    8px;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      0.76rem,
+      0.86vw,
+      0.94rem
+    );
+
+  font-weight:
+    560;
+
+  letter-spacing:
+    0.08em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.audienceItem p {
+  margin:
+    0;
+
+  max-width:
+    260px;
+
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.52
+    );
+
+  font-size:
+    clamp(
+      0.7rem,
+      0.8vw,
+      0.88rem
+    );
+
+  line-height:
+    1.28;
+}
+
+
+.builtForStatement {
+  width:
+    min(
+      1220px,
+      100%
+    );
+
+  margin:
+    clamp(
+      54px,
+      6vw,
+      88px
+    )
+    0
+    0;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      1.65rem,
+      2.7vw,
+      3.2rem
+    );
+
+  font-weight:
+    420;
+
+  line-height:
+    1.05;
+
+  letter-spacing:
+    -0.025em;
+}
+
+
+/* ========================================
+   CAPABILITIES
+======================================== */
+
+.capabilities {
+  padding:
+    0
+    var(--page-padding)
+    clamp(
+      118px,
+      13vw,
+      200px
+    );
+}
+
+
+.capabilityList {
+  margin-top:
+    24px;
+}
+
+
+.capabilityRow {
+  display:
+    grid;
+
+  grid-template-columns:
+    56px
+    minmax(
+      240px,
+      0.8fr
+    )
+    minmax(
+      300px,
+      1.8fr
+    );
+
+  gap:
+    30px;
+
+  align-items:
+    center;
+
+  min-height:
+    64px;
+
+  border-bottom:
+    1px solid
+    rgba(
+      243,
+      240,
+      234,
+      0.18
+    );
+}
+
+
+.capabilityNumber {
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      0.64rem,
+      0.7vw,
+      0.76rem
+    );
+
+  opacity:
+    0.52;
+}
+
+
+.capabilityRow strong {
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      0.66rem,
+      0.76vw,
+      0.82rem
+    );
+
+  font-weight:
+    560;
+
+  letter-spacing:
+    0.14em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.capabilityCopy {
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.64
+    );
+
+  font-size:
+    clamp(
+      0.76rem,
+      0.86vw,
+      0.94rem
+    );
+}
+
+
+/* ========================================
+   CTA
+======================================== */
+
+.cta {
+  position:
+    relative;
+
+  min-height:
+    clamp(
+      380px,
+      35vw,
+      540px
+    );
+
+  overflow:
+    hidden;
+
+  background:
+    #09090d;
+}
+
+
+.ctaMedia {
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  background-color:
+    #09090d;
+
+  background-position:
+    center;
+
+  background-size:
+    cover;
+
+  background-repeat:
+    no-repeat;
+}
+
+
+.ctaContent {
+  position:
+    relative;
+
+  z-index:
+    1;
+
+  min-height:
+    inherit;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    150px
+    minmax(
+      0,
+      1fr
+    )
+    auto;
+
+  align-items:
+    center;
+
+  gap:
+    clamp(
+      34px,
+      5vw,
+      94px
+    );
+
+  padding:
+    clamp(
+      48px,
+      5vw,
+      80px
+    )
+    var(--page-padding);
+}
+
+
+.ctaEyebrow {
+  color:
+    var(--foreground);
+
+  opacity:
+    0.66;
+}
+
+
+.ctaContent h2 {
+  margin:
+    0;
+
+  max-width:
+    720px;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      2.2rem,
+      3.8vw,
+      4.6rem
+    );
+
+  font-weight:
+    420;
+
+  line-height:
+    1.02;
+
+  letter-spacing:
+    -0.035em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.ctaButton {
+  min-width:
+    200px;
+
+  height:
+    58px;
+
+  padding:
+    0
+    26px;
+
+  font-size:
+    clamp(
+      0.62rem,
+      0.7vw,
+      0.76rem
+    );
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (
+  max-width:
+    900px
+) {
+
+  .heroTop {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+
+    gap:
+      24px;
+  }
+
+
+  .sportsLogo {
+    width:
+      clamp(
+        220px,
+        32vw,
+        300px
+      );
+  }
+
+
+  .manifestoGrid {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .valueGrid {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .valueCard {
+    min-height:
+      480px;
+  }
+
+
+  .audienceGrid {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      28px;
+  }
+
+
+  .ctaContent {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .ctaButton {
+    justify-self:
+      start;
+  }
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (
+  max-width:
+    560px
+) {
+
+  .heroTop {
+    top:
+      92px;
+
+    gap:
+      18px;
+  }
+
+
+  .sportsLogo {
+    width:
+      min(
+        56vw,
+        250px
+      );
+  }
+
+
+  .heroDescriptor {
+    padding-left:
+      14px;
+
+    font-size:
+      0.56rem;
+  }
+
+
+  .heroBottom h1 {
+    font-size:
+      clamp(
+        2.2rem,
+        10vw,
+        3.45rem
+      );
+  }
+
+
+  .manifesto,
+  .value,
+  .showreel,
+  .builtFor,
+  .capabilities {
+    padding-left:
+      20px;
+
+    padding-right:
+      20px;
+  }
+
+
+  .manifestoTitle {
+    font-size:
+      clamp(
+        2rem,
+        9vw,
+        3rem
+      );
+  }
+
+
+  .valueCard {
+    min-height:
+      420px;
+  }
+
+
+  .showreelFrame {
+    aspect-ratio:
+      4 / 3;
+  }
+
+
+  .playIcon {
+    width:
+      66px;
+
+    height:
+      66px;
+  }
+
+
+  .builtForStatement {
+    font-size:
+      clamp(
+        1.6rem,
+        7.8vw,
+        2.5rem
+      );
+  }
+
+
+  .capabilityRow {
+    grid-template-columns:
+      36px
+      1fr;
+
+    gap:
+      9px
+      16px;
+
+    padding:
+      17px
+      0;
+  }
+
+
+  .capabilityCopy {
+    grid-column:
+      2;
+  }
+
+
+  .ctaContent {
+    padding-left:
+      20px;
+
+    padding-right:
+      20px;
+  }
+
+
+  .ctaContent h2 {
+    font-size:
+      clamp(
+        2rem,
+        9vw,
+        3rem
+      );
+  }
+}

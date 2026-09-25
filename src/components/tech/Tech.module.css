@@ -1,0 +1,1436 @@
+.hero,
+.manifesto,
+.features,
+.cta {
+  background:
+    var(--background);
+
+  color:
+    var(--foreground);
+}
+
+
+/* ========================================
+   SHARED
+======================================== */
+
+.sectionLabel,
+.ctaEyebrow {
+  font-size:
+    clamp(
+      0.58rem,
+      0.68vw,
+      0.74rem
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    1.2;
+
+  letter-spacing:
+    0.18em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.sectionLabel {
+  opacity:
+    0.66;
+}
+
+
+/* ========================================
+   HERO
+======================================== */
+
+.hero {
+  position:
+    relative;
+
+  min-height:
+    100svh;
+
+  overflow:
+    hidden;
+
+  background:
+    #09090d;
+}
+
+
+/* ========================================
+   HERO MEDIA
+======================================== */
+
+.heroMedia {
+  position:
+    absolute;
+
+  z-index:
+    0;
+
+  inset:
+    0;
+
+  background-color:
+    #09090d;
+
+  background-position:
+    center center;
+
+  background-size:
+    cover;
+
+  background-repeat:
+    no-repeat;
+}
+
+
+/* ========================================
+   HERO PROVIDED GRADIENT
+======================================== */
+
+.heroGradientOverlay {
+  position:
+    absolute;
+
+  z-index:
+    1;
+
+  inset:
+    0;
+
+  pointer-events:
+    none;
+
+  background:
+    url(
+      "/media/home/gradient_home_header_background.png"
+    )
+    center center /
+    cover
+    no-repeat;
+
+  opacity:
+    0.72;
+}
+
+
+/* ========================================
+   HERO SHADE
+======================================== */
+
+.heroShade {
+  position:
+    absolute;
+
+  z-index:
+    2;
+
+  inset:
+    0;
+
+  pointer-events:
+    none;
+
+  background:
+    linear-gradient(
+      180deg,
+
+      rgba(
+        9,
+        9,
+        13,
+        0.08
+      )
+      0%,
+
+      rgba(
+        9,
+        9,
+        13,
+        0
+      )
+      42%,
+
+      rgba(
+        9,
+        9,
+        13,
+        0.64
+      )
+      100%
+    );
+}
+
+
+/* ========================================
+   HERO TOP
+======================================== */
+
+.heroTop {
+  position:
+    absolute;
+
+  z-index:
+    3;
+
+  top:
+    clamp(
+      96px,
+      12vh,
+      132px
+    );
+
+  left:
+    var(--page-padding);
+
+  display:
+    flex;
+
+  align-items:
+    flex-start;
+
+  gap:
+    clamp(
+      34px,
+      4vw,
+      68px
+    );
+}
+
+
+/* ========================================
+   TECH LOGO
+======================================== */
+
+.techLogo {
+  display:
+    block;
+
+  width:
+    clamp(
+      220px,
+      18vw,
+      360px
+    );
+
+  height:
+    auto;
+
+  max-width:
+    none;
+
+  flex:
+    none;
+
+  object-fit:
+    contain;
+
+  object-position:
+    left center;
+}
+
+
+/* ========================================
+   HERO DESCRIPTOR
+======================================== */
+
+.heroDescriptor {
+  position:
+    relative;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  padding-top:
+    4px;
+
+  padding-left:
+    clamp(
+      18px,
+      1.6vw,
+      24px
+    );
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      0.54rem,
+      0.6vw,
+      0.68rem
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    1.16;
+
+  letter-spacing:
+    0.08em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.heroDescriptor strong {
+  font-weight:
+    650;
+}
+
+
+.heroDescriptor::before {
+  content:
+    "";
+
+  position:
+    absolute;
+
+  top:
+    -10px;
+
+  bottom:
+    -10px;
+
+  left:
+    0;
+
+  width:
+    1px;
+
+  background:
+    rgba(
+      243,
+      240,
+      234,
+      0.54
+    );
+}
+
+
+/* ========================================
+   HERO CLAIM
+======================================== */
+
+.heroClaim {
+  position:
+    absolute;
+
+  z-index:
+    3;
+
+  left:
+    var(--page-padding);
+
+  bottom:
+    clamp(
+      50px,
+      7.5vh,
+      82px
+    );
+
+  width:
+    min(
+      980px,
+      calc(
+        100vw -
+        var(--page-padding) * 2
+      )
+    );
+
+  margin:
+    0;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      2.2rem,
+      4vw,
+      5rem
+    );
+
+  font-weight:
+    430;
+
+  line-height:
+    0.98;
+
+  letter-spacing:
+    -0.035em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* ========================================
+   MANIFESTO
+======================================== */
+
+.manifesto {
+  padding:
+    clamp(
+      46px,
+      5vw,
+      72px
+    )
+    var(--page-padding)
+    clamp(
+      50px,
+      5.5vw,
+      84px
+    );
+}
+
+
+.manifestoGrid {
+  display:
+    grid;
+
+  grid-template-columns:
+    minmax(
+      0,
+      1.4fr
+    )
+    minmax(
+      300px,
+      0.72fr
+    );
+
+  align-items:
+    end;
+
+  gap:
+    clamp(
+      56px,
+      8vw,
+      120px
+    );
+
+  width:
+    min(
+      1560px,
+      100%
+    );
+
+  margin:
+    clamp(
+      30px,
+      3vw,
+      46px
+    )
+    auto
+    0;
+}
+
+
+.manifestoTitle {
+  margin:
+    0;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      2.15rem,
+      3.4vw,
+      4.4rem
+    );
+
+  font-weight:
+    430;
+
+  line-height:
+    1.02;
+
+  letter-spacing:
+    -0.035em;
+}
+
+
+.manifestoCopy {
+  max-width:
+    470px;
+}
+
+
+.manifestoCopy p {
+  margin:
+    0;
+
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.70
+    );
+
+  font-size:
+    clamp(
+      0.86rem,
+      1vw,
+      1.08rem
+    );
+
+  line-height:
+    1.3;
+}
+
+
+.manifestoCopy span {
+  display:
+    block;
+
+  margin-top:
+    20px;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      0.58rem,
+      0.66vw,
+      0.72rem
+    );
+
+  font-weight:
+    500;
+
+  letter-spacing:
+    0.14em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* ========================================
+   FEATURES
+======================================== */
+
+.features {
+  padding:
+    0
+    var(--page-padding)
+    clamp(
+      100px,
+      10vw,
+      160px
+    );
+}
+
+
+.featureList {
+  width:
+    min(
+      1560px,
+      100%
+    );
+
+  margin:
+    0
+    auto;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  gap:
+    0;
+}
+
+
+/* ========================================
+   FEATURE
+======================================== */
+
+.feature {
+  display:
+    grid;
+
+  grid-template-columns:
+    minmax(
+      300px,
+      0.72fr
+    )
+    minmax(
+      0,
+      1fr
+    );
+
+  min-height:
+    clamp(
+      250px,
+      24vw,
+      360px
+    );
+
+  border-top:
+    1px solid
+    rgba(
+      243,
+      240,
+      234,
+      0.06
+    );
+}
+
+
+.feature:last-child {
+  border-bottom:
+    1px solid
+    rgba(
+      243,
+      240,
+      234,
+      0.06
+    );
+}
+
+
+/* ========================================
+   FEATURE COPY
+======================================== */
+
+.featureCopy {
+  position:
+    relative;
+
+  z-index:
+    3;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  justify-content:
+    center;
+
+  max-width:
+    560px;
+
+  padding:
+    clamp(
+      28px,
+      3vw,
+      48px
+    )
+    clamp(
+      20px,
+      2.2vw,
+      36px
+    )
+    clamp(
+      28px,
+      3vw,
+      48px
+    )
+    0;
+}
+
+
+.featureCopy h2 {
+  margin:
+    clamp(
+      18px,
+      1.8vw,
+      28px
+    )
+    0
+    14px;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      1.55rem,
+      2.1vw,
+      2.5rem
+    );
+
+  font-weight:
+    420;
+
+  line-height:
+    1.02;
+
+  letter-spacing:
+    -0.025em;
+}
+
+
+.featureIntro {
+  margin:
+    0
+    0
+    14px;
+
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.58
+    );
+
+  font-size:
+    clamp(
+      0.78rem,
+      0.9vw,
+      0.98rem
+    );
+
+  line-height:
+    1.3;
+}
+
+
+.featureSubTitle {
+  margin:
+    0
+    0
+    14px;
+
+  max-width:
+    520px;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      0.94rem,
+      1.08vw,
+      1.18rem
+    );
+
+  font-weight:
+    560;
+
+  line-height:
+    1.25;
+}
+
+
+.featureBody {
+  margin:
+    0;
+
+  max-width:
+    520px;
+
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.68
+    );
+
+  font-size:
+    clamp(
+      0.78rem,
+      0.9vw,
+      1rem
+    );
+
+  line-height:
+    1.32;
+}
+
+
+/* ========================================
+   FEATURE VISUAL
+======================================== */
+
+.featureVisual {
+  position:
+    relative;
+
+  z-index:
+    1;
+
+  min-height:
+    inherit;
+
+  margin-left:
+    clamp(
+      -160px,
+      -8vw,
+      -72px
+    );
+
+  overflow:
+    hidden;
+
+  background:
+    transparent;
+}
+
+
+.featureMedia {
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  background-position:
+    center;
+
+  background-size:
+    cover;
+
+  background-repeat:
+    no-repeat;
+
+  transition:
+    transform
+    900ms
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    );
+}
+
+
+.feature:hover
+.featureMedia {
+  transform:
+    scale(
+      1.018
+    );
+}
+
+
+/* ========================================
+   FEATURE LEFT FADE
+======================================== */
+
+.featureVisual::before {
+  content:
+    "";
+
+  position:
+    absolute;
+
+  z-index:
+    2;
+
+  inset:
+    0;
+
+  pointer-events:
+    none;
+
+  background:
+    linear-gradient(
+      90deg,
+
+      rgba(
+        9,
+        9,
+        13,
+        1
+      )
+      0%,
+
+      rgba(
+        9,
+        9,
+        13,
+        0.99
+      )
+      8%,
+
+      rgba(
+        9,
+        9,
+        13,
+        0.95
+      )
+      16%,
+
+      rgba(
+        9,
+        9,
+        13,
+        0.84
+      )
+      26%,
+
+      rgba(
+        9,
+        9,
+        13,
+        0.66
+      )
+      38%,
+
+      rgba(
+        9,
+        9,
+        13,
+        0.38
+      )
+      50%,
+
+      rgba(
+        9,
+        9,
+        13,
+        0.14
+      )
+      62%,
+
+      rgba(
+        9,
+        9,
+        13,
+        0
+      )
+      74%
+    );
+}
+
+
+/* ========================================
+   FEATURE SIDE NOTE
+======================================== */
+
+.featureSideNote {
+  position:
+    absolute;
+
+  z-index:
+    3;
+
+  right:
+    clamp(
+      22px,
+      2.5vw,
+      42px
+    );
+
+  bottom:
+    clamp(
+      22px,
+      2.5vw,
+      42px
+    );
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    flex-end;
+
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.82
+    );
+
+  font-size:
+    clamp(
+      0.54rem,
+      0.62vw,
+      0.7rem
+    );
+
+  font-weight:
+    600;
+
+  line-height:
+    1.18;
+
+  letter-spacing:
+    0.16em;
+
+  text-align:
+    right;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* ========================================
+   CTA
+======================================== */
+
+.cta {
+  position:
+    relative;
+
+  min-height:
+    clamp(
+      390px,
+      35vw,
+      550px
+    );
+
+  overflow:
+    hidden;
+
+  background:
+    #09090d;
+}
+
+
+.ctaMedia {
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  background-color:
+    #09090d;
+
+  background-position:
+    center;
+
+  background-size:
+    cover;
+
+  background-repeat:
+    no-repeat;
+}
+
+
+.ctaContent {
+  position:
+    relative;
+
+  z-index:
+    1;
+
+  min-height:
+    inherit;
+
+  width:
+    min(
+      1560px,
+      calc(
+        100% -
+        var(--page-padding) * 2
+      )
+    );
+
+  margin:
+    0
+    auto;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    150px
+    minmax(
+      0,
+      1fr
+    )
+    auto;
+
+  align-items:
+    center;
+
+  gap:
+    clamp(
+      34px,
+      5vw,
+      94px
+    );
+
+  padding:
+    clamp(
+      48px,
+      5vw,
+      80px
+    )
+    0;
+}
+
+
+.ctaEyebrow {
+  color:
+    var(--foreground);
+
+  opacity:
+    0.66;
+}
+
+
+.ctaContent h2 {
+  margin:
+    0;
+
+  max-width:
+    760px;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      2.2rem,
+      3.8vw,
+      4.7rem
+    );
+
+  font-weight:
+    420;
+
+  line-height:
+    1.02;
+
+  letter-spacing:
+    -0.035em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.ctaButton {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    24px;
+
+  min-width:
+    200px;
+
+  height:
+    58px;
+
+  padding:
+    0
+    26px;
+
+  border:
+    1px solid
+    rgba(
+      243,
+      240,
+      234,
+      0.35
+    );
+
+  border-radius:
+    999px;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      0.62rem,
+      0.7vw,
+      0.76rem
+    );
+
+  font-weight:
+    500;
+
+  letter-spacing:
+    0.08em;
+
+  text-transform:
+    uppercase;
+
+  transition:
+    background
+    220ms ease,
+    border-color
+    220ms ease,
+    transform
+    220ms ease;
+}
+
+
+.ctaButton:hover {
+  border-color:
+    rgba(
+      243,
+      240,
+      234,
+      0.68
+    );
+
+  background:
+    rgba(
+      243,
+      240,
+      234,
+      0.08
+    );
+
+  transform:
+    translateY(
+      -1px
+    );
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (
+  max-width:
+    900px
+) {
+
+  .heroTop {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+
+    gap:
+      24px;
+  }
+
+
+  .techLogo {
+    width:
+      clamp(
+        220px,
+        32vw,
+        300px
+      );
+  }
+
+
+  .manifestoGrid {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .feature {
+    grid-template-columns:
+      1fr;
+
+    min-height:
+      auto;
+  }
+
+
+  .featureCopy {
+    max-width:
+      none;
+
+    padding:
+      40px
+      0
+      24px;
+  }
+
+
+  .featureVisual {
+    min-height:
+      360px;
+
+    margin-left:
+      0;
+  }
+
+
+  .featureVisual::before {
+    background:
+      linear-gradient(
+        180deg,
+
+        rgba(
+          9,
+          9,
+          13,
+          0.18
+        )
+        0%,
+
+        rgba(
+          9,
+          9,
+          13,
+          0.08
+        )
+        100%
+      );
+  }
+
+
+  .ctaContent {
+    grid-template-columns:
+      1fr;
+
+    width:
+      calc(
+        100% -
+        var(--page-padding) * 2
+      );
+  }
+
+
+  .ctaButton {
+    justify-self:
+      start;
+  }
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (
+  max-width:
+    560px
+) {
+
+  .heroTop {
+    top:
+      92px;
+
+    gap:
+      18px;
+  }
+
+
+  .techLogo {
+    width:
+      min(
+        56vw,
+        250px
+      );
+  }
+
+
+  .heroDescriptor {
+    padding-left:
+      14px;
+
+    font-size:
+      0.56rem;
+  }
+
+
+  .heroClaim {
+    bottom:
+      48px;
+
+    font-size:
+      clamp(
+        2.1rem,
+        10vw,
+        3.4rem
+      );
+  }
+
+
+  .manifesto,
+  .features {
+    padding-left:
+      20px;
+
+    padding-right:
+      20px;
+  }
+
+
+  .manifestoTitle {
+    font-size:
+      clamp(
+        2rem,
+        9vw,
+        3rem
+      );
+  }
+
+
+  .featureCopy h2 {
+    font-size:
+      clamp(
+        1.8rem,
+        8vw,
+        2.7rem
+      );
+  }
+
+
+  .featureVisual {
+    min-height:
+      280px;
+  }
+
+
+  .featureSideNote {
+    right:
+      18px;
+
+    bottom:
+      18px;
+  }
+
+
+  .ctaContent {
+    width:
+      calc(
+        100% -
+        40px
+      );
+
+    padding:
+      56px
+      0;
+  }
+
+
+  .ctaContent h2 {
+    font-size:
+      clamp(
+        2rem,
+        9vw,
+        3rem
+      );
+  }
+}

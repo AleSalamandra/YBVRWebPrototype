@@ -1,21 +1,16 @@
-import type { Metadata } from "next";
+import TechCTA from "@/components/tech/TechCTA";
+import TechFeatures from "@/components/tech/TechFeatures";
+import TechHero from "@/components/tech/TechHero";
+import TechManifesto from "@/components/tech/TechManifesto";
 
-import DivisionHero from "@/components/sections/DivisionHero";
-
-import { divisionMap } from "@/data/divisions";
-
-export const metadata: Metadata = {
-  title: "Tech",
-};
 
 export default function TechPage() {
-  const division = divisionMap.tech;
-
   return (
-    <DivisionHero
-      eyebrow={division.eyebrow}
-      title={division.title}
-      description={division.description}
-    />
+    <>
+      <TechHero />
+      <TechManifesto />
+      <TechFeatures />
+      <TechCTA />
+    </>
   );
 }

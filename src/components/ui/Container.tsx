@@ -1,9 +1,13 @@
-import type { ReactNode } from "react";
+import type {
+  ReactNode,
+} from "react";
+
 
 type ContainerProps = {
   children: ReactNode;
   className?: string;
 };
+
 
 export default function Container({
   children,
@@ -15,6 +19,7 @@ export default function Container({
   ]
     .filter(Boolean)
     .join(" ");
+
 
   return (
     <div className={classes}>

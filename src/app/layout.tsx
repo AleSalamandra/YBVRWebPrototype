@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 
 import "./globals.css";
 
+
 export const metadata: Metadata = {
   title: {
     default: "YB",
@@ -12,8 +13,9 @@ export const metadata: Metadata = {
   },
 
   description:
-    "YB creates immersive media, technology and experiences across entertainment, culture and sport.",
+    "YB builds immersive media experiences, technology and products for sports, entertainment and culture.",
 };
+
 
 export default function RootLayout({
   children,
@@ -32,7 +34,9 @@ export default function RootLayout({
       <body>
         <Header />
 
-        <main>{children}</main>
+        <main>
+          {children}
+        </main>
 
         <Footer />
       </body>

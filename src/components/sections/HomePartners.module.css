@@ -1,0 +1,438 @@
+.section {
+  position: relative;
+
+  width: 100%;
+
+  padding:
+    clamp(16px, 1.8vw, 28px)
+    var(--page-padding)
+    clamp(80px, 8vw, 120px);
+
+  overflow: hidden;
+
+  background:
+    var(--background);
+}
+
+
+/* ========================================
+   HEADING
+======================================== */
+
+.header {
+  width: 100%;
+
+  max-width:
+    var(--max-width);
+
+  margin:
+    0
+    auto
+    clamp(26px, 2.5vw, 40px);
+
+  display: flex;
+
+  align-items:
+    flex-end;
+
+  justify-content:
+    space-between;
+
+  gap:
+    40px;
+}
+
+
+.eyebrow {
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      0.58rem,
+      0.66vw,
+      0.68rem
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    1;
+
+  letter-spacing:
+    0.16em;
+
+  text-transform:
+    uppercase;
+
+  opacity:
+    0.48;
+}
+
+
+.title {
+  margin:
+    0;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      1.7rem,
+      2.4vw,
+      2.7rem
+    );
+
+  font-weight:
+    420;
+
+  line-height:
+    1;
+
+  letter-spacing:
+    -0.025em;
+
+  text-align:
+    right;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* ========================================
+   CAROUSEL
+======================================== */
+
+.carousel {
+  position: relative;
+
+  width: 100%;
+
+  max-width:
+    var(--max-width);
+
+  margin:
+    0 auto;
+
+  overflow:
+    hidden;
+}
+
+
+.track {
+  display: flex;
+
+  width: 100%;
+
+  transition:
+    transform
+    900ms
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    );
+
+  will-change:
+    transform;
+}
+
+
+/* ========================================
+   SLIDE
+======================================== */
+
+.slide {
+  min-width:
+    100%;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0, 1fr)
+    );
+
+  align-items:
+    center;
+
+  gap:
+    clamp(
+      36px,
+      6vw,
+      110px
+    );
+
+  padding:
+    clamp(
+      24px,
+      3vw,
+      42px
+    )
+    0;
+}
+
+
+/* ========================================
+   PARTNER
+======================================== */
+
+.partner {
+  position: relative;
+
+  min-width:
+    0;
+
+  height:
+    clamp(
+      90px,
+      9vw,
+      150px
+    );
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+}
+
+
+.logo {
+  display:
+    block;
+
+  width:
+    auto;
+
+  height:
+    auto;
+
+  max-width:
+    min(
+      100%,
+      320px
+    );
+
+  max-height:
+    clamp(
+      54px,
+      5vw,
+      82px
+    );
+
+  object-fit:
+    contain;
+
+  object-position:
+    center;
+
+  opacity:
+    0.72;
+
+  /*
+    Unifica cualquier logo de color
+    a blanco para mantener la estética YB.
+  */
+
+  filter:
+    grayscale(1)
+    brightness(0)
+    invert(1);
+
+  transition:
+    opacity
+    280ms ease,
+    transform
+    500ms
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    );
+}
+
+
+.partner:hover .logo {
+  opacity:
+    1;
+
+  transform:
+    scale(1.025);
+}
+
+
+/* ========================================
+   PROGRESS
+======================================== */
+
+.progress {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    8px;
+
+  margin-top:
+    clamp(
+      34px,
+      4vw,
+      56px
+    );
+}
+
+
+.progressItem {
+  width:
+    28px;
+
+  height:
+    1px;
+
+  background:
+    rgba(
+      243,
+      240,
+      234,
+      0.16
+    );
+
+  transition:
+    background
+    300ms ease;
+}
+
+
+.progressItemActive {
+  background:
+    rgba(
+      243,
+      240,
+      234,
+      0.72
+    );
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 800px) {
+
+  .section {
+    padding-inline:
+      24px;
+  }
+
+
+  .header {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+
+    gap:
+      18px;
+  }
+
+
+  .title {
+    text-align:
+      left;
+  }
+
+
+  .slide {
+    gap:
+      28px;
+  }
+
+
+  .logo {
+    max-width:
+      90%;
+
+    max-height:
+      60px;
+  }
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 560px) {
+
+  .section {
+    padding-inline:
+      20px;
+  }
+
+
+  .slide {
+    gap:
+      16px;
+  }
+
+
+  .partner {
+    height:
+      80px;
+  }
+
+
+  .logo {
+    max-width:
+      94%;
+
+    max-height:
+      44px;
+  }
+
+
+  .progressItem {
+    width:
+      20px;
+  }
+}
+
+
+/* ========================================
+   REDUCED MOTION
+======================================== */
+
+@media (
+  prefers-reduced-motion:
+  reduce
+) {
+
+  .track {
+    transition:
+      none;
+  }
+
+
+  .logo {
+    transition:
+      none;
+  }
+}

@@ -1,30 +1,70 @@
 export type DivisionId =
   | "studios"
   | "tech"
-  | "labs"
-  | "sports";
+  | "sports"
+  | "labs";
 
-export type DivisionMedia = {
+
+export type NavigationItem = {
+  label: string;
+  href: string;
+};
+
+
+export type MediaSource = {
   image: string;
   video?: string;
   objectPosition?: string;
 };
 
-export type Division = {
+
+export type DivisionCardData = {
   id: DivisionId;
 
   name: string;
-  shortName: string;
 
-  href: `/${DivisionId}`;
+  href: string;
 
-  eyebrow: string;
+  image: string;
 
-  title: string;
-  description: string;
+  logo: string;
 
-  homeTagline: string;
-  homeLogo: string;
+  descriptionLines: [
+    string,
+    string
+  ];
 
-  homeMedia: DivisionMedia;
+  objectPosition?: string;
+};
+
+
+export type ProductCredit = {
+  label: string;
+
+  division: DivisionId;
+
+  name: string;
+
+  logo: string;
+};
+
+
+export type ProductCardData = {
+  id: string;
+
+  name: string;
+
+  tagline: string;
+
+  href: string;
+
+  ctaLabel: string;
+
+  media?: MediaSource;
+
+  symbol?: string;
+
+  logo?: string;
+
+  credits: ProductCredit[];
 };

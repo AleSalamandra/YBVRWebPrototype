@@ -1,0 +1,535 @@
+/* ========================================
+   PRODUCT
+======================================== */
+
+.product {
+  width: 100%;
+}
+
+
+/* ========================================
+   CARD
+======================================== */
+
+.card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: 560px;
+  overflow: hidden;
+  isolation: isolate;
+  background: #09090d;
+}
+
+
+/* ========================================
+   BACKGROUND MEDIA
+======================================== */
+
+.media {
+  z-index: 0;
+}
+
+
+/* ========================================
+   GRADIENT OVERLAY
+======================================== */
+
+.gradient {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+
+  pointer-events: none;
+
+  background-image:
+    url("/media/home/gradient_home_header_background.png");
+
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+/* ========================================
+   TAGLINE
+======================================== */
+
+.tagline {
+  position: absolute;
+  z-index: 3;
+
+  top: clamp(26px, 2.4vw, 38px);
+  left: 50%;
+
+  width:
+    calc(
+      100% -
+      clamp(80px, 10vw, 180px)
+    );
+
+  margin: 0;
+
+  color: #f3f0ea;
+
+  font-size: clamp(0.68rem, 0.78vw, 0.82rem);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.18em;
+
+  text-align: center;
+  text-transform: uppercase;
+
+  transform: translateX(-50%);
+}
+
+
+/* ========================================
+   LARGE YB WATERMARK
+======================================== */
+
+.watermark {
+  position: absolute;
+  z-index: 2;
+
+  left: 0;
+  bottom: 0;
+
+  width: clamp(340px, 29vw, 540px);
+  height: auto;
+
+  opacity: 0.07;
+
+  pointer-events: none;
+
+  transform-origin: bottom left;
+
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(94%)
+    sepia(5%)
+    saturate(245%)
+    hue-rotate(339deg)
+    brightness(103%)
+    contrast(91%);
+}
+
+
+/* ========================================
+   CENTRAL PRODUCT BRAND
+
+   Caja máxima común para TODOS los logos.
+
+   Ancho máximo:
+   tamaño actual máximo de CULTVRE.
+
+   Alto máximo:
+   tamaño actual máximo de XTADIUM.
+
+   Cada logo conserva su aspect ratio y
+   toca únicamente el primer límite que
+   alcance: ancho o alto.
+======================================== */
+
+.brand {
+  position: absolute;
+  z-index: 3;
+
+  top: 56%;
+  left: 50%;
+
+  width: min(78%, 980px);
+  height: clamp(132px, 15vw, 250px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform: translate(-50%, -50%);
+
+  pointer-events: none;
+}
+
+
+/* ========================================
+   PRODUCT LOGO
+======================================== */
+
+.logo {
+  display: block;
+
+  width: auto;
+  height: auto;
+
+  max-width: 100%;
+  max-height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(94%)
+    sepia(5%)
+    saturate(245%)
+    hue-rotate(339deg)
+    brightness(103%)
+    contrast(91%);
+}
+
+
+/* ========================================
+   CREDITS
+======================================== */
+
+.credits {
+  position: absolute;
+  z-index: 3;
+
+  left: clamp(34px, 4.8vw, 76px);
+  bottom: clamp(38px, 4.5vw, 72px);
+
+  display: flex;
+  flex-direction: column;
+
+  gap: clamp(14px, 1.5vw, 22px);
+}
+
+
+.credit {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 5px;
+}
+
+
+.creditLabel {
+  color: #f3f0ea;
+
+  font-size: clamp(0.5rem, 0.52vw, 0.56rem);
+  font-weight: 400;
+  line-height: 1;
+
+  opacity: 0.72;
+}
+
+
+.creditLogo {
+  display: block;
+
+  width: auto;
+  height: clamp(14px, 1.15vw, 18px);
+
+  max-width: none;
+
+  object-fit: contain;
+  object-position: left center;
+
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(94%)
+    sepia(5%)
+    saturate(245%)
+    hue-rotate(339deg)
+    brightness(103%)
+    contrast(91%);
+}
+
+
+/* ========================================
+   CTA — FROSTED GLASS
+======================================== */
+
+.cta {
+  position: absolute;
+  z-index: 3;
+
+  right: clamp(34px, 4.8vw, 76px);
+  bottom: clamp(38px, 4.5vw, 72px);
+
+  width: clamp(230px, 19vw, 300px);
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 18px;
+
+  padding: 0 24px;
+
+  border: none;
+  border-radius: 999px;
+
+  color: #f3f0ea;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.13) 0%,
+      rgba(255, 255, 255, 0.055) 42%,
+      rgba(255, 255, 255, 0.025) 100%
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 -8px 18px rgba(0, 0, 0, 0.08),
+    0 10px 34px rgba(0, 0, 0, 0.22);
+
+  backdrop-filter:
+    blur(24px)
+    saturate(165%);
+
+  -webkit-backdrop-filter:
+    blur(24px)
+    saturate(165%);
+
+  overflow: hidden;
+
+  transition:
+    background 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+
+/* ========================================
+   CTA GLASS HIGHLIGHT
+======================================== */
+
+.cta::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      125deg,
+      rgba(255, 255, 255, 0.14) 0%,
+      rgba(255, 255, 255, 0.04) 28%,
+      transparent 55%
+    );
+
+  opacity: 0.75;
+}
+
+
+.cta > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ========================================
+   CTA TEXT
+======================================== */
+
+.cta > span:first-child {
+  color: #f3f0ea;
+
+  font-size: clamp(0.82rem, 0.9vw, 0.94rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+
+  text-align: center;
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+
+/* ========================================
+   CTA ARROW
+======================================== */
+
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #f3f0ea;
+
+  font-size: 1.38rem;
+  font-weight: 300;
+  line-height: 1;
+
+  transform: translateY(-1px);
+
+  transition:
+    transform
+    280ms
+    cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+/* ========================================
+   CTA HOVER
+======================================== */
+
+.cta:hover {
+  transform: translateY(-1px);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.17) 0%,
+      rgba(255, 255, 255, 0.075) 45%,
+      rgba(255, 255, 255, 0.035) 100%
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 12px 38px rgba(0, 0, 0, 0.26);
+}
+
+
+.cta:hover .arrow {
+  transform: translate(5px, -1px);
+}
+
+
+/* ========================================
+   CTA KEYBOARD FOCUS
+======================================== */
+
+.cta:focus-visible {
+  outline: none;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 0 0 2px rgba(243, 240, 234, 0.22),
+    0 12px 38px rgba(0, 0, 0, 0.26);
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 800px) {
+
+  .card {
+    aspect-ratio: auto;
+    min-height: 700px;
+  }
+
+
+  .tagline {
+    top: 24px;
+    width: calc(100% - 56px);
+  }
+
+
+  .brand {
+    top: 50%;
+
+    width: 82%;
+    height: 168px;
+  }
+
+
+  .watermark {
+    width: 360px;
+  }
+
+
+  .credits {
+    left: 28px;
+    bottom: 34px;
+  }
+
+
+  .cta {
+    right: 28px;
+    bottom: 34px;
+
+    width: 250px;
+    height: 56px;
+
+    gap: 16px;
+  }
+
+
+  .cta > span:first-child {
+    font-size: 0.86rem;
+  }
+
+
+  .arrow {
+    font-size: 1.32rem;
+  }
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 560px) {
+
+  .card {
+    min-height: 760px;
+  }
+
+
+  .tagline {
+    top: 20px;
+
+    width: calc(100% - 40px);
+
+    font-size: 0.62rem;
+    line-height: 1.45;
+  }
+
+
+  .brand {
+    top: 42%;
+
+    width: calc(100% - 44px);
+    height: 118px;
+  }
+
+
+  .watermark {
+    width: 250px;
+  }
+
+
+  .credits {
+    left: 20px;
+    bottom: 108px;
+  }
+
+
+  .cta {
+    right: 20px;
+    bottom: 28px;
+    left: 20px;
+
+    width: auto;
+    height: 56px;
+
+    gap: 14px;
+  }
+
+
+  .cta > span:first-child {
+    font-size: 0.82rem;
+  }
+
+
+  .arrow {
+    font-size: 1.26rem;
+  }
+}

@@ -1,21 +1,22 @@
-import type { Metadata } from "next";
+import StudiosCapabilities from "@/components/studios/StudiosCapabilities";
+import StudiosCTA from "@/components/studios/StudiosCTA";
+import StudiosHero from "@/components/studios/StudiosHero";
+import StudiosManifesto from "@/components/studios/StudiosManifesto";
+import StudiosProcess from "@/components/studios/StudiosProcess";
+import StudiosShowreel from "@/components/studios/StudiosShowreel";
+import StudiosWork from "@/components/studios/StudiosWork";
 
-import DivisionHero from "@/components/sections/DivisionHero";
-
-import { divisionMap } from "@/data/divisions";
-
-export const metadata: Metadata = {
-  title: "Studios",
-};
 
 export default function StudiosPage() {
-  const division = divisionMap.studios;
-
   return (
-    <DivisionHero
-      eyebrow={division.eyebrow}
-      title={division.title}
-      description={division.description}
-    />
+    <>
+      <StudiosHero />
+      <StudiosManifesto />
+      <StudiosWork />
+      <StudiosProcess />
+      <StudiosShowreel />
+      <StudiosCapabilities />
+      <StudiosCTA />
+    </>
   );
 }

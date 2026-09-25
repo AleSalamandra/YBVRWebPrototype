@@ -1,61 +1,73 @@
-import ReactiveDissolveLogo from "@/components/effects/ReactiveDissolveLogo";
+import Image from "next/image";
+
+import BackgroundMedia from "@/components/media/BackgroundMedia";
 import Container from "@/components/ui/Container";
 
 
 export default function HomeHero() {
   return (
     <section className="home-hero">
-
-      <ReactiveDissolveLogo
-        src="/brand/yb-symbol.svg"
-
-        logoHeight={0.94}
-
-        interactionRadius={0.25}
-
-        blobReach={125}
-        blobIntensity={0.96}
-
-        attractionStrength={84}
-
-        lightIntensity={1}
-
-        sweepDelay={0.8}
-        sweepDuration={10}
-
-        renderScale={0.72}
+      <BackgroundMedia
+        imageSrc="/media/home/background.png"
+        objectPosition="center center"
+        priority
+        className="home-hero__media"
       />
 
       <div
-        className="hero-vignette"
+        className="home-hero__overlay"
         aria-hidden="true"
       />
 
       <div
-        className="hero-grain"
+        className="home-hero__grain"
         aria-hidden="true"
       />
 
-      <Container className="hero-inner">
+      <Container className="home-hero__content">
+        <div className="home-hero__identity">
+          <Image
+            src="/brand/yb-symbol.svg"
+            alt="YB"
+            width={120}
+            height={120}
+            priority
+            className="home-hero__symbol"
+          />
 
-        <p className="eyebrow">
-          YB
-        </p>
+          <div
+            className="home-hero__identity-divider"
+            aria-hidden="true"
+          />
 
-        <h1>
-          We build the future
-          <br />
-          of immersive media.
-        </h1>
+          <div className="home-hero__identity-copy">
+            <strong>
+              Immersive experiences
+            </strong>
 
-        <p className="hero-description">
-          Content, technology and experiences
-          that bring audiences closer to the
-          things they care about.
-        </p>
+            <span>
+              A global media company
+            </span>
 
+            <span>
+              for an expanded world
+            </span>
+          </div>
+        </div>
+
+        <div className="home-hero__headline">
+          <h1>
+            We build the future
+            <br />
+            of immersive experiences
+          </h1>
+
+          <p>
+            Entertainment is becoming spatial.
+            We&apos;re building what comes next.
+          </p>
+        </div>
       </Container>
-
     </section>
   );
 }

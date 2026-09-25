@@ -1,0 +1,1874 @@
+.hero,
+.manifesto,
+.work,
+.process,
+.showreel,
+.capabilities,
+.cta {
+  background:
+    var(--background);
+
+  color:
+    var(--foreground);
+}
+
+
+/* ========================================
+   SHARED
+======================================== */
+
+.sectionLabel,
+.featuredLabel,
+.workType,
+.ctaEyebrow {
+  font-size:
+    clamp(
+      0.58rem,
+      0.68vw,
+      0.74rem
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    1.2;
+
+  letter-spacing:
+    0.18em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.sectionLabel {
+  opacity:
+    0.68;
+}
+
+
+/* ========================================
+   HERO
+======================================== */
+
+.hero {
+  position:
+    relative;
+
+  min-height:
+    100svh;
+
+  overflow:
+    hidden;
+
+  background:
+    #09090d;
+}
+
+
+/* ========================================
+   HERO MEDIA
+======================================== */
+
+.heroMedia {
+  position:
+    absolute;
+
+  z-index:
+    0;
+
+  inset:
+    0;
+
+  background-color:
+    #09090d;
+
+  background-position:
+    center center;
+
+  background-size:
+    cover;
+
+  background-repeat:
+    no-repeat;
+}
+
+
+/* ========================================
+   HERO PROVIDED GRADIENT
+======================================== */
+
+.heroGradientOverlay {
+  position:
+    absolute;
+
+  z-index:
+    1;
+
+  inset:
+    0;
+
+  pointer-events:
+    none;
+
+  background:
+    url(
+      "/media/home/gradient_home_header_background.png"
+    )
+    center center /
+    cover
+    no-repeat;
+
+  opacity:
+    0.72;
+}
+
+
+/* ========================================
+   HERO SHADE
+======================================== */
+
+.heroShade {
+  position:
+    absolute;
+
+  z-index:
+    2;
+
+  inset:
+    0;
+
+  pointer-events:
+    none;
+
+  background:
+    linear-gradient(
+      180deg,
+
+      rgba(
+        9,
+        9,
+        13,
+        0.08
+      )
+      0%,
+
+      rgba(
+        9,
+        9,
+        13,
+        0
+      )
+      42%,
+
+      rgba(
+        9,
+        9,
+        13,
+        0.64
+      )
+      100%
+    );
+}
+
+
+/* ========================================
+   HERO TOP
+======================================== */
+
+.heroTop {
+  position:
+    absolute;
+
+  z-index:
+    3;
+
+  top:
+    clamp(
+      96px,
+      12vh,
+      132px
+    );
+
+  left:
+    var(--page-padding);
+
+  display:
+    flex;
+
+  align-items:
+    flex-start;
+
+  gap:
+    clamp(
+      34px,
+      4vw,
+      68px
+    );
+}
+
+
+/* ========================================
+   STUDIOS LOGO
+======================================== */
+
+.studiosLogo {
+  display:
+    block;
+
+  width:
+    clamp(
+      220px,
+      18vw,
+      360px
+    );
+
+  height:
+    auto;
+
+  max-width:
+    none;
+
+  flex:
+    none;
+
+  object-fit:
+    contain;
+
+  object-position:
+    left center;
+}
+
+
+/* ========================================
+   HERO DESCRIPTOR
+======================================== */
+
+.heroDescriptor {
+  position:
+    relative;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  padding-top:
+    4px;
+
+  padding-left:
+    clamp(
+      18px,
+      1.6vw,
+      24px
+    );
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      0.54rem,
+      0.6vw,
+      0.68rem
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    1.16;
+
+  letter-spacing:
+    0.08em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.heroDescriptor::before {
+  content:
+    "";
+
+  position:
+    absolute;
+
+  top:
+    -10px;
+
+  bottom:
+    -10px;
+
+  left:
+    0;
+
+  width:
+    1px;
+
+  background:
+    rgba(
+      243,
+      240,
+      234,
+      0.54
+    );
+}
+
+
+/* ========================================
+   HERO CLAIM
+======================================== */
+
+.heroClaim {
+  position:
+    absolute;
+
+  z-index:
+    3;
+
+  left:
+    var(--page-padding);
+
+  bottom:
+    clamp(
+      52px,
+      8vh,
+      88px
+    );
+
+  width:
+    min(
+      1180px,
+      calc(
+        100vw -
+        var(--page-padding) * 2
+      )
+    );
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      2.2rem,
+      4vw,
+      5rem
+    );
+
+  font-weight:
+    430;
+
+  line-height:
+    0.96;
+
+  letter-spacing:
+    -0.035em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* ========================================
+   MANIFESTO
+======================================== */
+
+.manifesto {
+  padding:
+    clamp(
+      46px,
+      5vw,
+      76px
+    )
+    var(--page-padding)
+    clamp(
+      62px,
+      6vw,
+      96px
+    );
+}
+
+
+.manifestoGrid {
+  display:
+    grid;
+
+  grid-template-columns:
+    minmax(
+      0,
+      1.55fr
+    )
+    minmax(
+      280px,
+      0.75fr
+    );
+
+  align-items:
+    end;
+
+  gap:
+    clamp(
+      50px,
+      9vw,
+      160px
+    );
+
+  margin-top:
+    clamp(
+      32px,
+      3vw,
+      50px
+    );
+}
+
+
+.manifestoTitle {
+  margin:
+    0;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      2.15rem,
+      3.5vw,
+      4.5rem
+    );
+
+  font-weight:
+    430;
+
+  line-height:
+    1.02;
+
+  letter-spacing:
+    -0.035em;
+}
+
+
+.manifestoCopy {
+  max-width:
+    460px;
+}
+
+
+.manifestoCopy p {
+  margin:
+    0;
+
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.72
+    );
+
+  font-size:
+    clamp(
+      0.86rem,
+      1vw,
+      1.1rem
+    );
+
+  line-height:
+    1.3;
+}
+
+
+.manifestoCopy span {
+  display:
+    block;
+
+  margin-top:
+    20px;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      0.58rem,
+      0.66vw,
+      0.72rem
+    );
+
+  font-weight:
+    500;
+
+  letter-spacing:
+    0.14em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* ========================================
+   SELECTED WORK
+======================================== */
+
+.work {
+  padding:
+    0
+    var(--page-padding)
+    clamp(
+      64px,
+      7vw,
+      108px
+    );
+}
+
+
+.workHeading {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  margin-bottom:
+    22px;
+}
+
+
+.featuredLabel {
+  opacity:
+    0.62;
+}
+
+
+.workList {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  gap:
+    12px;
+}
+
+
+/* ========================================
+   WORK CARD
+======================================== */
+
+.workCard {
+  position:
+    relative;
+
+  min-height:
+    clamp(
+      230px,
+      21vw,
+      340px
+    );
+
+  overflow:
+    hidden;
+
+  background:
+    #151013;
+}
+
+
+.workCardMedia {
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  background-position:
+    center;
+
+  background-size:
+    cover;
+
+  background-repeat:
+    no-repeat;
+
+  transform:
+    scale(
+      1.001
+    );
+
+  transition:
+    transform
+    900ms
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    );
+}
+
+
+.workCard:hover
+.workCardMedia {
+  transform:
+    scale(
+      1.025
+    );
+}
+
+
+/* ========================================
+   WORK CONTENT
+======================================== */
+
+.workCardContent {
+  position:
+    relative;
+
+  z-index:
+    1;
+
+  min-height:
+    inherit;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    66px
+    minmax(
+      280px,
+      1fr
+    )
+    minmax(
+      240px,
+      0.65fr
+    );
+
+  align-items:
+    center;
+
+  padding:
+    clamp(
+      26px,
+      2.6vw,
+      44px
+    )
+    clamp(
+      26px,
+      2.8vw,
+      50px
+    );
+}
+
+
+.workIndex {
+  align-self:
+    start;
+
+  padding-top:
+    2px;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      1.2rem,
+      1.55vw,
+      1.8rem
+    );
+
+  font-weight:
+    350;
+
+  opacity:
+    0.8;
+}
+
+
+.workMain {
+  max-width:
+    460px;
+}
+
+
+.workType {
+  color:
+    var(--foreground);
+
+  opacity:
+    0.56;
+}
+
+
+.workMain h3 {
+  margin:
+    20px
+    0
+    9px;
+
+  max-width:
+    390px;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      1.45rem,
+      2.1vw,
+      2.45rem
+    );
+
+  font-weight:
+    420;
+
+  line-height:
+    1.02;
+
+  letter-spacing:
+    -0.02em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.workMain p {
+  margin:
+    0;
+
+  max-width:
+    290px;
+
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.72
+    );
+
+  font-size:
+    clamp(
+      0.76rem,
+      0.86vw,
+      0.94rem
+    );
+
+  line-height:
+    1.32;
+}
+
+
+.workLink {
+  display:
+    inline-block;
+
+  margin-top:
+    20px;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      0.58rem,
+      0.66vw,
+      0.72rem
+    );
+
+  font-weight:
+    600;
+
+  letter-spacing:
+    0.18em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.workStatement {
+  justify-self:
+    end;
+
+  width:
+    min(
+      290px,
+      100%
+    );
+
+  margin:
+    0;
+
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.52
+    );
+
+  font-size:
+    clamp(
+      0.74rem,
+      0.86vw,
+      0.96rem
+    );
+
+  line-height:
+    1.2;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* ========================================
+   PROCESS
+======================================== */
+
+.process {
+  padding:
+    clamp(
+      20px,
+      2vw,
+      32px
+    )
+    var(--page-padding)
+    clamp(
+      82px,
+      9vw,
+      136px
+    );
+}
+
+
+.processTrack {
+  position:
+    relative;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      4,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  gap:
+    clamp(
+      22px,
+      4vw,
+      72px
+    );
+
+  margin-top:
+    clamp(
+      42px,
+      5vw,
+      76px
+    );
+}
+
+
+.processTrack::before {
+  content:
+    "";
+
+  position:
+    absolute;
+
+  top:
+    4px;
+
+  right:
+    0;
+
+  left:
+    0;
+
+  height:
+    1px;
+
+  background:
+    rgba(
+      243,
+      240,
+      234,
+      0.16
+    );
+}
+
+
+.processStep {
+  position:
+    relative;
+
+  padding-top:
+    34px;
+}
+
+
+.processDot {
+  position:
+    absolute;
+
+  z-index:
+    1;
+
+  top:
+    0;
+
+  left:
+    0;
+
+  width:
+    9px;
+
+  height:
+    9px;
+
+  border-radius:
+    50%;
+
+  background:
+    #f3f0ea;
+}
+
+
+.processStep h3 {
+  margin:
+    0
+    0
+    9px;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      1rem,
+      1.14vw,
+      1.3rem
+    );
+
+  font-weight:
+    450;
+
+  line-height:
+    1;
+
+  text-transform:
+    uppercase;
+}
+
+
+.processStep p {
+  margin:
+    0;
+
+  max-width:
+    240px;
+
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.64
+    );
+
+  font-size:
+    clamp(
+      0.72rem,
+      0.8vw,
+      0.88rem
+    );
+
+  line-height:
+    1.28;
+}
+
+
+/* ========================================
+   SHOWREEL
+======================================== */
+
+.showreel {
+  padding:
+    0
+    var(--page-padding)
+    clamp(
+      74px,
+      8vw,
+      122px
+    );
+}
+
+
+.showreelFrame {
+  position:
+    relative;
+
+  width:
+    100%;
+
+  aspect-ratio:
+    16 / 6.15;
+
+  margin-top:
+    24px;
+
+  overflow:
+    hidden;
+
+  background:
+    #09090d;
+}
+
+
+.showreelVideo {
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+  object-fit:
+    cover;
+
+  object-position:
+    center;
+}
+
+
+.showreelShade {
+  position:
+    absolute;
+
+  z-index:
+    1;
+
+  inset:
+    0;
+
+  pointer-events:
+    none;
+
+  background:
+    linear-gradient(
+      180deg,
+
+      rgba(
+        9,
+        9,
+        13,
+        0.05
+      )
+      0%,
+
+      rgba(
+        9,
+        9,
+        13,
+        0.18
+      )
+      100%
+    );
+
+  transition:
+    opacity
+    300ms ease;
+}
+
+
+.showreelPlay {
+  position:
+    absolute;
+
+  z-index:
+    3;
+
+  top:
+    50%;
+
+  left:
+    50%;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+
+  gap:
+    17px;
+
+  padding:
+    0;
+
+  border:
+    0;
+
+  color:
+    var(--foreground);
+
+  background:
+    transparent;
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    );
+
+  cursor:
+    pointer;
+
+  font-size:
+    clamp(
+      0.72rem,
+      0.82vw,
+      0.9rem
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    1;
+
+  letter-spacing:
+    0.02em;
+
+  text-transform:
+    uppercase;
+
+  opacity:
+    1;
+
+  transition:
+    opacity
+    220ms ease;
+}
+
+
+.showreelPlayHidden {
+  opacity:
+    0;
+
+  pointer-events:
+    none;
+}
+
+
+.playIcon {
+  display:
+    grid;
+
+  width:
+    80px;
+
+  height:
+    80px;
+
+  place-items:
+    center;
+
+  border:
+    1px solid
+    rgba(
+      243,
+      240,
+      234,
+      0.78
+    );
+
+  border-radius:
+    50%;
+
+  color:
+    var(--foreground);
+
+  background:
+    rgba(
+      9,
+      9,
+      13,
+      0.1
+    );
+
+  font-size:
+    1.25rem;
+
+  transition:
+    transform
+    300ms
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    );
+}
+
+
+.showreelPlay:hover
+.playIcon {
+  transform:
+    scale(
+      1.08
+    );
+}
+
+
+.showreelClickArea {
+  position:
+    absolute;
+
+  z-index:
+    2;
+
+  inset:
+    0;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+  padding:
+    0;
+
+  border:
+    0;
+
+  background:
+    transparent;
+
+  cursor:
+    pointer;
+}
+
+
+/* ========================================
+   CAPABILITIES
+======================================== */
+
+.capabilities {
+  padding:
+    0
+    var(--page-padding)
+    clamp(
+      116px,
+      13vw,
+      196px
+    );
+}
+
+
+.capabilityList {
+  margin-top:
+    24px;
+}
+
+
+.capabilityRow {
+  display:
+    grid;
+
+  grid-template-columns:
+    56px
+    minmax(
+      210px,
+      0.7fr
+    )
+    minmax(
+      280px,
+      1.8fr
+    );
+
+  gap:
+    30px;
+
+  align-items:
+    center;
+
+  min-height:
+    62px;
+
+  border-bottom:
+    1px solid
+    rgba(
+      243,
+      240,
+      234,
+      0.18
+    );
+}
+
+
+.capabilityNumber {
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      0.64rem,
+      0.7vw,
+      0.76rem
+    );
+
+  opacity:
+    0.52;
+}
+
+
+.capabilityRow strong {
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      0.66rem,
+      0.76vw,
+      0.82rem
+    );
+
+  font-weight:
+    560;
+
+  letter-spacing:
+    0.14em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.capabilityCopy {
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.64
+    );
+
+  font-size:
+    clamp(
+      0.76rem,
+      0.86vw,
+      0.94rem
+    );
+}
+
+
+/* ========================================
+   CTA
+======================================== */
+
+.cta {
+  position:
+    relative;
+
+  min-height:
+    clamp(
+      380px,
+      35vw,
+      540px
+    );
+
+  overflow:
+    hidden;
+
+  background:
+    #09090d;
+}
+
+
+.ctaMedia {
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  background-color:
+    #09090d;
+
+  background-position:
+    center;
+
+  background-size:
+    cover;
+
+  background-repeat:
+    no-repeat;
+}
+
+
+.ctaContent {
+  position:
+    relative;
+
+  z-index:
+    1;
+
+  min-height:
+    inherit;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    150px
+    minmax(
+      0,
+      1fr
+    )
+    auto;
+
+  align-items:
+    center;
+
+  gap:
+    clamp(
+      34px,
+      5vw,
+      94px
+    );
+
+  padding:
+    clamp(
+      48px,
+      5vw,
+      80px
+    )
+    var(--page-padding);
+}
+
+
+.ctaEyebrow {
+  color:
+    var(--foreground);
+
+  opacity:
+    0.66;
+}
+
+
+.ctaContent h2 {
+  margin:
+    0;
+
+  max-width:
+    860px;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      2.15rem,
+      3.7vw,
+      4.5rem
+    );
+
+  font-weight:
+    420;
+
+  line-height:
+    1.02;
+
+  letter-spacing:
+    -0.035em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.ctaButton {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    24px;
+
+  min-width:
+    200px;
+
+  height:
+    58px;
+
+  padding:
+    0
+    26px;
+
+  border:
+    1px solid
+    rgba(
+      243,
+      240,
+      234,
+      0.35
+    );
+
+  border-radius:
+    999px;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      0.62rem,
+      0.7vw,
+      0.76rem
+    );
+
+  font-weight:
+    500;
+
+  letter-spacing:
+    0.08em;
+
+  text-transform:
+    uppercase;
+
+  transition:
+    background
+    220ms ease,
+    border-color
+    220ms ease,
+    transform
+    220ms ease;
+}
+
+
+.ctaButton:hover {
+  border-color:
+    rgba(
+      243,
+      240,
+      234,
+      0.68
+    );
+
+  background:
+    rgba(
+      243,
+      240,
+      234,
+      0.08
+    );
+
+  transform:
+    translateY(
+      -1px
+    );
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (
+  max-width:
+    900px
+) {
+
+  .heroTop {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+
+    gap:
+      24px;
+  }
+
+
+  .studiosLogo {
+    width:
+      clamp(
+        220px,
+        32vw,
+        300px
+      );
+  }
+
+
+  .manifestoGrid {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .workCardContent {
+    grid-template-columns:
+      52px
+      minmax(
+        0,
+        1fr
+      );
+  }
+
+
+  .workStatement {
+    display:
+      none;
+  }
+
+
+  .processTrack {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(
+          0,
+          1fr
+        )
+      );
+
+    row-gap:
+      58px;
+  }
+
+
+  .processTrack::before {
+    display:
+      none;
+  }
+
+
+  .processStep {
+    padding-top:
+      28px;
+  }
+
+
+  .ctaContent {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .ctaButton {
+    justify-self:
+      start;
+  }
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (
+  max-width:
+    560px
+) {
+
+  .heroTop {
+    top:
+      92px;
+
+    gap:
+      18px;
+  }
+
+
+  .studiosLogo {
+    width:
+      min(
+        56vw,
+        250px
+      );
+  }
+
+
+  .heroDescriptor {
+    padding-left:
+      14px;
+
+    font-size:
+      0.56rem;
+  }
+
+
+  .heroClaim {
+    bottom:
+      48px;
+
+    font-size:
+      clamp(
+        2.1rem,
+        10vw,
+        3.35rem
+      );
+  }
+
+
+  .manifesto,
+  .work,
+  .process,
+  .showreel,
+  .capabilities {
+    padding-left:
+      20px;
+
+    padding-right:
+      20px;
+  }
+
+
+  .manifestoTitle {
+    font-size:
+      clamp(
+        2rem,
+        9vw,
+        3rem
+      );
+  }
+
+
+  .manifestoCopy p {
+    font-size:
+      0.9rem;
+  }
+
+
+  .workHeading {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+
+    gap:
+      10px;
+  }
+
+
+  .workCard {
+    min-height:
+      350px;
+  }
+
+
+  .workCardContent {
+    grid-template-columns:
+      1fr;
+
+    align-content:
+      end;
+
+    gap:
+      18px;
+  }
+
+
+  .workIndex {
+    position:
+      absolute;
+
+    top:
+      22px;
+
+    left:
+      22px;
+  }
+
+
+  .processTrack {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .showreelFrame {
+    aspect-ratio:
+      4 / 3;
+  }
+
+
+  .playIcon {
+    width:
+      66px;
+
+    height:
+      66px;
+  }
+
+
+  .capabilityRow {
+    grid-template-columns:
+      36px
+      1fr;
+
+    gap:
+      9px
+      16px;
+
+    padding:
+      17px
+      0;
+  }
+
+
+  .capabilityCopy {
+    grid-column:
+      2;
+  }
+
+
+  .ctaContent {
+    padding-left:
+      20px;
+
+    padding-right:
+      20px;
+  }
+
+
+  .ctaContent h2 {
+    font-size:
+      clamp(
+        2rem,
+        9vw,
+        3rem
+      );
+  }
+}

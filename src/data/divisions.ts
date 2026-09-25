@@ -1,134 +1,97 @@
 import type {
-  Division,
-  DivisionId,
+  DivisionCardData,
 } from "@/types";
 
-export const divisionMap: Record<
-  DivisionId,
-  Division
-> = {
-  studios: {
+
+export const homeDivisions: DivisionCardData[] = [
+  {
     id: "studios",
 
     name: "YB Studios",
-    shortName: "Studios",
 
     href: "/studios",
 
-    eyebrow: "YB / Studios",
+    image:
+      "/media/home/ybstudios.png",
 
-    title:
-      "Stories worth stepping into.",
+    logo:
+      "/brand/ybstudios_logofix.svg",
 
-    description:
-      "Immersive production and spatial storytelling for sport, culture and entertainment.",
+    descriptionLines: [
+      "Stories",
+      "Without limits",
+    ],
 
-    homeTagline:
-      "Stories worth stepping into.",
-
-    homeLogo:
-      "/brand/Logo_YBStudios.svg",
-
-    homeMedia: {
-      image:
-        "/media/studios/image.png",
-      objectPosition:
-        "center center",
-    },
+    objectPosition:
+      "center center",
   },
 
-  tech: {
+
+  {
     id: "tech",
 
     name: "YB Tech",
-    shortName: "Tech",
 
     href: "/tech",
 
-    eyebrow: "YB / Tech",
+    image:
+      "/media/home/ybtech.png",
 
-    title:
-      "Technology built for immersive media.",
+    logo:
+      "/brand/ybtech_logofix.svg",
 
-    description:
-      "Platforms, applications and infrastructure designed to deliver immersive experiences at scale.",
+    descriptionLines: [
+      "Tools",
+      "For new realities",
+    ],
 
-    homeTagline:
-      "Infrastructure for immersive media.",
-
-    homeLogo:
-      "/brand/Logo_YBTech.svg",
-
-    homeMedia: {
-      image:
-        "/media/tech/image.png",
-      objectPosition:
-        "center center",
-    },
+    objectPosition:
+      "center center",
   },
 
-  labs: {
-    id: "labs",
 
-    name: "YB Labs",
-    shortName: "Labs",
-
-    href: "/labs",
-
-    eyebrow: "YB / Labs",
-
-    title:
-      "Exploring what comes next.",
-
-    description:
-      "Research and experimentation across spatial computing, AI and emerging forms of media.",
-
-    homeTagline:
-      "Experiments for what comes next.",
-
-    homeLogo:
-      "/brand/Logo_YBLabs.svg",
-
-    homeMedia: {
-      image:
-        "/media/labs/image.png",
-      objectPosition:
-        "center center",
-    },
-  },
-
-  sports: {
+  {
     id: "sports",
 
     name: "YB Sports",
-    shortName: "Sports",
 
     href: "/sports",
 
-    eyebrow: "YB / Sports",
+    image:
+      "/media/home/ybsports.png",
 
-    title:
-      "Closer to the action.",
+    logo:
+      "/brand/ybsports_logofix.svg",
 
-    description:
-      "Immersive experiences connecting teams, rights holders, brands and fans.",
+    descriptionLines: [
+      "A more",
+      "Immersive game",
+    ],
 
-    homeTagline:
-      "Bringing fans closer than ever.",
-
-    homeLogo:
-      "/brand/Logo_YBSports.svg",
-
-    homeMedia: {
-      image:
-        "/media/sports/image.png",
-      objectPosition:
-        "center center",
-    },
+    objectPosition:
+      "center center",
   },
-};
 
-export const divisions =
-  Object.values(
-    divisionMap
-  );
+
+  {
+    id: "labs",
+
+    name: "YB Labs",
+
+    href: "/labs",
+
+    image:
+      "/media/home/yblabs.png",
+
+    logo:
+      "/brand/yblabs_logofix.svg",
+
+    descriptionLines: [
+      "Ideas",
+      "Into new worlds",
+    ],
+
+    objectPosition:
+      "center center",
+  },
+];

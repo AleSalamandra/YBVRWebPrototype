@@ -1,21 +1,31 @@
-export const navigation = [
+import type {
+  NavigationItem,
+} from "@/types";
+
+
+export const navigation: NavigationItem[] = [
   {
-    label: "Studios",
+    label: "Home",
+    href: "/",
+  },
+
+  {
+    label: "YB Studios",
     href: "/studios",
   },
 
   {
-    label: "Tech",
+    label: "YB Tech",
     href: "/tech",
   },
 
   {
-    label: "Labs",
+    label: "YB Labs",
     href: "/labs",
   },
 
   {
-    label: "Sports",
+    label: "YB Sports",
     href: "/sports",
   },
-] as const;
+];

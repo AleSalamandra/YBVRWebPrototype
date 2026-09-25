@@ -55,25 +55,24 @@ export default function ContactPage() {
           </div>
 
 
-          <div className={styles.contactTopics}>
-            <div className={styles.topic}>
-              <span className={styles.topicNumber}>
+          <div className={styles.socialLinks}>
+            <div className={styles.socialItem}>
+              <span className={styles.socialNumber}>
                 01
               </span>
 
-              <div>
+              <div className={styles.socialContent}>
                 <strong>
-                  New projects
+                  Instagram
                 </strong>
 
                 <p>
-                  Immersive content, spatial experiences
-                  and new formats.
+                  Follow our work, projects and behind the scenes.
                 </p>
               </div>
 
               <span
-                className={styles.topicArrow}
+                className={styles.socialArrow}
                 aria-hidden="true"
               >
                 ↗
@@ -81,24 +80,23 @@ export default function ContactPage() {
             </div>
 
 
-            <div className={styles.topic}>
-              <span className={styles.topicNumber}>
+            <div className={styles.socialItem}>
+              <span className={styles.socialNumber}>
                 02
               </span>
 
-              <div>
+              <div className={styles.socialContent}>
                 <strong>
-                  Partnerships
+                  TikTok
                 </strong>
 
                 <p>
-                  Sports, entertainment, technology
-                  and distribution.
+                  Immersive moments, experiments and culture.
                 </p>
               </div>
 
               <span
-                className={styles.topicArrow}
+                className={styles.socialArrow}
                 aria-hidden="true"
               >
                 ↗
@@ -106,24 +104,23 @@ export default function ContactPage() {
             </div>
 
 
-            <div className={styles.topic}>
-              <span className={styles.topicNumber}>
+            <div className={styles.socialItem}>
+              <span className={styles.socialNumber}>
                 03
               </span>
 
-              <div>
+              <div className={styles.socialContent}>
                 <strong>
-                  Press & media
+                  LinkedIn
                 </strong>
 
                 <p>
-                  Company information, interviews
-                  and media enquiries.
+                  News, projects and company updates.
                 </p>
               </div>
 
               <span
-                className={styles.topicArrow}
+                className={styles.socialArrow}
                 aria-hidden="true"
               >
                 ↗
@@ -143,9 +140,7 @@ export default function ContactPage() {
           </div>
 
 
-          <form
-            className={styles.form}
-          >
+          <form className={styles.form}>
             <div className={styles.twoColumns}>
               <label className={styles.field}>
                 <span>

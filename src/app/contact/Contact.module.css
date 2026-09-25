@@ -65,8 +65,11 @@
 
   z-index: 0;
 
-  top: -220px;
-  left: 50%;
+  top:
+    -220px;
+
+  left:
+    50%;
 
   width:
     min(
@@ -77,7 +80,8 @@
   aspect-ratio:
     1 / 1;
 
-  pointer-events: none;
+  pointer-events:
+    none;
 
   border-radius:
     50%;
@@ -131,7 +135,8 @@
       180px
     );
 
-  left: 50%;
+  left:
+    50%;
 
   color:
     rgba(
@@ -429,10 +434,10 @@
 
 
 /* ========================================
-   CONTACT TOPICS
+   SOCIAL LINKS
 ======================================== */
 
-.contactTopics {
+.socialLinks {
   display:
     flex;
 
@@ -457,8 +462,13 @@
 }
 
 
-.topic {
-  position: relative;
+/* ========================================
+   SOCIAL ITEM
+======================================== */
+
+.socialItem {
+  position:
+    relative;
 
   display:
     grid;
@@ -525,13 +535,13 @@
 }
 
 
-.topic:hover {
+.socialItem:hover {
   border-color:
     rgba(
       255,
       128,
       103,
-      0.3
+      0.32
     );
 
   background:
@@ -549,7 +559,11 @@
 }
 
 
-.topicNumber {
+/* ========================================
+   SOCIAL NUMBER
+======================================== */
+
+.socialNumber {
   color:
     rgba(
       243,
@@ -566,7 +580,11 @@
 }
 
 
-.topic strong {
+/* ========================================
+   SOCIAL CONTENT
+======================================== */
+
+.socialContent strong {
   display:
     block;
 
@@ -584,14 +602,14 @@
     560;
 
   letter-spacing:
-    0.08em;
+    0.1em;
 
   text-transform:
     uppercase;
 }
 
 
-.topic p {
+.socialContent p {
   margin:
     5px
     0
@@ -617,7 +635,11 @@
 }
 
 
-.topicArrow {
+/* ========================================
+   SOCIAL ARROW
+======================================== */
+
+.socialArrow {
   display:
     grid;
 
@@ -1201,7 +1223,7 @@
   }
 
 
-  .contactTopics {
+  .socialLinks {
     width:
       100%;
   }
@@ -1268,7 +1290,7 @@
   }
 
 
-  .topic {
+  .socialItem {
     grid-template-columns:
       30px
       minmax(

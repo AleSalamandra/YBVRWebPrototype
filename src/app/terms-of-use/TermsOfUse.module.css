@@ -1,0 +1,921 @@
+.page {
+  min-height: 100vh;
+
+  background:
+    var(--background);
+
+  color:
+    var(--foreground);
+}
+
+
+/* ========================================
+   HERO
+======================================== */
+
+.hero {
+  padding-top:
+    calc(
+      var(--header-height) +
+      clamp(
+        90px,
+        11vw,
+        170px
+      )
+    );
+
+  padding-bottom:
+    clamp(
+      90px,
+      10vw,
+      150px
+    );
+}
+
+.heroInner {
+  width:
+    min(
+      100%,
+      1180px
+    );
+}
+
+.eyebrow {
+  margin:
+    0
+    0
+    28px;
+
+  color:
+    var(--grey-100);
+
+  font-size:
+    0.68rem;
+
+  font-weight:
+    500;
+
+  line-height:
+    1;
+
+  letter-spacing:
+    0.18em;
+
+  text-transform:
+    uppercase;
+
+  opacity:
+    0.72;
+}
+
+.title {
+  margin:
+    0;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      3rem,
+      7vw,
+      7.4rem
+    );
+
+  font-weight:
+    420;
+
+  line-height:
+    0.9;
+
+  letter-spacing:
+    -0.045em;
+
+  text-transform:
+    uppercase;
+}
+
+.heroMeta {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    20px;
+
+  margin-top:
+    clamp(
+      34px,
+      4vw,
+      54px
+    );
+
+  color:
+    var(--grey-200);
+
+  font-size:
+    0.66rem;
+
+  font-weight:
+    500;
+
+  line-height:
+    1;
+
+  letter-spacing:
+    0.14em;
+
+  text-transform:
+    uppercase;
+}
+
+.heroMeta span + span {
+  position:
+    relative;
+
+  padding-left:
+    21px;
+}
+
+.heroMeta span + span::before {
+  content:
+    "";
+
+  position:
+    absolute;
+
+  top:
+    50%;
+
+  left:
+    0;
+
+  width:
+    1px;
+
+  height:
+    12px;
+
+  background:
+    var(--border);
+
+  transform:
+    translateY(-50%);
+}
+
+
+/* ========================================
+   CONTENT
+======================================== */
+
+.content {
+  padding-bottom:
+    clamp(
+      120px,
+      14vw,
+      220px
+    );
+}
+
+.document {
+  border-top:
+    1px solid
+    var(--border);
+}
+
+
+/* ========================================
+   INTRODUCTION
+======================================== */
+
+.introduction {
+  display:
+    grid;
+
+  grid-template-columns:
+    minmax(
+      0,
+      1fr
+    );
+
+  width:
+    min(
+      100%,
+      1040px
+    );
+
+  margin-left:
+    auto;
+
+  padding:
+    clamp(
+      60px,
+      7vw,
+      110px
+    )
+    0;
+
+  border-bottom:
+    1px solid
+    var(--border);
+}
+
+.introduction > p {
+  width:
+    min(
+      100%,
+      820px
+    );
+}
+
+
+/* ========================================
+   LEGAL SECTIONS
+======================================== */
+
+.legalSection {
+  display:
+    grid;
+
+  grid-template-columns:
+    clamp(
+      70px,
+      8vw,
+      130px
+    )
+    minmax(
+      0,
+      1fr
+    );
+
+  gap:
+    clamp(
+      24px,
+      4vw,
+      72px
+    );
+
+  padding:
+    clamp(
+      60px,
+      7vw,
+      110px
+    )
+    0;
+
+  border-bottom:
+    1px solid
+    var(--border);
+}
+
+.sectionNumber {
+  padding-top:
+    0.55rem;
+
+  color:
+    var(--grey-200);
+
+  font-size:
+    0.66rem;
+
+  font-weight:
+    500;
+
+  line-height:
+    1;
+
+  letter-spacing:
+    0.16em;
+}
+
+.sectionContent {
+  width:
+    min(
+      100%,
+      1040px
+    );
+}
+
+.sectionContent h2 {
+  width:
+    min(
+      100%,
+      900px
+    );
+
+  margin:
+    0
+    0
+    clamp(
+      30px,
+      3.5vw,
+      48px
+    );
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      1.8rem,
+      3.2vw,
+      3.4rem
+    );
+
+  font-weight:
+    420;
+
+  line-height:
+    1;
+
+  letter-spacing:
+    -0.025em;
+
+  text-transform:
+    uppercase;
+}
+
+.sectionContent h3 {
+  margin:
+    42px
+    0
+    18px;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      0.85rem,
+      1vw,
+      1rem
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    1.3;
+
+  letter-spacing:
+    0.12em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* ========================================
+   BODY COPY
+======================================== */
+
+.introduction p,
+.sectionContent p,
+.notice p {
+  margin:
+    0
+    0
+    20px;
+
+  color:
+    var(--grey-100);
+
+  font-size:
+    clamp(
+      0.84rem,
+      0.92vw,
+      0.96rem
+    );
+
+  font-weight:
+    400;
+
+  line-height:
+    1.72;
+}
+
+.introduction p:last-child,
+.sectionContent p:last-child,
+.notice p:last-child {
+  margin-bottom:
+    0;
+}
+
+.sectionContent p {
+  width:
+    min(
+      100%,
+      820px
+    );
+}
+
+
+/* ========================================
+   EMPHASIS
+======================================== */
+
+.emphasis {
+  color:
+    var(--foreground) !important;
+
+  font-size:
+    clamp(
+      0.82rem,
+      0.9vw,
+      0.94rem
+    ) !important;
+
+  font-weight:
+    500 !important;
+
+  line-height:
+    1.62 !important;
+
+  letter-spacing:
+    0.02em;
+}
+
+
+/* ========================================
+   NOTICE
+======================================== */
+
+.notice {
+  width:
+    min(
+      100%,
+      820px
+    );
+
+  margin-top:
+    clamp(
+      38px,
+      4vw,
+      58px
+    );
+
+  padding:
+    clamp(
+      26px,
+      3vw,
+      38px
+    );
+
+  border:
+    1px solid
+    var(--border);
+
+  background:
+    rgba(
+      243,
+      240,
+      234,
+      0.018
+    );
+}
+
+.noticeLabel {
+  display:
+    block;
+
+  margin-bottom:
+    24px;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    0.64rem;
+
+  font-weight:
+    500;
+
+  line-height:
+    1;
+
+  letter-spacing:
+    0.16em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* ========================================
+   LISTS
+======================================== */
+
+.sectionContent ul,
+.sectionContent ol {
+  width:
+    min(
+      100%,
+      820px
+    );
+
+  margin:
+    26px
+    0
+    32px;
+
+  padding:
+    0;
+
+  list-style:
+    none;
+}
+
+.sectionContent li {
+  position:
+    relative;
+
+  margin-bottom:
+    14px;
+
+  padding-left:
+    22px;
+
+  color:
+    var(--grey-100);
+
+  font-size:
+    clamp(
+      0.82rem,
+      0.9vw,
+      0.94rem
+    );
+
+  font-weight:
+    400;
+
+  line-height:
+    1.65;
+}
+
+.sectionContent li::before {
+  content:
+    "";
+
+  position:
+    absolute;
+
+  top:
+    0.78em;
+
+  left:
+    0;
+
+  width:
+    5px;
+
+  height:
+    1px;
+
+  background:
+    var(--grey-200);
+}
+
+.sectionContent li:last-child {
+  margin-bottom:
+    0;
+}
+
+
+/* ========================================
+   INLINE LINKS
+======================================== */
+
+.inlineLink {
+  position:
+    relative;
+
+  color:
+    var(--foreground);
+
+  white-space:
+    nowrap;
+}
+
+.inlineLink::after {
+  content:
+    "";
+
+  position:
+    absolute;
+
+  right:
+    0;
+
+  bottom:
+    -2px;
+
+  left:
+    0;
+
+  height:
+    1px;
+
+  background:
+    currentColor;
+
+  transform:
+    scaleX(1);
+
+  transform-origin:
+    left;
+
+  transition:
+    transform
+    250ms
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    );
+}
+
+.inlineLink:hover::after {
+  transform:
+    scaleX(0);
+}
+
+
+/* ========================================
+   OPERATOR
+======================================== */
+
+.operator {
+  display:
+    grid;
+
+  grid-template-columns:
+    clamp(
+      160px,
+      18vw,
+      280px
+    )
+    minmax(
+      0,
+      1fr
+    );
+
+  gap:
+    clamp(
+      24px,
+      4vw,
+      72px
+    );
+
+  padding:
+    clamp(
+      60px,
+      7vw,
+      110px
+    )
+    0
+    0;
+}
+
+.operatorLabel {
+  color:
+    var(--grey-200);
+
+  font-size:
+    0.64rem;
+
+  font-weight:
+    500;
+
+  line-height:
+    1.4;
+
+  letter-spacing:
+    0.15em;
+
+  text-transform:
+    uppercase;
+}
+
+.operator address {
+  margin:
+    0;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      1rem,
+      1.25vw,
+      1.25rem
+    );
+
+  font-style:
+    normal;
+
+  font-weight:
+    400;
+
+  line-height:
+    1.55;
+}
+
+.operatorDate {
+  grid-column:
+    2;
+
+  margin-top:
+    12px;
+
+  color:
+    var(--grey-200);
+
+  font-size:
+    0.64rem;
+
+  font-weight:
+    500;
+
+  letter-spacing:
+    0.12em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (
+  max-width: 800px
+) {
+  .hero {
+    padding-top:
+      calc(
+        var(--header-height) +
+        72px
+      );
+
+    padding-bottom:
+      80px;
+  }
+
+  .legalSection {
+    grid-template-columns:
+      54px
+      minmax(
+        0,
+        1fr
+      );
+
+    gap:
+      20px;
+  }
+
+  .operator {
+    grid-template-columns:
+      130px
+      minmax(
+        0,
+        1fr
+      );
+
+    gap:
+      28px;
+  }
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (
+  max-width: 560px
+) {
+  .hero {
+    padding-top:
+      calc(
+        var(--header-height) +
+        60px
+      );
+
+    padding-bottom:
+      64px;
+  }
+
+  .eyebrow {
+    margin-bottom:
+      20px;
+  }
+
+  .title {
+    font-size:
+      clamp(
+        2.7rem,
+        15vw,
+        4.2rem
+      );
+  }
+
+  .heroMeta {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+
+    gap:
+      10px;
+
+    margin-top:
+      28px;
+  }
+
+  .heroMeta span + span {
+    padding-left:
+      0;
+  }
+
+  .heroMeta span + span::before {
+    display:
+      none;
+  }
+
+  .introduction {
+    padding:
+      54px
+      0;
+  }
+
+  .legalSection {
+    display:
+      block;
+
+    padding:
+      54px
+      0;
+  }
+
+  .sectionNumber {
+    display:
+      block;
+
+    margin-bottom:
+      18px;
+
+    padding-top:
+      0;
+  }
+
+  .sectionContent h2 {
+    margin-bottom:
+      28px;
+
+    font-size:
+      clamp(
+        1.7rem,
+        9vw,
+        2.4rem
+      );
+  }
+
+  .sectionContent h3 {
+    margin-top:
+      34px;
+  }
+
+  .notice {
+    padding:
+      24px;
+  }
+
+  .operator {
+    display:
+      block;
+
+    padding-top:
+      54px;
+  }
+
+  .operatorLabel {
+    display:
+      block;
+
+    margin-bottom:
+      22px;
+  }
+
+  .operatorDate {
+    display:
+      block;
+
+    margin-top:
+      22px;
+  }
+}

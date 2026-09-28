@@ -1,0 +1,592 @@
+.page {
+  min-height: 100vh;
+
+  background:
+    var(--background);
+
+  color:
+    var(--foreground);
+}
+
+
+/* ========================================
+   HERO
+======================================== */
+
+.hero {
+  padding-top:
+    calc(
+      var(--header-height) +
+      clamp(
+        90px,
+        11vw,
+        170px
+      )
+    );
+
+  padding-bottom:
+    clamp(
+      90px,
+      10vw,
+      150px
+    );
+}
+
+.heroInner {
+  width:
+    min(
+      100%,
+      1120px
+    );
+}
+
+.eyebrow {
+  margin:
+    0
+    0
+    28px;
+
+  color:
+    var(--grey-100);
+
+  font-size:
+    0.68rem;
+
+  font-weight:
+    500;
+
+  line-height:
+    1;
+
+  letter-spacing:
+    0.18em;
+
+  text-transform:
+    uppercase;
+
+  opacity:
+    0.72;
+}
+
+.title {
+  margin:
+    0;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      3rem,
+      7vw,
+      7.4rem
+    );
+
+  font-weight:
+    420;
+
+  line-height:
+    0.9;
+
+  letter-spacing:
+    -0.045em;
+
+  text-transform:
+    uppercase;
+}
+
+.intro {
+  width:
+    min(
+      100%,
+      520px
+    );
+
+  margin:
+    clamp(
+      32px,
+      4vw,
+      54px
+    )
+    0
+    0;
+
+  color:
+    var(--grey-100);
+
+  font-size:
+    clamp(
+      0.88rem,
+      1vw,
+      1rem
+    );
+
+  font-weight:
+    400;
+
+  line-height:
+    1.5;
+}
+
+
+/* ========================================
+   CONTENT
+======================================== */
+
+.content {
+  padding-bottom:
+    clamp(
+      120px,
+      14vw,
+      220px
+    );
+}
+
+.categories {
+  border-top:
+    1px solid
+    var(--border);
+}
+
+
+/* ========================================
+   CATEGORY
+======================================== */
+
+.category {
+  padding:
+    clamp(
+      60px,
+      7vw,
+      110px
+    )
+    0;
+
+  border-bottom:
+    1px solid
+    var(--border);
+}
+
+.categoryHeader {
+  display:
+    grid;
+
+  grid-template-columns:
+    clamp(
+      70px,
+      8vw,
+      130px
+    )
+    minmax(
+      0,
+      1fr
+    );
+
+  gap:
+    clamp(
+      24px,
+      4vw,
+      72px
+    );
+
+  margin-bottom:
+    clamp(
+      44px,
+      5vw,
+      76px
+    );
+}
+
+.categoryNumber {
+  padding-top:
+    0.45rem;
+
+  color:
+    var(--grey-200);
+
+  font-size:
+    0.66rem;
+
+  font-weight:
+    500;
+
+  line-height:
+    1;
+
+  letter-spacing:
+    0.16em;
+}
+
+.categoryCopy {
+  width:
+    min(
+      100%,
+      820px
+    );
+}
+
+.categoryTitle {
+  margin:
+    0;
+
+  color:
+    var(--foreground);
+
+  font-size:
+    clamp(
+      1.8rem,
+      3.2vw,
+      3.4rem
+    );
+
+  font-weight:
+    420;
+
+  line-height:
+    1;
+
+  letter-spacing:
+    -0.025em;
+
+  text-transform:
+    uppercase;
+}
+
+.categoryDescription {
+  width:
+    min(
+      100%,
+      720px
+    );
+
+  margin:
+    24px
+    0
+    0;
+
+  color:
+    var(--grey-100);
+
+  font-size:
+    clamp(
+      0.84rem,
+      0.92vw,
+      0.96rem
+    );
+
+  font-weight:
+    400;
+
+  line-height:
+    1.6;
+}
+
+
+/* ========================================
+   TABLE
+======================================== */
+
+.tableWrapper {
+  width:
+    100%;
+
+  overflow-x:
+    auto;
+
+  scrollbar-width:
+    thin;
+
+  scrollbar-color:
+    var(--grey-300)
+    transparent;
+}
+
+.table {
+  width:
+    100%;
+
+  min-width:
+    860px;
+
+  border-collapse:
+    collapse;
+
+  table-layout:
+    fixed;
+}
+
+.table th {
+  padding:
+    0
+    20px
+    18px
+    0;
+
+  border-bottom:
+    1px solid
+    var(--border);
+
+  color:
+    var(--grey-200);
+
+  font-size:
+    0.62rem;
+
+  font-weight:
+    500;
+
+  line-height:
+    1;
+
+  letter-spacing:
+    0.15em;
+
+  text-align:
+    left;
+
+  text-transform:
+    uppercase;
+}
+
+.table th:nth-child(1) {
+  width:
+    22%;
+}
+
+.table th:nth-child(2) {
+  width:
+    18%;
+}
+
+.table th:nth-child(3) {
+  width:
+    60%;
+}
+
+.table td {
+  padding:
+    22px
+    28px
+    22px
+    0;
+
+  border-bottom:
+    1px solid
+    rgba(
+      243,
+      240,
+      234,
+      0.07
+    );
+
+  color:
+    var(--grey-100);
+
+  font-size:
+    clamp(
+      0.76rem,
+      0.82vw,
+      0.88rem
+    );
+
+  font-weight:
+    400;
+
+  line-height:
+    1.55;
+
+  vertical-align:
+    top;
+}
+
+.table tbody tr:last-child td {
+  border-bottom:
+    0;
+}
+
+.cookieName {
+  color:
+    var(--foreground) !important;
+
+  font-weight:
+    500 !important;
+
+  letter-spacing:
+    0.01em;
+}
+
+.duration {
+  color:
+    var(--grey-200) !important;
+
+  white-space:
+    nowrap;
+}
+
+
+/* ========================================
+   TABLE HOVER
+======================================== */
+
+.table tbody tr {
+  transition:
+    background
+    180ms ease;
+}
+
+.table tbody tr:hover {
+  background:
+    rgba(
+      243,
+      240,
+      234,
+      0.025
+    );
+}
+
+
+/* ========================================
+   TABLE SCROLLBAR
+======================================== */
+
+.tableWrapper::-webkit-scrollbar {
+  height:
+    4px;
+}
+
+.tableWrapper::-webkit-scrollbar-track {
+  background:
+    transparent;
+}
+
+.tableWrapper::-webkit-scrollbar-thumb {
+  background:
+    var(--grey-300);
+
+  border-radius:
+    999px;
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (
+  max-width: 800px
+) {
+  .hero {
+    padding-top:
+      calc(
+        var(--header-height) +
+        72px
+      );
+
+    padding-bottom:
+      80px;
+  }
+
+  .categoryHeader {
+    grid-template-columns:
+      54px
+      minmax(
+        0,
+        1fr
+      );
+
+    gap:
+      20px;
+  }
+
+  .table {
+    min-width:
+      760px;
+  }
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (
+  max-width: 560px
+) {
+  .hero {
+    padding-top:
+      calc(
+        var(--header-height) +
+        60px
+      );
+
+    padding-bottom:
+      64px;
+  }
+
+  .eyebrow {
+    margin-bottom:
+      20px;
+  }
+
+  .title {
+    font-size:
+      clamp(
+        2.7rem,
+        15vw,
+        4.2rem
+      );
+  }
+
+  .intro {
+    margin-top:
+      28px;
+  }
+
+  .category {
+    padding:
+      54px
+      0;
+  }
+
+  .categoryHeader {
+    display:
+      block;
+
+    margin-bottom:
+      38px;
+  }
+
+  .categoryNumber {
+    display:
+      block;
+
+    margin-bottom:
+      18px;
+
+    padding-top:
+      0;
+  }
+
+  .categoryDescription {
+    margin-top:
+      20px;
+  }
+
+  .table {
+    min-width:
+      700px;
+  }
+
+  .table th {
+    padding-bottom:
+      15px;
+  }
+
+  .table td {
+    padding-top:
+      18px;
+
+    padding-bottom:
+      18px;
+  }
+}

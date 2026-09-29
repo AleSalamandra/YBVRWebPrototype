@@ -42,29 +42,28 @@ export default function HomeHero() {
 
           <div className="home-hero__identity-copy">
             <strong>
-              Immersive experiences
+              PREMIUM IMMERSIVE EXPERIENCES
             </strong>
 
             <span>
-              A global media company
+              CONTENT • PRODUCTION • TECHNOLOGY 
             </span>
 
             <span>
-              for an expanded world
+              FROM CREATION TO DISTRIBUTION
             </span>
           </div>
         </div>
 
         <div className="home-hero__headline">
           <h1>
-            We build the future
+            WE BRING AUDIENCES CLOSER
             <br />
-            of immersive experiences
+            TO THE MOMENTS THAT MATTER
           </h1>
 
           <p>
-            Entertainment is becoming spatial.
-            We&apos;re building what comes next.
+           Immersive content, production, technology, and distribution across sport, culture, and music.
           </p>
         </div>
       </Container>

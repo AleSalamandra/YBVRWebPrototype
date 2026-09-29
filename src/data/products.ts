@@ -10,7 +10,7 @@ export const integralProducts: ProductCardData[] = [
     name: "XTADIUM",
 
     tagline:
-      "WATCH SPORTS LIKE NEVER BEFORE. STAND IN THE FIELD. FEEL THE GAME.",
+      " SPORT LIKE YOU’VE NEVER EXPERIENCED IT. GET CLOSER TO THE ACTION. FEEL THE GAME. ",
 
     href: "#",
 
@@ -70,20 +70,6 @@ export const integralProducts: ProductCardData[] = [
         logo:
           "/brand/ybsports_logofix.svg",
       },
-
-      {
-        label:
-          "innovation by",
-
-        division:
-          "labs",
-
-        name:
-          "YB Labs",
-
-        logo:
-          "/brand/yblabs_logofix.svg",
-      },
     ],
   },
 
@@ -94,7 +80,7 @@ export const integralProducts: ProductCardData[] = [
     name: "CULTVRE",
 
     tagline:
-      "WATCH EVENTS LIKE NEVER BEFORE. STAND IN THE FIELD. FEEL THE MOMENT.",
+      "STEP INSIDE CULTURE. EXPERIENCE PERFORMANCE, ART, AND CULTURE FROM A NEW PERSPECTIVE. ",
 
     href: "#",
 
@@ -140,34 +126,6 @@ export const integralProducts: ProductCardData[] = [
         logo:
           "/brand/ybtech_logofix.svg",
       },
-
-      {
-        label:
-          "commercialized by",
-
-        division:
-          "sports",
-
-        name:
-          "YB Sports",
-
-        logo:
-          "/brand/ybsports_logofix.svg",
-      },
-
-      {
-        label:
-          "innovation by",
-
-        division:
-          "labs",
-
-        name:
-          "YB Labs",
-
-        logo:
-          "/brand/yblabs_logofix.svg",
-      },
     ],
   },
 
@@ -178,7 +136,7 @@ export const integralProducts: ProductCardData[] = [
     name: "MUSIC",
 
     tagline:
-      "EXPERIENCE MUSIC LIKE NEVER BEFORE. STEP INSIDE THE PERFORMANCE.",
+      "MUSIC YOU DON’T JUST HEAR. YOU FEEL. STEP INSIDE THE SOUND. EXPERIENCE THE ENERGY. ",
 
     href: "#",
 
@@ -223,34 +181,6 @@ export const integralProducts: ProductCardData[] = [
 
         logo:
           "/brand/ybtech_logofix.svg",
-      },
-
-      {
-        label:
-          "commercialized by",
-
-        division:
-          "sports",
-
-        name:
-          "YB Sports",
-
-        logo:
-          "/brand/ybsports_logofix.svg",
-      },
-
-      {
-        label:
-          "innovation by",
-
-        division:
-          "labs",
-
-        name:
-          "YB Labs",
-
-        logo:
-          "/brand/yblabs_logofix.svg",
       },
     ],
   },

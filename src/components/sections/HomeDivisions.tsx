@@ -11,7 +11,7 @@ export default function HomeDivisions() {
     >
       <div className="home-divisions__heading">
         <h2 id="home-divisions-title">
-          One company. Three ways to shape media.
+          THREE SPECIALTIES. ONE CONNECTED ECOSYSTEM. 
         </h2>
       </div>
 

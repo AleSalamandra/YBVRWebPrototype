@@ -20,7 +20,7 @@ export default function HomeProducts() {
           id="integral-products-title"
           className={styles.title}
         >
-          Our integral products
+          Our products
         </h2>
 
 

@@ -15,8 +15,8 @@ export const divisions: DivisionCardData[] = [
     image: "/media/home/ybstudios.png",
     logo: "/brand/ybstudios_logofix.svg",
     descriptionLines: [
-      "Stories",
-      "Without limits",
+      "CREATE THE CONTENT",
+      "Premium immersive production, live and original. ",
     ],
   },
   {
@@ -37,8 +37,8 @@ export const divisions: DivisionCardData[] = [
     image: "/media/home/ybsports.png",
     logo: "/brand/ybsports_logofix.svg",
     descriptionLines: [
-      "A more",
-      "Immersive game",
+      "POWER THE EXPERIENCE ",
+      "Technology, platforms, and distribution for immersive media. ",
     ],
   },
   {
@@ -48,8 +48,8 @@ export const divisions: DivisionCardData[] = [
     image: "/media/home/yblabs.png",
     logo: "/brand/yblabs_logofix.svg",
     descriptionLines: [
-      "Ideas",
-      "Into new worlds",
+      "CONNECT FANS TO THE ACTION",
+      "Rights, partnerships, and immersive experiences for sport.",
     ],
   },
 ];

@@ -1,0 +1,2162 @@
+/* ========================================
+   PAGE
+======================================== */
+
+.page {
+  width: 100%;
+
+  overflow: hidden;
+
+  background: #09090d;
+
+  color: #f3f0ea;
+}
+
+
+/* ========================================
+   HERO
+======================================== */
+
+.hero {
+  position: relative;
+
+  min-height: 100svh;
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  background: #09090d;
+}
+
+
+/* ========================================
+   HERO MEDIA
+======================================== */
+
+.heroMedia {
+  position: absolute;
+
+  z-index: 0;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  object-position: center center;
+}
+
+
+/* ========================================
+   HERO GRADIENT
+======================================== */
+
+.heroGradient {
+  position: absolute;
+
+  z-index: 1;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(9, 9, 13, 0.9) 0%,
+      rgba(9, 9, 13, 0.64) 32%,
+      rgba(9, 9, 13, 0.2) 68%,
+      rgba(9, 9, 13, 0.2) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(9, 9, 13, 0.96) 0%,
+      rgba(9, 9, 13, 0.46) 28%,
+      rgba(9, 9, 13, 0.08) 62%,
+      rgba(9, 9, 13, 0.18) 100%
+    );
+}
+
+
+/* ========================================
+   GLOBAL GRAIN
+======================================== */
+
+.grain {
+  position: absolute;
+
+  z-index: 2;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.02;
+
+  background-image:
+    url(
+      "data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.7'/%3E%3C/svg%3E"
+    );
+
+  background-size: 180px 180px;
+
+  mix-blend-mode: soft-light;
+}
+
+
+/* ========================================
+   HERO INNER
+======================================== */
+
+.heroInner {
+  position: relative;
+
+  z-index: 3;
+
+  min-height: 100svh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  padding-top:
+    calc(
+      var(--header-height) +
+      clamp(
+        50px,
+        7vh,
+        88px
+      )
+    );
+
+  padding-bottom:
+    clamp(
+      54px,
+      7vh,
+      90px
+    );
+}
+
+
+/* ========================================
+   HERO IDENTITY
+======================================== */
+
+.heroIdentity {
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: flex-start;
+
+  width: 100%;
+}
+
+
+/* ========================================
+   HERO LOGO
+======================================== */
+
+.heroLogo {
+  display: block;
+
+  width:
+    clamp(
+      180px,
+      17vw,
+      300px
+    );
+
+  height: auto;
+
+  max-width: none;
+
+  object-fit: contain;
+
+  object-position: left center;
+
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(94%)
+    sepia(5%)
+    saturate(245%)
+    hue-rotate(339deg)
+    brightness(103%)
+    contrast(91%);
+}
+
+
+/* ========================================
+   HERO BOTTOM
+======================================== */
+
+.heroBottom {
+  width: 100%;
+
+  max-width: 1120px;
+}
+
+
+/* ========================================
+   HERO EYEBROW
+======================================== */
+
+.heroEyebrow {
+  margin:
+    0
+    0
+    clamp(
+      22px,
+      3vh,
+      34px
+    );
+
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.56
+    );
+
+  font-size:
+    clamp(
+      0.64rem,
+      0.7vw,
+      0.76rem
+    );
+
+  font-weight: 500;
+
+  line-height: 1.2;
+
+  letter-spacing: 0.16em;
+
+  text-transform: uppercase;
+}
+
+
+/* ========================================
+   HERO TITLE
+======================================== */
+
+.heroTitle {
+  margin: 0;
+
+  max-width: 1040px;
+
+  color: #f3f0ea;
+
+  font-size:
+    clamp(
+      4rem,
+      8.4vw,
+      10rem
+    );
+
+  font-weight: 500;
+
+  line-height: 0.83;
+
+  letter-spacing: -0.065em;
+}
+
+
+/* ========================================
+   HERO DESCRIPTION
+======================================== */
+
+.heroDescription {
+  max-width: 680px;
+
+  margin:
+    clamp(
+      34px,
+      4vw,
+      58px
+    )
+    0
+    0;
+
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.68
+    );
+
+  font-size:
+    clamp(
+      1.05rem,
+      1.35vw,
+      1.45rem
+    );
+
+  font-weight: 400;
+
+  line-height: 1.45;
+
+  letter-spacing: -0.015em;
+}
+
+
+/* ========================================
+   SECTION HEADER
+======================================== */
+
+.sectionHeader {
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+
+  width: 100%;
+
+  padding-bottom: 20px;
+
+  border-bottom:
+    1px solid
+    rgba(
+      243,
+      240,
+      234,
+      0.14
+    );
+}
+
+
+.sectionNumber {
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.36
+    );
+
+  font-size: 0.7rem;
+
+  font-weight: 400;
+
+  line-height: 1;
+
+  letter-spacing: 0.12em;
+}
+
+
+.sectionLabel {
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.72
+    );
+
+  font-size: 0.7rem;
+
+  font-weight: 500;
+
+  line-height: 1;
+
+  letter-spacing: 0.15em;
+
+  text-transform: uppercase;
+}
+
+
+/* ========================================
+   MISSION
+======================================== */
+
+.mission {
+  position: relative;
+
+  padding:
+    clamp(
+      110px,
+      13vw,
+      220px
+    )
+    0;
+
+  background: #09090d;
+}
+
+
+/* ========================================
+   MISSION GRID
+======================================== */
+
+.missionGrid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(
+      0,
+      1.25fr
+    )
+    minmax(
+      300px,
+      0.75fr
+    );
+
+  gap:
+    clamp(
+      80px,
+      10vw,
+      190px
+    );
+
+  align-items: start;
+
+  padding-top:
+    clamp(
+      58px,
+      7vw,
+      110px
+    );
+}
+
+
+/* ========================================
+   MISSION TITLE
+======================================== */
+
+.missionTitle {
+  margin: 0;
+
+  color: #f3f0ea;
+
+  font-size:
+    clamp(
+      3.2rem,
+      6.4vw,
+      7.6rem
+    );
+
+  font-weight: 500;
+
+  line-height: 0.9;
+
+  letter-spacing: -0.06em;
+}
+
+
+/* ========================================
+   MISSION COPY
+======================================== */
+
+.missionCopy {
+  max-width: 600px;
+
+  padding-top:
+    clamp(
+      6px,
+      1vw,
+      16px
+    );
+}
+
+
+.missionCopy p {
+  margin: 0;
+
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.55
+    );
+
+  font-size:
+    clamp(
+      1rem,
+      1.18vw,
+      1.28rem
+    );
+
+  line-height: 1.55;
+
+  letter-spacing: -0.012em;
+}
+
+
+.missionCopy p + p {
+  margin-top: 32px;
+}
+
+
+.missionCopy
+.missionLead {
+  color: #f3f0ea;
+
+  font-size:
+    clamp(
+      1.3rem,
+      1.85vw,
+      2rem
+    );
+
+  line-height: 1.35;
+
+  letter-spacing: -0.02em;
+}
+
+
+/* ========================================
+   AREAS
+======================================== */
+
+.areas {
+  position: relative;
+
+  padding-top:
+    clamp(
+      100px,
+      12vw,
+      190px
+    );
+
+  background: #0d0d11;
+}
+
+
+/* ========================================
+   AREAS INTRO
+======================================== */
+
+.areasIntro {
+  display: grid;
+
+  grid-template-columns:
+    minmax(
+      0,
+      1.2fr
+    )
+    minmax(
+      300px,
+      0.8fr
+    );
+
+  gap:
+    clamp(
+      60px,
+      9vw,
+      170px
+    );
+
+  align-items: end;
+
+  padding:
+    clamp(
+      60px,
+      7vw,
+      110px
+    )
+    0
+    clamp(
+      100px,
+      11vw,
+      170px
+    );
+}
+
+
+.areasIntro h2 {
+  margin: 0;
+
+  color: #f3f0ea;
+
+  font-size:
+    clamp(
+      3.1rem,
+      6vw,
+      7rem
+    );
+
+  font-weight: 500;
+
+  line-height: 0.9;
+
+  letter-spacing: -0.06em;
+}
+
+
+.areasIntro p {
+  max-width: 600px;
+
+  margin: 0;
+
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.52
+    );
+
+  font-size:
+    clamp(
+      1rem,
+      1.15vw,
+      1.2rem
+    );
+
+  line-height: 1.55;
+}
+
+
+/* ========================================
+   AREA LIST
+======================================== */
+
+.areaList {
+  width: 100%;
+}
+
+
+/* ========================================
+   AREA
+======================================== */
+
+.area {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 760px;
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  background: #09090d;
+
+  border-top:
+    1px solid
+    rgba(
+      243,
+      240,
+      234,
+      0.1
+    );
+}
+
+
+.area:last-child {
+  border-bottom:
+    1px solid
+    rgba(
+      243,
+      240,
+      234,
+      0.1
+    );
+}
+
+
+/* ========================================
+   AREA VISUAL
+======================================== */
+
+.areaVisual {
+  position: absolute;
+
+  z-index: 0;
+
+  inset: 0;
+
+  overflow: hidden;
+}
+
+
+/* ========================================
+   AREA IMAGE
+======================================== */
+
+.areaImage {
+  position: absolute;
+
+  z-index: 0;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transform:
+    scale(1.001);
+
+  transition:
+    transform
+    1200ms
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    );
+}
+
+
+.area:hover
+.areaImage {
+  transform:
+    scale(1.025);
+}
+
+
+/* ========================================
+   AREA GRADIENT
+======================================== */
+
+.areaGradient {
+  position: absolute;
+
+  z-index: 1;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(9, 9, 13, 0.76) 0%,
+      rgba(9, 9, 13, 0.54) 22%,
+      rgba(9, 9, 13, 0.3) 44%,
+      rgba(9, 9, 13, 0.48) 58%,
+      rgba(9, 9, 13, 0.72) 70%,
+      rgba(9, 9, 13, 0.9) 84%,
+      rgba(9, 9, 13, 0.97) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(9, 9, 13, 0.9) 0%,
+      rgba(9, 9, 13, 0.38) 24%,
+      rgba(9, 9, 13, 0.08) 58%,
+      rgba(9, 9, 13, 0.14) 100%
+    );
+}
+
+
+/* ========================================
+   AREA GRAIN
+======================================== */
+
+.areaGrain {
+  position: absolute;
+
+  z-index: 2;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.022;
+
+  background-image:
+    url(
+      "data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.7'/%3E%3C/svg%3E"
+    );
+
+  background-size: 180px 180px;
+
+  mix-blend-mode: soft-light;
+}
+
+
+/* ========================================
+   AREA CONTENT
+======================================== */
+
+.areaContent {
+  position: relative;
+
+  z-index: 3;
+
+  min-height: 760px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  padding-top:
+    clamp(
+      46px,
+      5vw,
+      76px
+    );
+
+  padding-bottom:
+    clamp(
+      58px,
+      6vw,
+      96px
+    );
+}
+
+
+/* ========================================
+   AREA TOP
+======================================== */
+
+.areaTop {
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+}
+
+
+.areaNumber {
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.38
+    );
+
+  font-size: 0.7rem;
+
+  line-height: 1;
+
+  letter-spacing: 0.12em;
+}
+
+
+.areaKicker {
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.65
+    );
+
+  font-size: 0.7rem;
+
+  font-weight: 500;
+
+  line-height: 1;
+
+  letter-spacing: 0.15em;
+
+  text-transform: uppercase;
+}
+
+
+/* ========================================
+   AREA GRID
+======================================== */
+
+.areaGrid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(
+      0,
+      1.05fr
+    )
+    minmax(
+      320px,
+      0.95fr
+    );
+
+  gap:
+    clamp(
+      70px,
+      9vw,
+      170px
+    );
+
+  align-items: end;
+}
+
+
+/* ========================================
+   AREA TITLE
+======================================== */
+
+.areaTitle {
+  margin: 0;
+
+  max-width: 780px;
+
+  color: #f3f0ea;
+
+  font-size:
+    clamp(
+      3.4rem,
+      6.5vw,
+      7.8rem
+    );
+
+  font-weight: 500;
+
+  line-height: 0.88;
+
+  letter-spacing: -0.06em;
+}
+
+
+/* ========================================
+   AREA COPY
+======================================== */
+
+.areaCopy {
+  max-width: 610px;
+}
+
+
+.areaDescription {
+  margin: 0;
+
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.78
+    );
+
+  font-size:
+    clamp(
+      1rem,
+      1.15vw,
+      1.22rem
+    );
+
+  line-height: 1.52;
+}
+
+
+/* ========================================
+   EXAMPLES
+======================================== */
+
+.examples {
+  margin-top:
+    clamp(
+      36px,
+      4vw,
+      58px
+    );
+
+  padding-top: 22px;
+
+  border-top:
+    1px solid
+    rgba(
+      243,
+      240,
+      234,
+      0.16
+    );
+}
+
+
+.examplesLabel {
+  display: block;
+
+  margin-bottom: 17px;
+
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.44
+    );
+
+  font-size: 0.64rem;
+
+  font-weight: 500;
+
+  line-height: 1;
+
+  letter-spacing: 0.15em;
+
+  text-transform: uppercase;
+}
+
+
+.examplesList {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+  margin: 0;
+
+  padding: 0;
+
+  list-style: none;
+}
+
+
+.examplesList li {
+  position: relative;
+
+  padding-left: 19px;
+
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.86
+    );
+
+  font-size:
+    clamp(
+      0.92rem,
+      1vw,
+      1.05rem
+    );
+
+  line-height: 1.45;
+}
+
+
+.examplesList li::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0.67em;
+
+  left: 0;
+
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #f3f0ea;
+
+  opacity: 0.48;
+}
+
+
+/* ========================================
+   PROCESS
+======================================== */
+
+.process {
+  position: relative;
+
+  padding:
+    clamp(
+      110px,
+      13vw,
+      210px
+    )
+    0;
+
+  background: #09090d;
+}
+
+
+/* ========================================
+   PROCESS HEADING
+======================================== */
+
+.processHeading {
+  display: grid;
+
+  grid-template-columns:
+    minmax(
+      0,
+      1.2fr
+    )
+    minmax(
+      300px,
+      0.8fr
+    );
+
+  gap:
+    clamp(
+      60px,
+      9vw,
+      170px
+    );
+
+  align-items: end;
+
+  padding:
+    clamp(
+      58px,
+      7vw,
+      110px
+    )
+    0
+    clamp(
+      78px,
+      8vw,
+      130px
+    );
+}
+
+
+.processHeading h2 {
+  margin: 0;
+
+  color: #f3f0ea;
+
+  font-size:
+    clamp(
+      3.2rem,
+      6.3vw,
+      7.4rem
+    );
+
+  font-weight: 500;
+
+  line-height: 0.9;
+
+  letter-spacing: -0.06em;
+}
+
+
+.processHeading p {
+  max-width: 520px;
+
+  margin: 0;
+
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.52
+    );
+
+  font-size:
+    clamp(
+      1rem,
+      1.15vw,
+      1.2rem
+    );
+
+  line-height: 1.55;
+}
+
+
+/* ========================================
+   PROCESS GRID
+======================================== */
+
+.processGrid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  border-top:
+    1px solid
+    rgba(
+      243,
+      240,
+      234,
+      0.14
+    );
+
+  border-bottom:
+    1px solid
+    rgba(
+      243,
+      240,
+      234,
+      0.14
+    );
+}
+
+
+/* ========================================
+   PROCESS STEP
+======================================== */
+
+.processStep {
+  position: relative;
+
+  min-height:
+    clamp(
+      420px,
+      32vw,
+      560px
+    );
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  padding:
+    clamp(
+      26px,
+      3vw,
+      46px
+    );
+
+  background: #09090d;
+
+  border-right:
+    1px solid
+    rgba(
+      243,
+      240,
+      234,
+      0.14
+    );
+}
+
+
+.processStep:last-child {
+  border-right: 0;
+}
+
+
+/* ========================================
+   PROCESS IMAGE
+======================================== */
+
+.processImage {
+  position: absolute;
+
+  z-index: 0;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  object-position: center center;
+
+  transform:
+    scale(1.001);
+
+  transition:
+    transform
+    1200ms
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    );
+}
+
+
+.processStep:hover
+.processImage {
+  transform:
+    scale(1.035);
+}
+
+
+/* ========================================
+   PROCESS IMAGE OVERLAY
+======================================== */
+
+.processImageOverlay {
+  position: absolute;
+
+  z-index: 1;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(9, 9, 13, 0.42) 0%,
+      rgba(9, 9, 13, 0.16) 28%,
+      rgba(9, 9, 13, 0.4) 56%,
+      rgba(9, 9, 13, 0.82) 76%,
+      rgba(9, 9, 13, 0.96) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(9, 9, 13, 0.28) 0%,
+      rgba(9, 9, 13, 0.06) 50%,
+      rgba(9, 9, 13, 0.22) 100%
+    );
+}
+
+
+/* ========================================
+   PROCESS STEP TOP
+======================================== */
+
+.processStepTop {
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+}
+
+
+.processNumber {
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.58
+    );
+
+  font-size: 0.7rem;
+
+  line-height: 1;
+
+  letter-spacing: 0.12em;
+}
+
+
+.processDot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #f3f0ea;
+
+  opacity: 0.38;
+
+  transition:
+    opacity
+    250ms
+    ease,
+    transform
+    250ms
+    ease;
+}
+
+
+.processStep:hover
+.processDot {
+  opacity: 1;
+
+  transform:
+    scale(1.25);
+}
+
+
+/* ========================================
+   PROCESS STEP BOTTOM
+======================================== */
+
+.processStepBottom {
+  position: relative;
+
+  z-index: 2;
+
+  max-width: 420px;
+}
+
+
+.processStepBottom h3 {
+  margin:
+    0
+    0
+    24px;
+
+  color: #f3f0ea;
+
+  font-size:
+    clamp(
+      2.2rem,
+      3.4vw,
+      4.3rem
+    );
+
+  font-weight: 500;
+
+  line-height: 0.95;
+
+  letter-spacing: -0.045em;
+}
+
+
+.processStepBottom p {
+  max-width: 390px;
+
+  margin: 0;
+
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.72
+    );
+
+  font-size:
+    clamp(
+      0.92rem,
+      0.98vw,
+      1.04rem
+    );
+
+  line-height: 1.5;
+}
+
+
+/* ========================================
+   OUTCOMES
+======================================== */
+
+.outcomes {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 40px;
+
+  margin-top:
+    clamp(
+      70px,
+      8vw,
+      130px
+    );
+}
+
+
+.outcomesLabel {
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.36
+    );
+
+  font-size: 0.65rem;
+
+  font-weight: 500;
+
+  line-height: 1;
+
+  letter-spacing: 0.15em;
+
+  text-transform: uppercase;
+}
+
+
+.outcomeList {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+
+.outcome {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  min-height: 48px;
+
+  padding:
+    0
+    20px;
+
+  border:
+    1px solid
+    rgba(
+      243,
+      240,
+      234,
+      0.14
+    );
+
+  border-radius: 100px;
+
+  background:
+    rgba(
+      243,
+      240,
+      234,
+      0.012
+    );
+
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.58
+    );
+
+  font-size: 0.84rem;
+
+  white-space: nowrap;
+}
+
+
+.outcome span {
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.3
+    );
+
+  font-size: 0.62rem;
+}
+
+
+.outcomeActive {
+  border-color:
+    rgba(
+      243,
+      240,
+      234,
+      0.42
+    );
+
+  background:
+    rgba(
+      243,
+      240,
+      234,
+      0.055
+    );
+
+  color: #f3f0ea;
+}
+
+
+/* ========================================
+   CLOSING
+======================================== */
+
+.closing {
+  position: relative;
+
+  min-height: 88svh;
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  background: #0b0b0f;
+}
+
+
+/* ========================================
+   CLOSING GLOW
+======================================== */
+
+.closingGlow {
+  position: absolute;
+
+  z-index: 0;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 74% 44%,
+      rgba(
+        255,
+        88,
+        58,
+        0.22
+      ),
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at 82% 60%,
+      rgba(
+        107,
+        72,
+        255,
+        0.18
+      ),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 58% 86%,
+      rgba(
+        255,
+        117,
+        68,
+        0.08
+      ),
+      transparent 24%
+    ),
+    linear-gradient(
+      120deg,
+      #09090d 18%,
+      #101015 100%
+    );
+}
+
+
+/* ========================================
+   CLOSING INNER
+======================================== */
+
+.closingInner {
+  position: relative;
+
+  z-index: 3;
+
+  min-height: 88svh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  justify-content: center;
+
+  padding-top: 100px;
+
+  padding-bottom: 100px;
+}
+
+
+/* ========================================
+   CLOSING LABEL
+======================================== */
+
+.closingLabel {
+  margin-bottom:
+    clamp(
+      28px,
+      4vw,
+      52px
+    );
+
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.42
+    );
+
+  font-size: 0.66rem;
+
+  font-weight: 500;
+
+  line-height: 1;
+
+  letter-spacing: 0.17em;
+
+  text-transform: uppercase;
+}
+
+
+/* ========================================
+   CLOSING TITLE
+======================================== */
+
+.closingTitle {
+  margin: 0;
+
+  color: #f3f0ea;
+
+  font-size:
+    clamp(
+      4rem,
+      8vw,
+      9.5rem
+    );
+
+  font-weight: 500;
+
+  line-height: 0.84;
+
+  letter-spacing: -0.065em;
+}
+
+
+/* ========================================
+   CLOSING TEXT
+======================================== */
+
+.closingText {
+  max-width: 610px;
+
+  margin:
+    clamp(
+      34px,
+      4vw,
+      58px
+    )
+    0
+    0;
+
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.58
+    );
+
+  font-size:
+    clamp(
+      1rem,
+      1.22vw,
+      1.3rem
+    );
+
+  line-height: 1.55;
+}
+
+
+/* ========================================
+   CLOSING LINK
+======================================== */
+
+.closingLink {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 18px;
+
+  margin-top:
+    clamp(
+      44px,
+      5vw,
+      70px
+    );
+
+  padding:
+    14px
+    20px
+    14px
+    24px;
+
+  border:
+    1px solid
+    rgba(
+      243,
+      240,
+      234,
+      0.22
+    );
+
+  border-radius: 100px;
+
+  background:
+    rgba(
+      243,
+      240,
+      234,
+      0.045
+    );
+
+  color: #f3f0ea;
+
+  font-size: 0.82rem;
+
+  font-weight: 500;
+
+  line-height: 1;
+
+  letter-spacing: 0.02em;
+
+  transition:
+    background
+    250ms
+    ease,
+    border-color
+    250ms
+    ease,
+    transform
+    250ms
+    ease;
+}
+
+
+.closingLink svg {
+  width: 18px;
+  height: 18px;
+
+  flex: none;
+
+  transition:
+    transform
+    250ms
+    ease;
+}
+
+
+.closingLink:hover {
+  border-color:
+    rgba(
+      243,
+      240,
+      234,
+      0.42
+    );
+
+  background:
+    rgba(
+      243,
+      240,
+      234,
+      0.08
+    );
+
+  transform:
+    translateY(-2px);
+}
+
+
+.closingLink:hover svg {
+  transform:
+    translateX(4px);
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (
+  max-width: 1100px
+) {
+
+  .missionGrid,
+  .areasIntro,
+  .processHeading,
+  .areaGrid {
+    grid-template-columns: 1fr;
+
+    gap: 48px;
+  }
+
+
+  .missionCopy,
+  .areasIntro p,
+  .processHeading p,
+  .areaCopy {
+    max-width: 700px;
+  }
+
+
+  .area {
+    min-height: 820px;
+  }
+
+
+  .areaContent {
+    min-height: 820px;
+  }
+
+
+  .areaGrid {
+    margin-top: auto;
+  }
+
+
+  .areaGradient {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(9, 9, 13, 0.64) 0%,
+        rgba(9, 9, 13, 0.42) 38%,
+        rgba(9, 9, 13, 0.68) 68%,
+        rgba(9, 9, 13, 0.94) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(9, 9, 13, 0.14) 0%,
+        rgba(9, 9, 13, 0.28) 34%,
+        rgba(9, 9, 13, 0.82) 72%,
+        rgba(9, 9, 13, 0.98) 100%
+      );
+  }
+
+
+  .processGrid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .processStep {
+    min-height: 520px;
+
+    border-right: 0;
+
+    border-bottom:
+      1px solid
+      rgba(
+        243,
+        240,
+        234,
+        0.14
+      );
+  }
+
+
+  .processStep:last-child {
+    border-bottom: 0;
+  }
+
+
+  .processImageOverlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(9, 9, 13, 0.24) 0%,
+        rgba(9, 9, 13, 0.16) 34%,
+        rgba(9, 9, 13, 0.7) 68%,
+        rgba(9, 9, 13, 0.97) 100%
+      );
+  }
+
+
+  .outcomes {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (
+  max-width: 700px
+) {
+
+  .heroInner {
+    padding-top:
+      calc(
+        var(--header-height) +
+        36px
+      );
+
+    padding-bottom: 44px;
+  }
+
+
+  .heroLogo {
+    width: 170px;
+  }
+
+
+  .heroEyebrow {
+    max-width: 280px;
+
+    line-height: 1.5;
+  }
+
+
+  .heroTitle {
+    font-size:
+      clamp(
+        3.5rem,
+        17vw,
+        5.2rem
+      );
+  }
+
+
+  .heroDescription {
+    max-width: 92%;
+  }
+
+
+  .mission,
+  .process {
+    padding:
+      90px
+      0;
+  }
+
+
+  .areas {
+    padding-top: 90px;
+  }
+
+
+  .missionGrid,
+  .areasIntro,
+  .processHeading {
+    padding-top: 48px;
+  }
+
+
+  .areasIntro {
+    padding-bottom: 80px;
+  }
+
+
+  .missionTitle,
+  .areasIntro h2,
+  .processHeading h2 {
+    font-size:
+      clamp(
+        3rem,
+        14vw,
+        4.8rem
+      );
+  }
+
+
+  .area {
+    min-height: 760px;
+  }
+
+
+  .areaContent {
+    min-height: 760px;
+
+    padding-top: 34px;
+
+    padding-bottom: 44px;
+  }
+
+
+  .areaTitle {
+    font-size:
+      clamp(
+        3rem,
+        14vw,
+        4.8rem
+      );
+  }
+
+
+  .areaGrid {
+    gap: 34px;
+  }
+
+
+  .areaGradient {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(9, 9, 13, 0.2) 0%,
+        rgba(9, 9, 13, 0.4) 28%,
+        rgba(9, 9, 13, 0.78) 58%,
+        rgba(9, 9, 13, 0.94) 76%,
+        rgba(9, 9, 13, 0.99) 100%
+      );
+  }
+
+
+  .processStep {
+    min-height: 460px;
+
+    padding:
+      28px;
+  }
+
+
+  .processImageOverlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(9, 9, 13, 0.2) 0%,
+        rgba(9, 9, 13, 0.2) 34%,
+        rgba(9, 9, 13, 0.72) 66%,
+        rgba(9, 9, 13, 0.98) 100%
+      );
+  }
+
+
+  .outcomeList {
+    width: 100%;
+
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+
+  .outcome {
+    width: 100%;
+
+    justify-content: space-between;
+  }
+
+
+  .closing {
+    min-height: 760px;
+  }
+
+
+  .closingInner {
+    min-height: 760px;
+
+    padding-top: 90px;
+
+    padding-bottom: 90px;
+  }
+
+
+  .closingTitle {
+    font-size:
+      clamp(
+        3.8rem,
+        16vw,
+        5.6rem
+      );
+  }
+
+
+  .closingText {
+    max-width: 92%;
+  }
+
+}

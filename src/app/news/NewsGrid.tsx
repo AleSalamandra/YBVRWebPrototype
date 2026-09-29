@@ -31,6 +31,14 @@ type NewsGridProps = {
 
 
 /* ========================================
+   CONSTANTS
+======================================== */
+
+const NEWS_IMAGE_SIZES =
+  "(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw";
+
+
+/* ========================================
    HELPERS
 ======================================== */
 
@@ -112,7 +120,7 @@ export default function NewsGrid({
 
 
   /* ========================================
-     TOGGLE
+     TOGGLE ARTICLE
   ======================================== */
 
   const toggleNews = (
@@ -135,7 +143,10 @@ export default function NewsGrid({
     <div className={styles.newsGrid}>
 
       {rows.map(
-        (row, rowIndex) => {
+        (
+          row,
+          rowIndex,
+        ) => {
 
           const activeNews =
             row.find(
@@ -151,10 +162,12 @@ export default function NewsGrid({
               className={styles.newsRow}
             >
 
+              {/* ========================================
+                  CARDS
+              ======================================== */}
+
               <div
-                className={
-                  styles.newsRowCards
-                }
+                className={styles.newsRowCards}
               >
 
                 {row.map(
@@ -187,77 +200,62 @@ export default function NewsGrid({
                         }
                       >
 
+                        {/* ========================================
+                            IMAGE
+                        ======================================== */}
+
                         <div
-                          className={
-                            styles.newsCardImage
-                          }
+                          className={styles.newsCardImage}
                         >
 
                           <Image
                             src={item.image}
                             alt=""
                             fill
-                            sizes="
-                              (max-width: 760px) 100vw,
-                              (max-width: 1100px) 50vw,
-                              33vw
-                            "
-                            className={
-                              styles.newsImage
-                            }
+                            sizes={NEWS_IMAGE_SIZES}
+                            className={styles.newsImage}
                           />
 
                           <div
-                            className={
-                              styles.newsImageOverlay
-                            }
+                            className={styles.newsImageOverlay}
                             aria-hidden="true"
                           />
 
                         </div>
 
 
+                        {/* ========================================
+                            CARD CONTENT
+                        ======================================== */}
+
                         <div
-                          className={
-                            styles.newsCardContent
-                          }
+                          className={styles.newsCardContent}
                         >
 
                           <time
-                            className={
-                              styles.newsDate
-                            }
+                            className={styles.newsDate}
                           >
                             {item.date}
                           </time>
 
 
                           <div
-                            className={
-                              styles.newsCardBottom
-                            }
+                            className={styles.newsCardBottom}
                           >
 
                             <h2
-                              className={
-                                styles.newsTitle
-                              }
+                              className={styles.newsTitle}
                             >
                               {item.title}
                             </h2>
 
 
                             <div
-                              className={
-                                styles.newsCardIcon
-                              }
+                              className={styles.newsCardIcon}
                               aria-hidden="true"
                             >
-
                               <span />
-
                               <span />
-
                             </div>
 
                           </div>
@@ -272,25 +270,27 @@ export default function NewsGrid({
               </div>
 
 
+              {/* ========================================
+                  EXPANDED ARTICLE
+              ======================================== */}
+
               {activeNews && (
 
                 <div
                   ref={expandedRef}
-                  className={
-                    styles.expandedNews
-                  }
+                  className={styles.expandedNews}
                 >
 
+                  {/* ========================================
+                      EXPANDED TOP
+                  ======================================== */}
+
                   <div
-                    className={
-                      styles.expandedTop
-                    }
+                    className={styles.expandedTop}
                   >
 
                     <div
-                      className={
-                        styles.expandedMeta
-                      }
+                      className={styles.expandedMeta}
                     >
 
                       <span>
@@ -306,9 +306,7 @@ export default function NewsGrid({
 
                     <button
                       type="button"
-                      className={
-                        styles.closeButton
-                      }
+                      className={styles.closeButton}
                       onClick={() =>
                         setActiveNewsId(
                           null,
@@ -323,48 +321,38 @@ export default function NewsGrid({
                   </div>
 
 
+                  {/* ========================================
+                      EXPANDED CONTENT
+                  ======================================== */}
+
                   <div
-                    className={
-                      styles.expandedGrid
-                    }
+                    className={styles.expandedGrid}
                   >
 
                     <div
-                      className={
-                        styles.expandedHeadline
-                      }
+                      className={styles.expandedHeadline}
                     >
 
                       <h2>
-                        {
-                          activeNews.title
-                        }
+                        {activeNews.title}
                       </h2>
 
                     </div>
 
 
                     <article
-                      className={
-                        styles.article
-                      }
+                      className={styles.article}
                     >
 
                       <p
-                        className={
-                          styles.articleIntro
-                        }
+                        className={styles.articleIntro}
                       >
-                        {
-                          activeNews.intro
-                        }
+                        {activeNews.intro}
                       </p>
 
 
                       <div
-                        className={
-                          styles.articleBody
-                        }
+                        className={styles.articleBody}
                       >
 
                         {activeNews.body.map(
@@ -377,9 +365,7 @@ export default function NewsGrid({
                                 `${activeNews.id}-${index}`
                               }
                             >
-                              {
-                                paragraph
-                              }
+                              {paragraph}
                             </p>
                           ),
                         )}

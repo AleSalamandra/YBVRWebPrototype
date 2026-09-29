@@ -62,17 +62,17 @@ export default function StudiosHero() {
 
         <div className={styles.heroDescriptor}>
           <span>
-            Immersive experiences
+            Immersive production
           </span>
 
           <span>
-            you don&apos;t just watch.
+            BUILT AROUND EXPERIENCE.
           </span>
         </div>
       </div>
 
       <div className={styles.heroClaim}>
-        Stories you don&apos;t just watch.
+        STORIES BUILT TO BE EXPERIENCED.
       </div>
     </section>
   );

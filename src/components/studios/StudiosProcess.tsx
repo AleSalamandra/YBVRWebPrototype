@@ -4,19 +4,19 @@ import styles from "./Studios.module.css";
 const steps = [
   {
     title: "Concept",
-    copy: "A bold idea starts a bigger journey.",
+    copy: "We shape the idea around the audience and the experience.",
   },
   {
     title: "Create",
-    copy: "Blending creativity and technology.",
+    copy: "Creative direction, storytelling, and experience design.",
   },
   {
     title: "Produce",
-    copy: "World-class execution at any scale.",
+    copy: "Immersive production, capture, and execution at any scale. ",
   },
   {
     title: "Deliver",
-    copy: "Experiences that live beyond the screen.",
+    copy: "Post-production and content prepared for the platforms where audiences experience it. ",
   },
 ];
 

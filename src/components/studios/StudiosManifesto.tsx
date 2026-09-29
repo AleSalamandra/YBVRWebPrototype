@@ -5,21 +5,22 @@ export default function StudiosManifesto() {
   return (
     <section className={styles.manifesto}>
       <div className={styles.sectionLabel}>
-        Our manifesto —
+        Our approach —
       </div>
 
       <div className={styles.manifestoGrid}>
         <h2 className={styles.manifestoTitle}>
-          We create stories,
+          We create experiences,
           <br />
-          you can step inside.
+          that put the audience inside the story.
         </h2>
 
         <div className={styles.manifestoCopy}>
           <p>
-            YB Studios blends cinematic storytelling,
-            cutting-edge technology and human emotion
-            to create immersive videos for a more connected world.
+            YB Studios combines cinematic storytelling, immersive production, and technical
+            expertise to create content across sport, culture, music, and entertainment.
+            From concept through production and post-production, we design every project around
+            how the audience will experience it, not simply how it will look on a screen. 
           </p>
 
           <span>— Our philosophy</span>

@@ -12,7 +12,7 @@ export const integralProducts: ProductCardData[] = [
     tagline:
       " SPORT LIKE YOU’VE NEVER EXPERIENCED IT. GET CLOSER TO THE ACTION. FEEL THE GAME. ",
 
-    href: "#",
+    href: "/products/xtadium",
 
     ctaLabel:
       "DISCOVER THE APP",
@@ -82,7 +82,7 @@ export const integralProducts: ProductCardData[] = [
     tagline:
       "STEP INSIDE CULTURE. EXPERIENCE PERFORMANCE, ART, AND CULTURE FROM A NEW PERSPECTIVE. ",
 
-    href: "#",
+    href: "/products/cultvre",
 
     ctaLabel:
       "DISCOVER THE APP",
@@ -138,7 +138,7 @@ export const integralProducts: ProductCardData[] = [
     tagline:
       "MUSIC YOU DON’T JUST HEAR. YOU FEEL. STEP INSIDE THE SOUND. EXPERIENCE THE ENERGY. ",
 
-    href: "#",
+    href: "/products/xmusic",
 
     ctaLabel:
       "DISCOVER THE APP",

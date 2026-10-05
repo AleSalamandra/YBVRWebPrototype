@@ -3,20 +3,53 @@ import Link from "next/link";
 
 import { homeDivisions } from "@/data/divisions";
 
+
+/* ========================================
+   DIVISION ORDER
+======================================== */
+
+const divisionOrder = [
+  "studios",
+  "sports",
+  "tech",
+];
+
+
+/* ========================================
+   HOME DIVISIONS
+======================================== */
+
 export default function HomeDivisions() {
+  const orderedDivisions = [
+    ...homeDivisions,
+  ].sort(
+    (a, b) =>
+      divisionOrder.indexOf(a.id) -
+      divisionOrder.indexOf(b.id)
+  );
+
   return (
     <section
       className="home-divisions"
       aria-labelledby="home-divisions-title"
     >
+      {/* ========================================
+          HEADING
+      ======================================== */}
+
       <div className="home-divisions__heading">
         <h2 id="home-divisions-title">
-          THREE SPECIALTIES. ONE CONNECTED ECOSYSTEM. 
+          THREE SPECIALTIES. ONE CONNECTED ECOSYSTEM.
         </h2>
       </div>
 
+
+      {/* ========================================
+          DIVISIONS GRID
+      ======================================== */}
+
       <div className="home-divisions__grid">
-        {homeDivisions.map(
+        {orderedDivisions.map(
           (division) => (
             <Link
               key={division.id}
@@ -24,6 +57,8 @@ export default function HomeDivisions() {
               className="division-card"
               aria-label={`Discover ${division.name}`}
             >
+              {/* IMAGE */}
+
               <Image
                 src={division.image}
                 alt=""
@@ -36,12 +71,21 @@ export default function HomeDivisions() {
                 }
               />
 
+
+              {/* GRADIENT */}
+
               <div
                 className="division-card__gradient"
                 aria-hidden="true"
               />
 
+
+              {/* CONTENT */}
+
               <div className="division-card__content">
+
+                {/* LOGO */}
+
                 <div className="division-card__top">
                   <Image
                     src={division.logo}
@@ -52,7 +96,11 @@ export default function HomeDivisions() {
                   />
                 </div>
 
+
+                {/* DESCRIPTION + ARROW */}
+
                 <div className="division-card__bottom">
+
                   <p className="division-card__description">
                     {division.descriptionLines.map(
                       (line) => (
@@ -63,13 +111,16 @@ export default function HomeDivisions() {
                     )}
                   </p>
 
+
                   <span
                     className="division-card__arrow"
                     aria-hidden="true"
                   >
                     →
                   </span>
+
                 </div>
+
               </div>
             </Link>
           )

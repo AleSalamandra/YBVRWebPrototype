@@ -4,13 +4,18 @@ import type {
 
 
 export const integralProducts: ProductCardData[] = [
+
+  /* ========================================
+     XTADIUM
+  ======================================== */
+
   {
     id: "xtadium",
 
     name: "XTADIUM",
 
     tagline:
-      " SPORT LIKE YOU’VE NEVER EXPERIENCED IT. GET CLOSER TO THE ACTION. FEEL THE GAME. ",
+      "SPORT LIKE YOU’VE NEVER EXPERIENCED IT. GET CLOSER TO THE ACTION. FEEL THE GAME.",
 
     href: "/products/xtadium",
 
@@ -59,7 +64,7 @@ export const integralProducts: ProductCardData[] = [
 
       {
         label:
-          "comercialized by",
+          "commercialized by",
 
         division:
           "sports",
@@ -74,13 +79,17 @@ export const integralProducts: ProductCardData[] = [
   },
 
 
+  /* ========================================
+     CULTVRE
+  ======================================== */
+
   {
     id: "cultvre",
 
     name: "CULTVRE",
 
     tagline:
-      "STEP INSIDE CULTURE. EXPERIENCE PERFORMANCE, ART, AND CULTURE FROM A NEW PERSPECTIVE. ",
+      "STEP INSIDE CULTURE. EXPERIENCE PERFORMANCE, ART, AND CULTURE FROM A NEW PERSPECTIVE.",
 
     href: "/products/cultvre",
 
@@ -130,13 +139,17 @@ export const integralProducts: ProductCardData[] = [
   },
 
 
+  /* ========================================
+     XMUSIC
+  ======================================== */
+
   {
     id: "music",
 
     name: "MUSIC",
 
     tagline:
-      "MUSIC YOU DON’T JUST HEAR. YOU FEEL. STEP INSIDE THE SOUND. EXPERIENCE THE ENERGY. ",
+      "MUSIC YOU DON’T JUST HEAR. YOU FEEL. STEP INSIDE THE SOUND. EXPERIENCE THE ENERGY.",
 
     href: "/products/xmusic",
 

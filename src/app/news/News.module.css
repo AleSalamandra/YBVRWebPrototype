@@ -4,9 +4,11 @@
 
 .page {
   width: 100%;
+
   overflow: hidden;
 
   background: #09090d;
+
   color: #f3f0ea;
 }
 
@@ -26,6 +28,7 @@
     );
 
   overflow: hidden;
+
   isolation: isolate;
 
   background:
@@ -306,17 +309,13 @@
 
 
 /* ========================================
-   NEWS GRID
+   GRID
 ======================================== */
 
 .newsGrid {
   width: 100%;
 }
 
-
-/* ========================================
-   NEWS ROW
-======================================== */
 
 .newsRow {
   width: 100%;
@@ -349,13 +348,14 @@
 
 
 /* ========================================
-   NEWS CARD
+   CARD
 ======================================== */
 
 .newsCard {
   position: relative;
 
   width: 100%;
+
   min-width: 0;
 
   display: flex;
@@ -414,6 +414,17 @@
 }
 
 
+.newsCardActive {
+  background:
+    rgba(
+      243,
+      240,
+      234,
+      0.028
+    );
+}
+
+
 /* ========================================
    CARD IMAGE
 ======================================== */
@@ -434,8 +445,7 @@
 
 
 .newsImage {
-  object-fit:
-    cover;
+  object-fit: cover;
 
   transform:
     scale(1.001);
@@ -467,7 +477,7 @@
 
 
 /* ========================================
-   IMAGE OVERLAY
+   CARD IMAGE OVERLAY
 ======================================== */
 
 .newsImageOverlay {
@@ -482,8 +492,8 @@
   background:
     linear-gradient(
       180deg,
-      rgba(9, 9, 13, 0) 48%,
-      rgba(9, 9, 13, 0.3) 100%
+      rgba(9, 9, 13, 0) 45%,
+      rgba(9, 9, 13, 0.34) 100%
     );
 }
 
@@ -495,9 +505,9 @@
 .newsCardContent {
   min-height:
     clamp(
-      210px,
+      220px,
       18vw,
-      280px
+      300px
     );
 
   display: flex;
@@ -563,12 +573,12 @@
 
 
 /* ========================================
-   TITLE
+   CARD TITLE
 ======================================== */
 
 .newsTitle {
   max-width:
-    390px;
+    420px;
 
   margin: 0;
 
@@ -593,17 +603,17 @@
 
 
 /* ========================================
-   CARD ICON
+   PLUS ICON
 ======================================== */
 
 .newsCardIcon {
   position: relative;
 
   width:
-    32px;
+    34px;
 
   height:
-    32px;
+    34px;
 
   flex: none;
 
@@ -698,28 +708,17 @@
 
 
 /* ========================================
-   ACTIVE CARD
-======================================== */
-
-.newsCardActive {
-  background:
-    rgba(
-      243,
-      240,
-      234,
-      0.025
-    );
-}
-
-
-/* ========================================
    EXPANDED ARTICLE
 ======================================== */
 
 .expandedNews {
+  position: relative;
+
   width: 100%;
 
   overflow: hidden;
+
+  isolation: isolate;
 
   background:
     #0d0d11;
@@ -735,7 +734,7 @@
 
   animation:
     articleReveal
-    600ms
+    550ms
     cubic-bezier(
       0.16,
       1,
@@ -752,7 +751,7 @@
     opacity: 0;
 
     transform:
-      translateY(-18px);
+      translateY(-16px);
   }
 
   to {
@@ -766,10 +765,112 @@
 
 
 /* ========================================
+   EXPANDED BACKGROUND
+======================================== */
+
+.expandedBackground {
+  position: absolute;
+
+  z-index: 0;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height:
+    clamp(
+      620px,
+      62vw,
+      980px
+    );
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+
+.expandedBackgroundImage {
+  object-fit: cover;
+
+  opacity:
+    0.62;
+
+  filter:
+    saturate(0.78)
+    contrast(0.95);
+
+  transform:
+    scale(1.02);
+}
+
+
+/* ========================================
+   EXPANDED BACKGROUND OVERLAY
+======================================== */
+
+.expandedBackgroundOverlay {
+  position: absolute;
+
+  z-index: 1;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(9, 9, 13, 0.76) 0%,
+      rgba(9, 9, 13, 0.6) 40%,
+      rgba(9, 9, 13, 0.7) 72%,
+      rgba(9, 9, 13, 0.82) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(9, 9, 13, 0.36) 0%,
+      rgba(9, 9, 13, 0.58) 45%,
+      rgba(13, 13, 17, 0.88) 72%,
+      #0d0d11 100%
+    );
+}
+
+
+/* ========================================
+   EXPANDED BACKGROUND GRAIN
+======================================== */
+
+.expandedBackgroundGrain {
+  position: absolute;
+
+  z-index: 2;
+
+  inset: 0;
+
+  opacity:
+    0.022;
+
+  background-image:
+    url(
+      "data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.7'/%3E%3C/svg%3E"
+    );
+
+  background-size:
+    180px
+    180px;
+
+  mix-blend-mode:
+    soft-light;
+}
+
+
+/* ========================================
    EXPANDED TOP
 ======================================== */
 
 .expandedTop {
+  position: relative;
+
+  z-index: 3;
+
   display: flex;
 
   align-items: center;
@@ -792,13 +893,24 @@
       243,
       240,
       234,
-      0.1
+      0.13
     );
+
+  background:
+    rgba(
+      9,
+      9,
+      13,
+      0.16
+    );
+
+  backdrop-filter:
+    blur(3px);
 }
 
 
 /* ========================================
-   EXPANDED META
+   META
 ======================================== */
 
 .expandedMeta {
@@ -814,7 +926,7 @@
       243,
       240,
       234,
-      0.4
+      0.58
     );
 
   font-size:
@@ -857,17 +969,28 @@
       243,
       240,
       234,
-      0.2
+      0.3
     );
 
   border-radius:
     50%;
 
   background:
-    transparent;
+    rgba(
+      9,
+      9,
+      13,
+      0.22
+    );
+
+  color:
+    #f3f0ea;
 
   cursor:
     pointer;
+
+  backdrop-filter:
+    blur(8px);
 
   transition:
     border-color
@@ -885,7 +1008,7 @@
       243,
       240,
       234,
-      0.5
+      0.6
     );
 
   background:
@@ -893,7 +1016,7 @@
       243,
       240,
       234,
-      0.05
+      0.08
     );
 }
 
@@ -940,43 +1063,46 @@
 ======================================== */
 
 .expandedGrid {
+  position: relative;
+
+  z-index: 2;
+
   display: grid;
 
   grid-template-columns:
     minmax(
       0,
-      1.1fr
+      0.92fr
     )
     minmax(
-      320px,
-      0.9fr
+      420px,
+      1.08fr
     );
 
   gap:
     clamp(
-      80px,
-      10vw,
-      180px
+      70px,
+      9vw,
+      170px
     );
 
-  align-items:
-    start;
+  align-items: start;
 
   padding:
     clamp(
-      60px,
-      7vw,
-      110px
+      80px,
+      8vw,
+      135px
     )
     clamp(
       28px,
       4vw,
-      64px
+      70px
     )
     clamp(
-      80px,
-      9vw,
-      140px
+      100px,
+      11vw,
+      170px
     );
 }
 
@@ -985,9 +1111,20 @@
    EXPANDED HEADLINE
 ======================================== */
 
+.expandedHeadline {
+  position: sticky;
+
+  top:
+    calc(
+      var(--header-height) +
+      40px
+    );
+}
+
+
 .expandedHeadline h2 {
   max-width:
-    780px;
+    760px;
 
   margin: 0;
 
@@ -1008,6 +1145,15 @@
 
   letter-spacing:
     -0.055em;
+
+  text-shadow:
+    0 4px 28px
+    rgba(
+      0,
+      0,
+      0,
+      0.34
+    );
 }
 
 
@@ -1016,8 +1162,10 @@
 ======================================== */
 
 .article {
+  width: 100%;
+
   max-width:
-    620px;
+    690px;
 }
 
 
@@ -1033,9 +1181,9 @@
 
   font-size:
     clamp(
-      1.25rem,
-      1.55vw,
-      1.65rem
+      1.3rem,
+      1.65vw,
+      1.75rem
     );
 
   line-height:
@@ -1043,6 +1191,15 @@
 
   letter-spacing:
     -0.018em;
+
+  text-shadow:
+    0 3px 22px
+    rgba(
+      0,
+      0,
+      0,
+      0.34
+    );
 }
 
 
@@ -1052,11 +1209,73 @@
 
 .articleBody {
   margin-top:
-    40px;
+    clamp(
+      54px,
+      5vw,
+      76px
+    );
 }
 
 
-.articleBody p {
+/* ========================================
+   ARTICLE SECTION
+======================================== */
+
+.articleSection {
+  padding-top:
+    34px;
+
+  border-top:
+    1px solid
+    rgba(
+      243,
+      240,
+      234,
+      0.16
+    );
+}
+
+
+.articleSection + .articleSection {
+  margin-top:
+    clamp(
+      52px,
+      5vw,
+      76px
+    );
+}
+
+
+.articleSection h3 {
+  max-width:
+    620px;
+
+  margin:
+    0 0
+    28px;
+
+  color:
+    #f3f0ea;
+
+  font-size:
+    clamp(
+      1.55rem,
+      2vw,
+      2.2rem
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    1.05;
+
+  letter-spacing:
+    -0.035em;
+}
+
+
+.articleSection p {
   margin: 0;
 
   color:
@@ -1064,24 +1283,249 @@
       243,
       240,
       234,
-      0.58
+      0.7
     );
 
   font-size:
     clamp(
       1rem,
-      1.05vw,
+      1.04vw,
       1.1rem
     );
 
   line-height:
-    1.65;
+    1.68;
 }
 
 
-.articleBody p + p {
+.articleSection p + p {
   margin-top:
+    22px;
+}
+
+
+/* ========================================
+   ARTICLE LIST
+======================================== */
+
+.articleList {
+  display: flex;
+
+  flex-direction: column;
+
+  gap:
+    14px;
+
+  margin:
+    28px
+    0;
+
+  padding: 0;
+
+  list-style:
+    none;
+}
+
+
+.articleList li {
+  position: relative;
+
+  padding-left:
     24px;
+
+  color:
+    rgba(
+      243,
+      240,
+      234,
+      0.8
+    );
+
+  font-size:
+    clamp(
+      0.98rem,
+      1.02vw,
+      1.08rem
+    );
+
+  line-height:
+    1.55;
+}
+
+
+.articleList li::before {
+  content: "";
+
+  position: absolute;
+
+  top:
+    0.68em;
+
+  left: 0;
+
+  width:
+    5px;
+
+  height:
+    5px;
+
+  border-radius:
+    50%;
+
+  background:
+    #f3f0ea;
+
+  opacity:
+    0.52;
+}
+
+
+/* ========================================
+   ARTICLE LINKS
+======================================== */
+
+.articleLinks {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap:
+    12px;
+
+  margin-top:
+    clamp(
+      60px,
+      6vw,
+      90px
+    );
+
+  padding-top:
+    30px;
+
+  border-top:
+    1px solid
+    rgba(
+      243,
+      240,
+      234,
+      0.14
+    );
+}
+
+
+/* ========================================
+   ARTICLE LINK
+======================================== */
+
+.articleLink {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap:
+    28px;
+
+  min-height:
+    52px;
+
+  padding:
+    0
+    22px;
+
+  border:
+    1px solid
+    rgba(
+      243,
+      240,
+      234,
+      0.24
+    );
+
+  border-radius:
+    100px;
+
+  background:
+    rgba(
+      9,
+      9,
+      13,
+      0.3
+    );
+
+  color:
+    #f3f0ea;
+
+  font-size:
+    0.78rem;
+
+  font-weight:
+    500;
+
+  letter-spacing:
+    0.04em;
+
+  text-transform:
+    uppercase;
+
+  backdrop-filter:
+    blur(10px);
+
+  transition:
+    background
+    250ms
+    ease,
+    border-color
+    250ms
+    ease,
+    transform
+    250ms
+    ease;
+}
+
+
+.articleLink svg {
+  width:
+    17px;
+
+  height:
+    17px;
+
+  flex: none;
+
+  transition:
+    transform
+    250ms
+    ease;
+}
+
+
+.articleLink:hover {
+  border-color:
+    rgba(
+      243,
+      240,
+      234,
+      0.5
+    );
+
+  background:
+    rgba(
+      243,
+      240,
+      234,
+      0.08
+    );
+
+  transform:
+    translateY(-2px);
+}
+
+
+.articleLink:hover svg {
+  transform:
+    translateX(4px);
 }
 
 
@@ -1106,7 +1550,14 @@
 
 
   .newsCard:nth-child(2n) {
-    border-right: 0;
+    border-right:
+      0;
+  }
+
+
+  .expandedBackground {
+    height:
+      760px;
   }
 
 
@@ -1115,13 +1566,19 @@
       1fr;
 
     gap:
-      48px;
+      54px;
+  }
+
+
+  .expandedHeadline {
+    position:
+      static;
   }
 
 
   .article {
     max-width:
-      720px;
+      760px;
   }
 
 }
@@ -1211,7 +1668,7 @@
 
   .newsCardContent {
     min-height:
-      200px;
+      210px;
 
     padding:
       24px;
@@ -1221,6 +1678,30 @@
   .newsTitle {
     font-size:
       1.65rem;
+  }
+
+
+  .expandedBackground {
+    height:
+      680px;
+  }
+
+
+  .expandedBackgroundImage {
+    opacity:
+      0.54;
+  }
+
+
+  .expandedBackgroundOverlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(9, 9, 13, 0.44) 0%,
+        rgba(9, 9, 13, 0.66) 42%,
+        rgba(13, 13, 17, 0.92) 76%,
+        #0d0d11 100%
+      );
   }
 
 
@@ -1244,9 +1725,9 @@
 
   .expandedGrid {
     padding:
-      48px
+      54px
       24px
-      70px;
+      86px;
   }
 
 
@@ -1257,6 +1738,36 @@
         13vw,
         4.4rem
       );
+  }
+
+
+  .articleIntro {
+    font-size:
+      1.25rem;
+  }
+
+
+  .articleSection {
+    padding-top:
+      26px;
+  }
+
+
+  .articleSection + .articleSection {
+    margin-top:
+      50px;
+  }
+
+
+  .articleLinks {
+    flex-direction:
+      column;
+  }
+
+
+  .articleLink {
+    width:
+      100%;
   }
 
 }
@@ -1272,7 +1783,8 @@
 ) {
 
   .newsImage,
-  .newsCardIcon {
+  .newsCardIcon,
+  .articleLink {
     transition:
       none;
   }

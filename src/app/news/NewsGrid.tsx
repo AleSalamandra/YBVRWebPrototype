@@ -15,13 +15,34 @@ import styles from "./News.module.css";
    TYPES
 ======================================== */
 
+export type NewsSection = {
+  heading: string;
+  paragraphs?: string[];
+  bullets?: string[];
+  paragraphsAfter?: string[];
+};
+
+
+export type NewsLink = {
+  label: string;
+  href: string;
+};
+
+
 export type NewsItem = {
   id: string;
   date: string;
   title: string;
+
   image: string;
+
+  imagePosition?: string;
+
   intro: string;
-  body: string[];
+
+  sections: NewsSection[];
+
+  links?: NewsLink[];
 };
 
 
@@ -92,7 +113,7 @@ export default function NewsGrid({
 
 
   /* ========================================
-     SCROLL TO OPEN ARTICLE
+     SCROLL TO ARTICLE
   ======================================== */
 
   useEffect(() => {
@@ -120,7 +141,7 @@ export default function NewsGrid({
 
 
   /* ========================================
-     TOGGLE ARTICLE
+     TOGGLE
   ======================================== */
 
   const toggleNews = (
@@ -200,9 +221,7 @@ export default function NewsGrid({
                         }
                       >
 
-                        {/* ========================================
-                            IMAGE
-                        ======================================== */}
+                        {/* IMAGE */}
 
                         <div
                           className={styles.newsCardImage}
@@ -214,6 +233,11 @@ export default function NewsGrid({
                             fill
                             sizes={NEWS_IMAGE_SIZES}
                             className={styles.newsImage}
+                            style={{
+                              objectPosition:
+                                item.imagePosition ??
+                                "center center",
+                            }}
                           />
 
                           <div
@@ -224,9 +248,7 @@ export default function NewsGrid({
                         </div>
 
 
-                        {/* ========================================
-                            CARD CONTENT
-                        ======================================== */}
+                        {/* CONTENT */}
 
                         <div
                           className={styles.newsCardContent}
@@ -282,7 +304,40 @@ export default function NewsGrid({
                 >
 
                   {/* ========================================
-                      EXPANDED TOP
+                      BACKGROUND IMAGE
+                  ======================================== */}
+
+                  <div
+                    className={styles.expandedBackground}
+                    aria-hidden="true"
+                  >
+
+                    <Image
+                      src={activeNews.image}
+                      alt=""
+                      fill
+                      sizes="100vw"
+                      className={styles.expandedBackgroundImage}
+                      style={{
+                        objectPosition:
+                          activeNews.imagePosition ??
+                          "center center",
+                      }}
+                    />
+
+                    <div
+                      className={styles.expandedBackgroundOverlay}
+                    />
+
+                    <div
+                      className={styles.expandedBackgroundGrain}
+                    />
+
+                  </div>
+
+
+                  {/* ========================================
+                      TOP
                   ======================================== */}
 
                   <div
@@ -294,7 +349,7 @@ export default function NewsGrid({
                     >
 
                       <span>
-                        News
+                        YB News
                       </span>
 
                       <time>
@@ -322,7 +377,7 @@ export default function NewsGrid({
 
 
                   {/* ========================================
-                      EXPANDED CONTENT
+                      ARTICLE
                   ======================================== */}
 
                   <div
@@ -355,22 +410,138 @@ export default function NewsGrid({
                         className={styles.articleBody}
                       >
 
-                        {activeNews.body.map(
+                        {activeNews.sections.map(
                           (
-                            paragraph,
-                            index,
+                            section,
+                            sectionIndex,
                           ) => (
-                            <p
+                            <section
                               key={
-                                `${activeNews.id}-${index}`
+                                `${activeNews.id}-section-${sectionIndex}`
                               }
+                              className={styles.articleSection}
                             >
-                              {paragraph}
-                            </p>
+
+                              <h3>
+                                {section.heading}
+                              </h3>
+
+
+                              {section.paragraphs?.map(
+                                (
+                                  paragraph,
+                                  paragraphIndex,
+                                ) => (
+                                  <p
+                                    key={
+                                      `${activeNews.id}-${sectionIndex}-p-${paragraphIndex}`
+                                    }
+                                  >
+                                    {paragraph}
+                                  </p>
+                                ),
+                              )}
+
+
+                              {section.bullets && (
+
+                                <ul
+                                  className={styles.articleList}
+                                >
+
+                                  {section.bullets.map(
+                                    (
+                                      bullet,
+                                      bulletIndex,
+                                    ) => (
+                                      <li
+                                        key={
+                                          `${activeNews.id}-${sectionIndex}-bullet-${bulletIndex}`
+                                        }
+                                      >
+                                        {bullet}
+                                      </li>
+                                    ),
+                                  )}
+
+                                </ul>
+
+                              )}
+
+
+                              {section.paragraphsAfter?.map(
+                                (
+                                  paragraph,
+                                  paragraphIndex,
+                                ) => (
+                                  <p
+                                    key={
+                                      `${activeNews.id}-${sectionIndex}-after-${paragraphIndex}`
+                                    }
+                                  >
+                                    {paragraph}
+                                  </p>
+                                ),
+                              )}
+
+                            </section>
                           ),
                         )}
 
                       </div>
+
+
+                      {/* ========================================
+                          LINKS
+                      ======================================== */}
+
+                      {activeNews.links &&
+                        activeNews.links.length > 0 && (
+
+                        <div
+                          className={styles.articleLinks}
+                        >
+
+                          {activeNews.links.map(
+                            (
+                              link,
+                              index,
+                            ) => (
+                              <a
+                                key={
+                                  `${link.href}-${index}`
+                                }
+                                href={link.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={styles.articleLink}
+                              >
+
+                                <span>
+                                  {link.label}
+                                </span>
+
+                                <svg
+                                  viewBox="0 0 24 24"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    d="M5 12h13M13 6l6 6-6 6"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  />
+                                </svg>
+
+                              </a>
+                            ),
+                          )}
+
+                        </div>
+
+                      )}
 
                     </article>
 

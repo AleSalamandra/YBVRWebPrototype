@@ -8,12 +8,12 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "YB",
+    default: "YB Immersive Experiences",
     template: "%s — YB",
   },
 
   description:
-    "YB builds immersive media experiences, technology and products for sports, entertainment and culture.",
+    "YB creates immersive experiences through technology, media and production.",
 };
 
 

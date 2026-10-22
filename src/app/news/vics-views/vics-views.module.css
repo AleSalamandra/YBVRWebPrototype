@@ -1,7 +1,7 @@
 /* ============================================================
    VIC'S VIEWS — YB
    Editorial page / Coral Eclipse
-   - Uses the existing eclipse-coral.png image.
+   - Uses the existing eclipse-coral.webp image.
    - Blends its dark perimeter into the hero background.
    - Preserves the animated orbits, glow, particles, and filters.
    ============================================================ */
@@ -14,7 +14,7 @@
   --coral-hot: #f05737;
   --dim: #a8a0a4;
   --fine: rgba(246, 238, 235, 0.15);
-  --eclipse-black: #010101;
+  --eclipse-black: #080808;
 
   overflow: clip;
   background: #09090e;
@@ -220,7 +220,7 @@
   position: absolute;
   z-index: -2;
   inset: -3%;
-  background: url("/media/vics-views/eclipse-coral.png") center / contain no-repeat;
+  background: url("/media/vics-views/eclipse-coral.webp") center / contain no-repeat;
   content: "";
   pointer-events: none;
   transform-origin: 51% 50%;
@@ -399,7 +399,7 @@
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.2em;
-  text-shadow: 0 1px 10px #010101;
+  text-shadow: 0 1px 10px #080808;
 }
 
 /* 04 — INTERACTIVE TOPIC NODES -------------------------------------------- */
@@ -460,12 +460,20 @@
   font-size: 9px;
   font-weight: 650;
   letter-spacing: 0.16em;
-  text-shadow: 0 2px 8px #010101;
+  text-shadow: 0 2px 8px #080808;
 }
 
-/* 05 — INTRODUCTION ------------------------------------------------------- */
+/* 05 — INTRODUCTION / VICTOR PORTRAIT ------------------------------------- */
 
+/*
+ * Victor's photo fills this section behind a high-opacity overlay.
+ * The image is softly masked at the edges so it merges into the dark site.
+ * The darker right-hand side keeps the editorial copy easy to read.
+ */
 .intro {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: grid;
   grid-template-columns: 0.7fr 1.3fr;
   gap: clamp(45px, 10vw, 160px);
@@ -473,6 +481,62 @@
   margin: 0 auto;
   padding: clamp(100px, 11vw, 185px) max(4vw, 26px);
   border-bottom: 1px solid var(--fine);
+  background: #09090e;
+}
+
+/* Original photograph; no change to the image file is needed. */
+.intro::before {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background: url("/media/vics-views/vic-je-202602.jpg") 38% 43% / cover no-repeat;
+  opacity: 0.82;
+  -webkit-mask-image: radial-gradient(
+    ellipse 86% 112% at 31% 49%,
+    #000 0%,
+    rgba(0, 0, 0, 0.9) 46%,
+    rgba(0, 0, 0, 0.4) 72%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 86% 112% at 31% 49%,
+    #000 0%,
+    rgba(0, 0, 0, 0.9) 46%,
+    rgba(0, 0, 0, 0.4) 72%,
+    transparent 100%
+  );
+}
+
+/* Gradient stronger behind the text (right) than over the photograph (left). */
+.intro::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(9, 9, 14, 0.42) 0%,
+      rgba(9, 9, 14, 0.64) 28%,
+      rgba(9, 9, 14, 0.92) 49%,
+      rgba(9, 9, 14, 0.98) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(9, 9, 14, 0.48) 0%,
+      transparent 24%,
+      transparent 71%,
+      rgba(9, 9, 14, 0.66) 100%
+    );
+}
+
+.introSide,
+.introMain {
+  position: relative;
+  z-index: 1;
 }
 
 .introSide {

@@ -2,9 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
 import FoxSportsXRArticle from "./FoxSportsXRArticle";
-import VicsViewsBanner from "./VicsViewsBanner";
 import { foxSportsXRNews } from "./foxSportsXRNews";
 import styles from "./News.module.css";
 
@@ -51,53 +49,6 @@ function chunkNews(news: NewsItem[], size: number): NewsItem[][] {
 export default function NewsGrid({ news }: NewsGridProps) {
   const [activeNewsId, setActiveNewsId] = useState<string | null>(null);
   const expandedRef = useRef<HTMLDivElement | null>(null);
-  const newsGridRef = useRef<HTMLDivElement | null>(null);
-  const [heroTarget, setHeroTarget] = useState<HTMLElement | null>(null);
-
-  // Find the existing News hero without replacing page.tsx.
-  // The feature is portaled INTO that hero rather than rendered below it.
-  useEffect(() => {
-    const grid = newsGridRef.current;
-    const headings = Array.from(document.querySelectorAll<HTMLElement>("h1, h2"));
-    const title = headings.find((el) =>
-      /latest\s+news/i.test(el.textContent?.replace(/\s+/g, " ") ?? ""),
-    );
-
-    let hero: HTMLElement | null = null;
-    let ancestor = title?.parentElement ?? null;
-
-    // Prefer a classed hero/header container (works with CSS modules).
-    while (ancestor && ancestor !== document.body) {
-      if (ancestor === grid || ancestor.contains(grid)) break;
-      const classes = Array.from(ancestor.classList).join(" ");
-      if (/hero|newsheader|news-header/i.test(classes)) {
-        // Keep walking to target the outer hero, not the inner title column.
-        hero = ancestor;
-      }
-      ancestor = ancestor.parentElement;
-    }
-    if (title) {
-      // If the heading lives in a semantic section/header, prefer that whole
-      // block over a nested .heroCopy / .heroText element.
-      const candidate = title.closest<HTMLElement>("section, header");
-      if (candidate && candidate !== grid && !candidate.contains(grid)) {
-        if (!hero || candidate.contains(hero)) hero = candidate;
-      }
-    }
-    if (!hero) return;
-
-    const originalPosition = hero.style.position;
-    if (getComputedStyle(hero).position === "static") {
-      hero.style.position = "relative";
-    }
-    hero.setAttribute("data-vics-hero", "true");
-    setHeroTarget(hero);
-    return () => {
-      hero.removeAttribute("data-vics-hero");
-      hero.style.position = originalPosition;
-    };
-  }, []);
-
   // FOX Sports XR is always the first card, even if page.tsx has not
   // added it to the news array. Filtering also prevents duplicates.
   const newsWithFoxFirst = [
@@ -124,8 +75,7 @@ export default function NewsGrid({ news }: NewsGridProps) {
   };
 
   return (
-    <div ref={newsGridRef} className={styles.newsGrid}>
-      {heroTarget && createPortal(<VicsViewsBanner />, heroTarget)}
+    <div className={styles.newsGrid}>
       {rows.map((row, rowIndex) => {
         const activeNews = row.find((item) => item.id === activeNewsId);
 

@@ -7,8 +7,11 @@ import NewsGrid, {
 } from "./NewsGrid";
 
 import styles from "./News.module.css";
+import heroStyles from "./NewsVicsHero.module.css";
 
 import { foxSportsXRNews } from "./foxSportsXRNews";
+
+import VicsViewsBanner from "./VicsViewsBanner";
 
 
 export const metadata: Metadata = {
@@ -23,6 +26,7 @@ export const metadata: Metadata = {
 ======================================== */
 
 const news: NewsItem[] = [
+  foxSportsXRNews,
 
   /* ========================================
      01 — EUROLEAGUE FINAL FOUR
@@ -562,7 +566,7 @@ export default function NewsPage() {
           HERO
       ======================================== */}
 
-      <section className={styles.hero}>
+      <section className={`${styles.hero} ${heroStyles.heroWithVics}`}>
 
         <Container className={styles.heroInner}>
 
@@ -580,6 +584,9 @@ export default function NewsPage() {
             Projects, partnerships, technology
             and everything happening across YB.
           </p>
+
+          {/* Vic’s Views lives INSIDE the News hero, not under it. */}
+          <VicsViewsBanner />
 
         </Container>
 

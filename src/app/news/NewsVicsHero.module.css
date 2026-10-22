@@ -1,0 +1,14 @@
+/* A reliable positioning context for the Vic’s Views card. */
+.heroWithVics {
+  position: relative;
+}
+
+/* Some News heroes use a fixed height; let the new content expand it. */
+@media (max-width: 1050px) {
+  .heroWithVics {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    padding-bottom: clamp(44px, 7vw, 80px) !important;
+  }
+}

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import FoxSportsXRArticle from "./FoxSportsXRArticle";
+import { foxSportsXRNews } from "./foxSportsXRNews";
 import styles from "./News.module.css";
 
 export type NewsSection = {
@@ -48,7 +49,13 @@ function chunkNews(news: NewsItem[], size: number): NewsItem[][] {
 export default function NewsGrid({ news }: NewsGridProps) {
   const [activeNewsId, setActiveNewsId] = useState<string | null>(null);
   const expandedRef = useRef<HTMLDivElement | null>(null);
-  const rows = chunkNews(news, 3);
+  // FOX Sports XR is always the first card, even if page.tsx has not
+  // added it to the news array. Filtering also prevents duplicates.
+  const newsWithFoxFirst = [
+    foxSportsXRNews,
+    ...news.filter((item) => item.id !== foxSportsXRNews.id),
+  ];
+  const rows = chunkNews(newsWithFoxFirst, 3);
 
   useEffect(() => {
     if (!activeNewsId) return;

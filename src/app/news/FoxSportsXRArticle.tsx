@@ -22,6 +22,7 @@ const schedule: Sport[] = [
     abbreviation: "CFB",
     matches: [
       { date: "Oct 17", event: "Ohio State at Indiana", time: "12:00 PM ET", past: true },
+      { date: "Nov 24", event: "Indiana at Michigan", time: "12:00 PM ET" },
       { date: "Nov 28", event: "Michigan at Ohio State", time: "12:00 PM ET" },
       { date: "Dec 5", event: "Big Ten Championship Game", time: "8:00 PM ET" },
     ],

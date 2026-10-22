@@ -8,6 +8,8 @@ import NewsGrid, {
 
 import styles from "./News.module.css";
 
+import { foxSportsXRNews } from "./foxSportsXRNews";
+
 
 export const metadata: Metadata = {
   title: "News | YB",

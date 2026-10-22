@@ -1,0 +1,148 @@
+/* An editorial insert for /news. Inherits the typography and spacing of the site. */
+.content {
+  --fx-ink: #17171b;
+  --fx-paper: #f3f0ea;
+  --fx-coral: #ed8d79;
+  --fx-line: rgba(24, 24, 30, 0.16);
+  color: var(--fx-ink);
+  width: 100%;
+  font-family: inherit;
+}
+.content * { box-sizing: border-box; }
+.section { margin: clamp(42px, 6vw, 76px) 0; }
+.sectionTitle {
+  margin: 0 0 clamp(20px, 3vw, 34px);
+  font-size: clamp(1.65rem, 2.7vw, 2.55rem);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  font-weight: 550;
+}
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.highlight {
+  padding: clamp(24px, 3vw, 38px);
+  border: 1px solid var(--fx-line);
+  background: rgba(255, 255, 255, 0.46);
+}
+.highlightDate,
+.downloadEyebrow {
+  display: block;
+  color: #996054;
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.15em;
+}
+.highlight h4 {
+  margin: 14px 0 14px;
+  font-size: clamp(1.23rem, 1.8vw, 1.7rem);
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+  font-weight: 550;
+}
+.highlight p, .scheduleLead, .download p {
+  margin: 0;
+  font-size: clamp(1rem, 1.22vw, 1.14rem);
+  line-height: 1.66;
+}
+.scheduleLead { max-width: 850px; margin-bottom: 38px; }
+.schedule { border-top: 1px solid var(--fx-line); }
+.sport {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.42fr) minmax(0, 1.58fr);
+  gap: 22px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--fx-line);
+}
+.sportHeading h4 {
+  margin: 8px 0 0;
+  font-weight: 550;
+  font-size: clamp(1.12rem, 1.45vw, 1.4rem);
+  line-height: 1.3;
+  letter-spacing: -0.025em;
+}
+.sportAbbr {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: #956758;
+  font-weight: 650;
+}
+.matchList { list-style: none; padding: 0; margin: 0; }
+.match {
+  display: grid;
+  grid-template-columns: 82px minmax(0, 1fr) 115px;
+  align-items: baseline;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(24, 24, 30, 0.075);
+  font-size: clamp(0.91rem, 1.1vw, 1.04rem);
+  line-height: 1.45;
+}
+.match:last-child { border-bottom: 0; }
+.matchDate { font-weight: 650; white-space: nowrap; }
+.matchEvent { min-width: 0; }
+.matchTime { color: #63616a; white-space: nowrap; text-align: right; }
+.past { color: #76747b; }
+.pastLabel {
+  display: inline-block;
+  margin-left: 9px;
+  font-size: 0.7rem;
+  letter-spacing: 0.035em;
+  color: #77717a;
+}
+.download {
+  margin-top: clamp(52px, 7vw, 88px);
+  padding: clamp(32px, 5vw, 68px);
+  color: #f3f0ea;
+  background:
+    radial-gradient(ellipse 65% 95% at 100% 0%, rgba(237, 141, 121, 0.22), transparent 75%),
+    #151519;
+}
+.downloadEyebrow { color: #f1a593; }
+.download h3 {
+  max-width: 690px;
+  margin: 22px 0 24px;
+  font-size: clamp(2.2rem, 4.4vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.055em;
+  font-weight: 520;
+}
+.download p { max-width: 730px; color: #d2cfd0; }
+.downloadButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 30px;
+  padding: 15px 23px;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 999px;
+  background: #f3f0ea;
+  color: #17171b;
+  text-decoration: none;
+  font-size: 0.95rem;
+  line-height: 1.25;
+  font-weight: 600;
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+.downloadButton:hover { background: #ffffff; transform: translateY(-2px); }
+.downloadButton:focus-visible { outline: 2px solid var(--fx-coral); outline-offset: 4px; }
+.download .note {
+  max-width: 740px;
+  margin-top: 32px;
+  font-size: 0.83rem;
+  line-height: 1.6;
+  color: #b2abb0;
+}
+@media (max-width: 760px) {
+  .highlights { grid-template-columns: 1fr; }
+  .sport { grid-template-columns: 1fr; gap: 14px; }
+  .match { grid-template-columns: 72px minmax(0, 1fr); }
+  .matchTime { grid-column: 2; text-align: left; margin-top: -9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .downloadButton { transition: none; }
+}

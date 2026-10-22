@@ -33,9 +33,16 @@
   inset: 0;
   content: "";
   background:
-    radial-gradient(ellipse 60% 90% at 96% 15%, rgba(87, 78, 128, 0.26), transparent 75%),
-    radial-gradient(ellipse 65% 70% at 0% 105%, rgba(207, 111, 98, 0.18), transparent 76%),
-    linear-gradient(145deg, #18181e, #0c0c0f 70%);
+    linear-gradient(
+      180deg,
+      rgba(10, 10, 12, 0.48) 0%,
+      rgba(10, 10, 12, 0.32) 30%,
+      rgba(10, 10, 12, 0.58) 100%
+    ),
+    url("/media/press/Background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .hero::after {

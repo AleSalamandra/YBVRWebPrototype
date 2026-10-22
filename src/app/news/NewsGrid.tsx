@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import FoxSportsXRArticle from "./FoxSportsXRArticle";
+import VicsViewsBanner from "./VicsViewsBanner";
 import { foxSportsXRNews } from "./foxSportsXRNews";
 import styles from "./News.module.css";
 
@@ -76,6 +77,7 @@ export default function NewsGrid({ news }: NewsGridProps) {
 
   return (
     <div className={styles.newsGrid}>
+      <VicsViewsBanner />
       {rows.map((row, rowIndex) => {
         const activeNews = row.find((item) => item.id === activeNewsId);
 

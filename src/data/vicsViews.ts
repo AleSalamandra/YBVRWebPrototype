@@ -17,6 +17,7 @@ export type VicIssueMedia = {
   src: string;
   alt: string;
   caption?: string;
+  appearance?: "light" | "dark";
   source?: {
     label: string;
     href?: string;
@@ -29,6 +30,8 @@ export type VicIssueSection = {
   bullets?: string[];
   quote?: string;
   media?: VicIssueMedia;
+  /** Insert media immediately after this paragraph (1-based). Otherwise show it at the end. */
+  mediaAfterParagraph?: number;
 };
 
 export type VicIssueFeature = {
@@ -68,7 +71,7 @@ export const vicIssues: VicIssue[] = [
       title: "A better representation of the world.",
       text:
         "Most of the content I will share in this space revolves around a single curiosity: how technology can capture reality better, transform it more intelligently and present it in more compelling ways.",
-      image: "/media/vics-views/vic-je-202602.png",
+      image: "/media/vics-views/vic-ie-202602.jpg",
       alt: "Victor speaking in a lecture room.",
     },
     sections: [
@@ -143,6 +146,13 @@ export const vicIssues: VicIssue[] = [
         ],
         quote:
           "We don't experience a perfect image from our eyes. We experience an image reconstructed by our brains.",
+        mediaAfterParagraph: 1,
+        media: {
+          src: "/media/vics-views/bcaddf4a-6f97-404e-88a8-a569bed53a2b.png",
+          alt: "Diagram showing the retina, macula and fovea in a cross-section of the human eye.",
+          caption: "The retina, macula and fovea in the human eye",
+          appearance: "light",
+        },
       },
       {
         heading: "Foveated rendering: spend processing where it matters",
@@ -152,6 +162,17 @@ export const vicIssues: VicIssue[] = [
           "Many XR headsets have used variations of this trick, and it remains an important component of immersive rendering pipelines.",
           "There is a great visual example by u/f4cepa1m on Reddit, linked below, showing how much detail can be reduced away from the center of attention.",
         ],
+        mediaAfterParagraph: 2,
+        media: {
+          src: "/media/vics-views/cdc3e30e-a698-4aa3-aa2e-13802ffde9ff.png",
+          alt: "Comparison of low, medium and high resolution regions in a foveated-rendering example.",
+          caption: "Visual example of foveated rendering: high, medium and low resolution regions",
+          appearance: "light",
+          source: {
+            label: "u/f4cepa1m · Reddit",
+            href: "https://www.reddit.com/r/oculus/comments/66nfap/made_a_pic_that_shows_how_foveated_rendering/#lightbox",
+          },
+        },
       },
       {
         heading: "Foveated streaming: the same idea, applied to transmission",

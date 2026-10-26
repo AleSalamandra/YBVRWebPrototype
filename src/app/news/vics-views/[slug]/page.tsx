@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 function IssueMedia({ media }: { media: VicIssueMedia }) {
   return (
-    <figure className={styles.media}>
+    <figure className={`${styles.media} ${media.appearance === "light" ? styles.mediaLight : ""}`}>
       {/* Next Image's automatic optimization is unnecessary for editorial GIFs. */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={media.src} alt={media.alt} loading="lazy" />
@@ -114,7 +114,12 @@ export default async function VicIssuePage({ params }: Props) {
                 {section.heading && <h2>{section.heading}</h2>}
 
                 {section.paragraphs.map((paragraph, paragraphIndex) => (
-                  <p key={paragraphIndex}>{paragraph}</p>
+                  <div className={styles.paragraphBlock} key={paragraphIndex}>
+                    <p>{paragraph}</p>
+                    {section.media && section.mediaAfterParagraph === paragraphIndex + 1 && (
+                      <IssueMedia media={section.media} />
+                    )}
+                  </div>
                 ))}
 
                 {section.bullets && (
@@ -129,7 +134,9 @@ export default async function VicIssuePage({ params }: Props) {
                   <blockquote className={styles.quote}>{section.quote}</blockquote>
                 )}
 
-                {section.media && <IssueMedia media={section.media} />}
+                {section.media && !section.mediaAfterParagraph && (
+                  <IssueMedia media={section.media} />
+                )}
               </div>
             </section>
           ))}

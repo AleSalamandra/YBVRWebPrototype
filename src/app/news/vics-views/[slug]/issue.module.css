@@ -53,13 +53,14 @@
 .sectionIndex { padding-top: 11px; }
 .sectionContent { min-width: 0; max-width: 800px; }
 .section h2 { max-width: 800px; margin: 0 0 35px; font-size: clamp(37px, 4.9vw, 65px); font-weight: 500; line-height: 1.12; letter-spacing: -.058em; }
-.sectionContent > p, .bullets { max-width: 750px; color: var(--body); font-size: 19px; line-height: 1.78; letter-spacing: -.012em; }
-.sectionContent > p { margin: 0 0 25px; }
+.paragraphBlock > p, .bullets { max-width: 750px; color: var(--body); font-size: 19px; line-height: 1.78; letter-spacing: -.012em; }
+.paragraphBlock > p { margin: 0 0 25px; }
 .bullets { margin: 20px 0 0; padding-left: 24px; }
 .bullets li { padding-left: 7px; margin-bottom: 23px; }
 .bullets li::marker { color: var(--accent); }
 .quote { margin: 52px 0 50px; padding: 20px 0 20px 29px; border-left: 3px solid var(--accent); font-size: clamp(23px, 3vw, 36px); font-weight: 500; letter-spacing: -.035em; line-height: 1.38; }
 .media { max-width: 800px; margin: 53px 0 4px; background: #1c1d20; }
+.mediaLight { background: #fff; border: 1px solid var(--line); }
 .media img { display: block; width: 100%; height: auto; min-height: 180px; max-height: 590px; object-fit: contain; }
 .mediaCaption { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 20px; padding: 16px 20px; background: #e8e5df; color: #606467; font-size: 12px; line-height: 1.5; }
 .mediaCaption a { color: #36383a; }
@@ -86,7 +87,7 @@
   .sectionIndex, .sideLabel { padding: 0; }
   .feature { grid-template-columns: 1fr; margin-bottom: 75px; }
   .feature img { max-height: 440px; min-height: 260px; }
-  .sectionContent > p, .bullets { font-size: 17px; line-height: 1.7; }
+  .paragraphBlock > p, .bullets { font-size: 17px; line-height: 1.7; }
   .footer { margin: 0 24px; }
 }
 @media (max-width: 520px) {

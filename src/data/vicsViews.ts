@@ -1,6 +1,6 @@
 /**
  * Vic's Views editorial content.
- * These issues live separately from the standard YB News feed.
+ * Issues live separately from the standard YB News feed.
  */
 
 export const vicTopics = [
@@ -13,11 +13,22 @@ export const vicTopics = [
 
 export type VicTopic = (typeof vicTopics)[number]["id"];
 
+export type VicIssueMedia = {
+  src: string;
+  alt: string;
+  caption?: string;
+  source?: {
+    label: string;
+    href?: string;
+  };
+};
+
 export type VicIssueSection = {
   heading?: string;
   paragraphs: string[];
   bullets?: string[];
   quote?: string;
+  media?: VicIssueMedia;
 };
 
 export type VicIssueFeature = {
@@ -67,8 +78,7 @@ export const vicIssues: VicIssue[] = [
           "Most of the content I will share in this space will revolve around that one question. The more you pull on it, the more it opens up a surprisingly wide territory of ideas and technologies.",
           "At one end, you have the physical world: events happening, spaces existing, people performing, moments unfolding. At the other end, you have someone experiencing all that through a device. Between those two points lies a fascinating chain of capture, generation, processing, transmission and rendering.",
         ],
-        quote:
-          "How can the world be better represented by technology?",
+        quote: "How can the world be better represented by technology?",
       },
       {
         heading: "The Capture Route a.k.a. “Freshest ingredients”",
@@ -103,12 +113,101 @@ export const vicIssues: VicIssue[] = [
       },
     ],
   },
+  {
+    slug: "deliver-where-it-matters-fov-fovea-and-vision-acuity",
+    issueNumber: 2,
+    date: "2026-10-26",
+    topic: "xr",
+    title: "Deliver where it matters: FOV, Fovea, and vision acuity",
+    excerpt:
+      "From optical illusions and the fovea to foveated streaming and the FOV optimization that helped define YBVR.",
+    intro:
+      "I'm a big fan of optical illusions, which are only possible because the human brain is quite marvelous in its ability to trick itself — and, therefore, our conscious perception of the world. You can relate this to many aspects of our lives, but for this tech post, I'll focus on how vision is reconstructed. The good news is that technology can benefit enormously from these tricks to deliver much better experiences to people.",
+    sections: [
+      {
+        heading: "Our brains are wonderful tricksters",
+        paragraphs: [
+          "I'll skim through a few basic, but still fascinating, examples. Filling in blanks, correcting perceived mistakes, keeping us sane — it's amazing how much work happens behind the scenes.",
+          "Take the color yellow, for example. A simple, basic color, right? Well, it's not really that simple. On a conventional RGB screen, there isn't a dedicated yellow subpixel: red and green light combine to create our perception of yellow. With clever engineering, we all believe it's there.",
+          "Another example: for years, CRT televisions worked by scanning an electron beam across the screen, illuminating points sequentially. And yet, we perceived complete, moving pictures.",
+          "Then there are our own eyes' blind spots. We all have them, where the optic nerve exits the retina. But we don't go about our lives noticing a hole off to one side of our visual field. Our brains take care of hiding it from us.",
+          "And then there are the Lilac Chaser and the Gray Circle illusion. Try them out! It's truly fascinating to experience something that you know is there simply disappear.",
+        ],
+      },
+      {
+        heading: "Only a very, VERY small part is truly sharp",
+        paragraphs: [
+          "In fact, only a very small part of our vision is truly sharp. Although the entire retina acts as our sensor, the macula is the small central area responsible for much of our detailed central vision. At its center sits the fovea, where our highest visual acuity is concentrated.",
+          "Outside that region, visual detail decreases significantly. Yet we don't see seams between those areas: our brains reconstruct a coherent visual experience.",
+          "And it's here where things connect to the technology behind immersive experiences.",
+        ],
+        quote:
+          "We don't experience a perfect image from our eyes. We experience an image reconstructed by our brains.",
+      },
+      {
+        heading: "Foveated rendering: spend processing where it matters",
+        paragraphs: [
+          "For 3D and immersive experiences, we use these tricks all the time. In fact, the roots of YBVR are firmly attached to trickery of this sort!",
+          "Foveated rendering's entire raison d'être is that we can get away with lowering detail outside the region where the eye sees most sharply. This can save a ton of processing overall, concentrating more resources on the part of an image that matters most to our vision.",
+          "Many XR headsets have used variations of this trick, and it remains an important component of immersive rendering pipelines.",
+          "There is a great visual example by u/f4cepa1m on Reddit, linked below, showing how much detail can be reduced away from the center of attention.",
+        ],
+      },
+      {
+        heading: "Foveated streaming: the same idea, applied to transmission",
+        paragraphs: [
+          "Valve's Steam Frame applies a related idea to the video stream between a PC and the headset. They call it foveated streaming: the aim is to focus streamed image quality where the viewer is looking.",
+          "With an area as small as the fovea, you really need to know exactly where the user is looking. This is why low-latency eye tracking is essential to getting this approach right.",
+        ],
+        media: {
+          src: "/media/vics-views/foveated-valve.gif",
+          alt: "Valve's demonstration of gaze-directed foveated streaming.",
+          caption: "Foveated streaming on Steam Frame",
+          source: {
+            label: "Valve",
+            href: "https://store.steampowered.com/hardware/steamframe",
+          },
+        },
+      },
+      {
+        heading: "YBVR: optimizing the Field of View",
+        paragraphs: [
+          "Our very own FOV-optimized streaming is based on the fact that we can get away with sending less quality where the user is not looking, as long as we can adapt and switch quickly.",
+          "Although this may sound similar, we work on the Field of View (FOV), not directly on the fovea. This means the optimized areas are typically larger.",
+          "This allows us to capture many of the quality and bandwidth benefits while making the approach scalable for large concurrent audiences. In future posts, I'll cover more on this!",
+        ],
+        quote:
+          "Fun fact: our original company motto was “Delivering where it matters”, because this was our defining tech at the beginning of our journey!",
+        media: {
+          src: "/media/vics-views/fov-slide-ybvr.gif",
+          alt: "YBVR's Field of View optimized video streaming demonstration.",
+          caption: "FOV-optimized streaming",
+          source: { label: "YBVR" },
+        },
+      },
+      {
+        heading: "A little bit of technological magic",
+        paragraphs: [
+          "With tricks like these being used all over the place, I often feel like building technology for immersive experiences is much like being a magician!",
+        ],
+      },
+    ],
+    links: [
+      {
+        label: "Foveated rendering visualization — u/f4cepa1m, Reddit",
+        href: "https://www.reddit.com/r/oculus/comments/66nfap/made_a_pic_that_shows_how_foveated_rendering/#lightbox",
+      },
+      {
+        label: "Steam Frame — Valve",
+        href: "https://store.steampowered.com/hardware/steamframe",
+      },
+    ],
+  },
 ];
 
 export function getVicIssues(): VicIssue[] {
   return [...vicIssues].sort(
-    (a, b) =>
-      b.date.localeCompare(a.date) || b.issueNumber - a.issueNumber,
+    (a, b) => b.date.localeCompare(a.date) || b.issueNumber - a.issueNumber,
   );
 }
 

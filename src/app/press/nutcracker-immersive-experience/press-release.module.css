@@ -1,0 +1,415 @@
+/* Scoped to this release. Reuses the editorial language of /press/ybvr-becomes-yb. */
+.page {
+  --press-paper: #f3f0ea;
+  --press-ink: #151619;
+  --press-muted: #66666b;
+  --press-coral: #f58b6e;
+  --press-dark: #101014;
+  overflow: clip;
+  background: var(--press-paper);
+  color: var(--press-ink);
+  font-family: inherit;
+}
+
+.page *,
+.page *::before,
+.page *::after {
+  box-sizing: border-box;
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 770px;
+  padding: clamp(168px, 15vw, 240px) max(24px, 4vw) clamp(88px, 9vw, 130px);
+  isolation: isolate;
+  overflow: hidden;
+  color: #f6f3ee;
+  background: #111115;
+}
+
+.hero::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background:
+    linear-gradient(115deg, rgba(9, 9, 12, 0.83) 0%, rgba(12, 12, 16, 0.64) 53%, rgba(18, 13, 17, 0.36) 100%),
+    url("/media/press/Background.png") center / cover no-repeat,
+    linear-gradient(120deg, #141316, #211716 58%, #100e11);
+}
+
+.hero::after {
+  position: absolute;
+  right: max(24px, 4vw);
+  bottom: 0;
+  left: max(24px, 4vw);
+  height: 1px;
+  content: "";
+  background: linear-gradient(90deg, var(--press-coral), rgba(255, 255, 255, 0.14) 65%, transparent);
+}
+
+.heroInner {
+  width: 100%;
+  max-width: 1270px;
+  margin-inline: auto;
+}
+
+.heroTopline {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px 40px;
+  margin: 0 0 clamp(46px, 6vw, 80px);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0;
+  color: #e5e3e0;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.16em;
+  line-height: 1.5;
+}
+
+.eyebrow::before {
+  width: 26px;
+  height: 2px;
+  content: "";
+  background: var(--press-coral);
+}
+
+.embargo {
+  margin: 0;
+  color: #efae9b;
+  font-size: 10px;
+  font-weight: 650;
+  text-align: right;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+}
+
+.embargo span {
+  display: block;
+  color: #c8bec1;
+  letter-spacing: 0.07em;
+}
+
+.headline {
+  max-width: 1190px;
+  margin: 0;
+  font-size: clamp(2.8rem, 5.25vw, 5.5rem);
+  font-weight: 540;
+  letter-spacing: -0.061em;
+  line-height: 1.045;
+  text-wrap: balance;
+}
+
+.dek {
+  max-width: 950px;
+  margin: clamp(32px, 4vw, 52px) 0 0;
+  color: #d5ccd0;
+  font-size: clamp(1.27rem, 2.1vw, 1.85rem);
+  font-weight: 400;
+  line-height: 1.47;
+  letter-spacing: -0.02em;
+}
+
+.dek em {
+  color: #fff;
+  font-style: italic;
+}
+
+.article {
+  padding: clamp(70px, 9vw, 124px) max(24px, 4vw) clamp(78px, 10vw, 138px);
+}
+
+.photoGallery {
+  max-width: 1270px;
+  margin: 0 auto clamp(74px, 9vw, 112px);
+}
+
+.photoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+.photoFrame {
+  min-width: 0;
+  overflow: hidden;
+  background: #222326;
+}
+
+.photoFrame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.photoGallery figcaption {
+  max-width: 1120px;
+  margin: 18px 0 0;
+  color: var(--press-muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.textColumn {
+  width: 100%;
+  max-width: 790px;
+  margin-inline: auto;
+}
+
+.textColumn > p {
+  margin: 0 0 30px;
+  font-size: clamp(1.04rem, 1.3vw, 1.2rem);
+  font-weight: 400;
+  letter-spacing: -0.012em;
+  line-height: 1.82;
+}
+
+.textColumn > p:last-child {
+  margin-bottom: 0;
+}
+
+.textColumn > .lead {
+  margin-bottom: 40px;
+  font-size: clamp(1.2rem, 1.65vw, 1.46rem);
+  font-weight: 450;
+  letter-spacing: -0.018em;
+  line-height: 1.68;
+}
+
+.article a,
+.contacts a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--press-coral);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+}
+
+.article a:hover,
+.contacts a:hover {
+  text-decoration-color: currentColor;
+}
+
+.article a:focus-visible,
+.contacts a:focus-visible {
+  outline: 2px solid var(--press-coral);
+  outline-offset: 4px;
+}
+
+.quote {
+  max-width: 1000px;
+  margin: clamp(65px, 8vw, 110px) auto;
+  padding: 8px 0 8px clamp(28px, 4vw, 65px);
+  border-left: 2px solid var(--press-coral);
+}
+
+.quote p {
+  margin: 0;
+  font-size: clamp(1.5rem, 2.75vw, 2.6rem);
+  font-weight: 450;
+  letter-spacing: -0.034em;
+  line-height: 1.35;
+  text-wrap: pretty;
+}
+
+.textColumn > .storyLink {
+  margin: 36px 0;
+  font-weight: 510;
+}
+
+.about {
+  padding: clamp(86px, 10vw, 142px) max(24px, 4vw);
+  color: #eeeae6;
+  background: var(--press-dark);
+}
+
+.aboutInner {
+  max-width: 1180px;
+  margin-inline: auto;
+}
+
+.aboutRow {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.65fr) minmax(0, 1.35fr);
+  gap: clamp(48px, 8vw, 140px);
+  padding: clamp(35px, 5vw, 67px) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.aboutRow:first-child {
+  padding-top: 0;
+}
+
+.aboutRow:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.aboutRow h2,
+.contactHeading h2 {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.5;
+  letter-spacing: 0.14em;
+}
+
+.aboutRow h2::before,
+.contactHeading h2::before {
+  display: block;
+  width: 36px;
+  height: 2px;
+  margin-bottom: 26px;
+  content: "";
+  background: var(--press-coral);
+}
+
+.aboutCopy p {
+  margin: 0 0 25px;
+  color: #c6c2c2;
+  font-size: clamp(1.03rem, 1.4vw, 1.18rem);
+  line-height: 1.78;
+  letter-spacing: -0.012em;
+}
+
+.aboutCopy p:last-child {
+  margin-bottom: 0;
+}
+
+.aboutRow:first-child .aboutCopy p:first-child {
+  color: #eeeae6;
+  font-size: clamp(1.14rem, 1.65vw, 1.42rem);
+  line-height: 1.58;
+}
+
+.contacts {
+  padding: clamp(78px, 9vw, 120px) max(24px, 4vw);
+  background: var(--press-paper);
+}
+
+.contactInner {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.55fr) minmax(0, 1.45fr);
+  gap: clamp(48px, 8vw, 140px);
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.contactsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(28px, 4vw, 58px);
+}
+
+.contactCard h3 {
+  margin: 0 0 24px;
+  font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+  font-weight: 510;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+
+.contactCard p {
+  margin: 0 0 12px;
+  font-size: clamp(0.98rem, 1.2vw, 1.08rem);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.contactCard .agency {
+  font-weight: 600;
+}
+
+.contactCard .contactQualifier {
+  margin: 25px 0 6px;
+  color: var(--press-muted);
+  font-size: 0.84rem;
+}
+
+@media (max-width: 900px) {
+  .headline {
+    font-size: clamp(2.8rem, 6.8vw, 4.9rem);
+  }
+
+  .contactInner {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    min-height: 76svh;
+    padding: 145px 22px 76px;
+  }
+
+  .hero::after {
+    right: 22px;
+    left: 22px;
+  }
+
+  .heroTopline {
+    gap: 18px;
+    margin-bottom: 45px;
+  }
+
+  .embargo {
+    text-align: left;
+  }
+
+  .headline {
+    font-size: clamp(2.35rem, 8.8vw, 4rem);
+    letter-spacing: -0.047em;
+    line-height: 1.06;
+  }
+
+  .dek {
+    font-size: 1.15rem;
+  }
+
+  .article,
+  .about,
+  .contacts {
+    padding-right: 22px;
+    padding-left: 22px;
+  }
+
+  .photoGrid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .photoFrame img {
+    height: auto;
+  }
+
+  .photoGallery {
+    margin-bottom: 62px;
+  }
+
+  .quote {
+    padding-left: 23px;
+  }
+
+  .aboutRow {
+    grid-template-columns: 1fr;
+    gap: 27px;
+  }
+
+  .contactsGrid {
+    grid-template-columns: 1fr;
+    gap: 46px;
+  }
+}

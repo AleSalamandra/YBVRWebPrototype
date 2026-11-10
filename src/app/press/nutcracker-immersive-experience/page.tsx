@@ -151,7 +151,36 @@ export default function NutcrackerPressReleasePage() {
             experience. Additional details, including final availability and
             viewing instructions, will be announced closer to launch.
           </p>
+        </div>
 
+        {/* Locally hosted project trailer — stays within the unlisted release. */}
+        <figure className={styles.videoFeature}>
+          <div className={styles.videoHeading}>
+            <span className={styles.videoEyebrow}>YB / PROJECT TRAILER</span>
+            <h2>Nutcracker: The Immersive Experience</h2>
+          </div>
+          <div className={styles.videoFrame}>
+            <video
+              className={styles.videoPlayer}
+              controls
+              playsInline
+              preload="metadata"
+              poster="/media/press/nutcracker/behind-the-scenes.png"
+              aria-label="Nutcracker: The Immersive Experience — project trailer"
+            >
+              <source
+                src="/media/press/nutcracker/Teaser_Nutcracker_V5.mp4"
+                type="video/mp4"
+              />
+              Your browser does not support embedded video. You can{" "}
+              <a href="/media/press/nutcracker/Teaser_Nutcracker_V5.mp4">
+                view the project trailer directly
+              </a>.
+            </video>
+          </div>
+        </figure>
+
+        <div className={styles.textColumn}>
           <p className={styles.storyLink}>
             Learn more about YB’s{" "}
             <a href="https://www.ybvr.com/">premium immersive experiences</a>.

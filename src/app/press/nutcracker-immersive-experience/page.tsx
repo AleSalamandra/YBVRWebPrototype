@@ -169,7 +169,7 @@ export default function NutcrackerPressReleasePage() {
               aria-label="Nutcracker: The Immersive Experience — project trailer"
             >
               <source
-                src="/media/press/nutcracker/Teaser_Nutcracker_V5.mp4"
+                src="/media/press/nutcracker/Teaser_Nutcracker_Web.mp4"
                 type="video/mp4"
               />
               Your browser does not support embedded video. You can{" "}

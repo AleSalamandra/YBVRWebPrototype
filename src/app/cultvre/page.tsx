@@ -53,7 +53,6 @@ const experiences = [
 export default function CultvrePage() {
   return (
     <main className={styles.page}>
-
       {/* =====================================
           HERO
       ===================================== */}
@@ -62,10 +61,7 @@ export default function CultvrePage() {
         className={styles.hero}
         aria-labelledby="cultvre-title"
       >
-        <div
-          className={styles.heroMedia}
-          aria-hidden="true"
-        >
+        <div className={styles.heroMedia} aria-hidden="true">
           <video
             className={styles.heroVideo}
             autoPlay
@@ -114,10 +110,7 @@ export default function CultvrePage() {
             </p>
           </div>
 
-          <a
-            href="#experience"
-            className={styles.heroExplore}
-          >
+          <a href="#experience" className={styles.heroExplore}>
             Explore CultVRe
             <span aria-hidden="true">↓</span>
           </a>
@@ -246,9 +239,7 @@ export default function CultvrePage() {
           <span>
             EXPLORE CULTURE WITHOUT BOUNDARIES
           </span>
-          <span>
-            CULTVRE / YB
-          </span>
+          <span>CULTVRE / YB</span>
         </div>
       </section>
 
@@ -318,7 +309,27 @@ export default function CultvrePage() {
             </div>
           </div>
 
+          {/* NUTCRACKER VIDEO PANEL */}
+
           <div className={styles.featureVisual}>
+            <video
+              className={styles.featureVideo}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster="/media/press/nutcracker/snow-scene.png"
+              aria-hidden="true"
+            >
+              <source
+                src="/media/press/nutcracker/Teaser_Nutcracker_Web.mp4"
+                type="video/mp4"
+              />
+            </video>
+
+            <div className={styles.featureVideoShade} />
+
             <div className={styles.featureVisualTop}>
               <span>CULTVRE ORIGINAL EXPERIENCE</span>
               <span>2026</span>
@@ -327,9 +338,7 @@ export default function CultvrePage() {
             <div className={styles.featureVisualBottom}>
               <span>SAN FRANCISCO BALLET</span>
 
-              <strong>
-                NUTCRACKER
-              </strong>
+              <strong>NUTCRACKER</strong>
 
               <span>
                 THE IMMERSIVE EXPERIENCE
@@ -396,7 +405,6 @@ export default function CultvrePage() {
           </div>
         </div>
       </section>
-
     </main>
   );
 }

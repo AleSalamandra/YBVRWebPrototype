@@ -46,17 +46,45 @@ export default function CultvrePage() {
   return (
     <main className={styles.page}>
       {/* =====================================
-          HERO
+          HERO — CULTVRE
       ===================================== */}
 
       <section
         className={heroStyles.hero}
         aria-label="CultVRe immersive cultural experiences"
       >
+        {/* LAYER 1 — BACKGROUND VIDEO */}
+
+        <video
+          className={heroStyles.video}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+        >
+          <source
+            src="/media/cultvre/cultvre_hero.mp4"
+            type="video/mp4"
+          />
+        </video>
+
+        {/* LAYER 2 — ASSET 6 AT 50% */}
+
+        <div
+          className={heroStyles.gradient}
+          aria-hidden="true"
+        />
+
+        {/* LAYER 3 — SUBTLE BLACK FADE */}
+
         <div
           className={heroStyles.heroShade}
           aria-hidden="true"
         />
+
+        {/* LAYER 4 — CONTENT */}
 
         <div className={heroStyles.heroContent}>
           <span className={heroStyles.eyebrow}>
@@ -100,10 +128,6 @@ export default function CultvrePage() {
             </div>
           </div>
         </div>
-
-        <span className={heroStyles.heroFooter}>
-          CULTVRE / BY YB
-        </span>
       </section>
 
       {/* =====================================

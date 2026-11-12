@@ -1,7 +1,6 @@
 
 /* ==========================================
-   CULTVRE — HERO
-   ASSET 6 + APP DOWNLOAD
+   CULTVRE — CINEMATIC VIDEO HERO
 ========================================== */
 
 .hero {
@@ -23,24 +22,69 @@
 
   overflow: hidden;
 
-  background-color: #000;
+  background: #000;
+  color: #fff;
+}
+
+/* ==========================================
+   LAYER 1 — BACKGROUND VIDEO
+========================================== */
+
+.video {
+  position: absolute;
+  z-index: 0;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+  object-position: center;
+
+  background: #000;
+
+  pointer-events: none;
+}
+
+/* ==========================================
+   LAYER 2 — CULTVRE GRADIENT
+
+   Asset 6 superimposed on the video.
+   Initial opacity: 50%.
+========================================== */
+
+.gradient {
+  position: absolute;
+  z-index: 1;
+
+  inset: 0;
+
   background-image:
     url("/media/cultvre/Asset%206.png");
 
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center top;
+  background-position: center;
 
-  color: #fff;
+  opacity: 0.9;
+
+  pointer-events: none;
 }
 
 /* ==========================================
-   BACKGROUND SHADE
+   LAYER 3 — SUBTLE BLACK SHADE
+
+   Improves text readability and
+   provides a smooth bottom transition.
 ========================================== */
 
 .heroShade {
   position: absolute;
-  z-index: 0;
+  z-index: 2;
+
   inset: 0;
 
   pointer-events: none;
@@ -48,21 +92,21 @@
   background:
     linear-gradient(
       180deg,
-      rgba(0, 0, 0, 0.48) 0%,
-      rgba(0, 0, 0, 0.12) 28%,
-      rgba(0, 0, 0, 0.10) 50%,
-      rgba(0, 0, 0, 0.22) 75%,
-      rgba(0, 0, 0, 0.82) 100%
+      rgba(0, 0, 0, 0.35) 0%,
+      rgba(0, 0, 0, 0.08) 20%,
+      rgba(0, 0, 0, 0.00) 45%,
+      rgba(0, 0, 0, 0.08) 75%,
+      rgba(0, 0, 0, 0.85) 100%
     );
 }
 
 /* ==========================================
-   HERO CONTENT
+   LAYER 4 — HERO CONTENT
 ========================================== */
 
 .heroContent {
   position: relative;
-  z-index: 1;
+  z-index: 3;
 
   width: 100%;
   max-width: 1180px;
@@ -89,7 +133,7 @@
   line-height: 1.5;
   letter-spacing: 0.26em;
 
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* ==========================================
@@ -160,10 +204,10 @@
 
   padding: 17px 21px;
 
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.55);
   border-radius: 100px;
 
-  background: rgba(0, 0, 0, 0.28);
+  background: rgba(0, 0, 0, 0.4);
   color: #fff;
 
   backdrop-filter: blur(12px);
@@ -214,12 +258,6 @@
   transform: translate(2px, -2px);
 }
 
-/* No additional text underneath the CTA */
-
-.heroFooter {
-  display: none;
-}
-
 /* ==========================================
    TABLET
 ========================================== */
@@ -255,8 +293,14 @@
     min-height: 100svh;
 
     padding: 130px 24px 75px;
+  }
 
-    background-position: 62% top;
+  .video {
+    object-position: center;
+  }
+
+  .gradient {
+    background-position: 62% center;
   }
 
   .heroContent {
@@ -295,7 +339,6 @@
     min-height: 54px;
 
     padding: 16px 22px;
-
     font-size: 12px;
   }
 }
@@ -307,7 +350,10 @@
 @media (max-width: 480px) {
   .hero {
     padding: 115px 22px 65px;
-    background-position: 60% top;
+  }
+
+  .gradient {
+    background-position: 60% center;
   }
 
   .logo {
@@ -333,6 +379,10 @@
 ========================================== */
 
 @media (prefers-reduced-motion: reduce) {
+  .video {
+    display: none;
+  }
+
   .storeButton,
   .storeArrow {
     transition: none;

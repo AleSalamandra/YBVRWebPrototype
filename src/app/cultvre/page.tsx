@@ -2,9 +2,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+
 import ExperienceGallery from "./ExperienceGallery";
+
 import styles from "./page.module.css";
 import heroStyles from "./CultvreHero.module.css";
+import platformStyles from "./CultvrePlatform.module.css";
 
 export const metadata: Metadata = {
   title: "CultVRe | Immersive Culture — YB",
@@ -42,9 +45,8 @@ const stores = [
 export default function CultvrePage() {
   return (
     <main className={styles.page}>
-
       {/* =====================================
-          HERO — CULTVRE
+          HERO
       ===================================== */}
 
       <section
@@ -110,7 +112,10 @@ export default function CultvrePage() {
 
       <section
         id="experience"
-        className={styles.intro}
+        className={[
+          styles.intro,
+          platformStyles.platform,
+        ].join(" ")}
         aria-labelledby="experience-title"
       >
         <div className={styles.sectionMeta}>
@@ -290,12 +295,8 @@ export default function CultvrePage() {
 
             <div className={styles.featureVisualBottom}>
               <span>SAN FRANCISCO BALLET</span>
-
               <strong>NUTCRACKER</strong>
-
-              <span>
-                THE IMMERSIVE EXPERIENCE
-              </span>
+              <span>THE IMMERSIVE EXPERIENCE</span>
             </div>
           </div>
         </div>

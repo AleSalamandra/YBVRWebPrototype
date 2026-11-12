@@ -12,7 +12,6 @@ import type {
   CSSProperties,
   SyntheticEvent,
 } from "react";
-
 import { createPortal } from "react-dom";
 
 import styles from "./page.module.css";
@@ -44,9 +43,9 @@ const experiences: Experience[] = [
       "Stories that take you beyond the traditional screen.",
     expandedDescription:
       "Discover new perspectives on storytelling, spectacular settings and the worlds that bring unforgettable stories to life.",
-    image: "/media/cultvre/theatre-cinema.jpg",
+    image: "/media/cultvre/theatre-cinema.jpeg",
     imageAlt:
-      "The new Cirque du Soleil show",
+      "A theatrical performance featuring dramatic staging",
     imagePosition: "center",
     logos: [],
   },
@@ -167,10 +166,7 @@ export default function ExperienceGallery() {
     trigger: HTMLButtonElement
   ) => {
     lastTriggerRef.current = trigger;
-
-    // Provisional ratio until image is loaded.
     setImageRatio(1.5);
-
     setActive(experience);
   };
 
@@ -195,9 +191,7 @@ export default function ExperienceGallery() {
 
   return (
     <>
-      {/* =====================================
-          GALLERY CARDS
-      ===================================== */}
+      {/* GALLERY CARDS */}
 
       <div className={styles.categoriesGrid}>
         {experiences.map((experience) => (
@@ -243,7 +237,6 @@ export default function ExperienceGallery() {
 
             <div className={styles.categoryContent}>
               <h3>{experience.title}</h3>
-
               <p>{experience.description}</p>
 
               <span className={styles.categoryExplore}>
@@ -255,9 +248,7 @@ export default function ExperienceGallery() {
         ))}
       </div>
 
-      {/* =====================================
-          EXPANDED EXPERIENCE
-      ===================================== */}
+      {/* EXPANDED EXPERIENCE PANEL */}
 
       {active && typeof document !== "undefined"
         ? createPortal(
@@ -281,8 +272,6 @@ export default function ExperienceGallery() {
                 aria-label={active.title}
                 aria-describedby="cultvre-modal-description"
               >
-                {/* FULL PHOTOGRAPH */}
-
                 <Image
                   key={active.image}
                   src={active.image}
@@ -294,14 +283,10 @@ export default function ExperienceGallery() {
                   onLoad={handleImageLoad}
                 />
 
-                {/* CENTERED DARK FADE */}
-
                 <div
                   className={modalStyles.shade}
                   aria-hidden="true"
                 />
-
-                {/* CLOSE BUTTON */}
 
                 <button
                   ref={closeButtonRef}
@@ -312,8 +297,6 @@ export default function ExperienceGallery() {
                 >
                   <span aria-hidden="true">×</span>
                 </button>
-
-                {/* MAIN CONTENT */}
 
                 <div className={modalStyles.content}>
                   <span className={modalStyles.eyebrow}>
@@ -339,8 +322,6 @@ export default function ExperienceGallery() {
                     {active.expandedDescription}
                   </p>
 
-                  {/* PARTNER / EXPERIENCE LOGOS */}
-
                   {active.logos.length > 0 && (
                     <div className={modalStyles.partners}>
                       {active.logos.map((logo) => (
@@ -360,8 +341,6 @@ export default function ExperienceGallery() {
                     </div>
                   )}
                 </div>
-
-                {/* FOOTER INSIDE PHOTOGRAPH */}
 
                 <div className={modalStyles.footer}>
                   <span>

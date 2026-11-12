@@ -1,8 +1,6 @@
-import { redirect } from "next/navigation";
 
+import { permanentRedirect } from "next/navigation";
 
-export default function CultvrePage() {
-  redirect(
-    "https://staging-ybvrcom-testing.kinsta.cloud/cultvre/"
-  );
+export default function CultvreLegacyPage() {
+  permanentRedirect("/cultvre");
 }

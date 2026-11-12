@@ -1,0 +1,1287 @@
+
+/* ==========================================
+   CULTVRE — PRODUCT PAGE
+   DARK IMMERSIVE DESIGN
+========================================== */
+
+.page {
+  --cv-black: #000000;
+  --cv-charcoal: #161616;
+  --cv-white: #f7f7f5;
+  --cv-light-gray: #e2e2e2;
+  --cv-mid-gray: #b9b9b9;
+  --cv-muted: #929292;
+
+  --cv-cyan: #78ffef;
+  --cv-purple: #7026cb;
+  --cv-deep-purple: #5613a9;
+
+  width: 100%;
+  overflow-x: clip;
+
+  background: var(--cv-black);
+  color: var(--cv-white);
+}
+
+.page *,
+.page *::before,
+.page *::after {
+  box-sizing: border-box;
+}
+
+.page h1,
+.page h2,
+.page h3,
+.page p {
+  margin: 0;
+}
+
+.page a {
+  text-decoration: none;
+}
+
+.page em {
+  font-style: normal;
+  font-weight: inherit;
+}
+
+.page section {
+  isolation: isolate;
+}
+
+/* ==========================================
+   SHARED TYPOGRAPHY
+========================================== */
+
+.sectionMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  color: var(--cv-mid-gray);
+}
+
+.bodyCopy {
+  font-size: clamp(15px, 1.15vw, 18px);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 1.8;
+
+  color: var(--cv-mid-gray);
+}
+
+/* ==========================================
+   SHARED GRADIENT SYSTEM
+
+   Black areas of PNG files blend into
+   the black background.
+========================================== */
+
+.intro,
+.categories,
+.feature,
+.manifesto,
+.cta {
+  position: relative;
+  overflow: hidden;
+
+  background: #000;
+}
+
+.intro::before,
+.categories::before,
+.feature::before,
+.manifesto::before,
+.cta::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  mix-blend-mode: screen;
+
+  pointer-events: none;
+}
+
+.intro > *,
+.categories > *,
+.feature > *,
+.manifesto > *,
+.cta > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================
+   HERO
+========================================== */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+
+  width: 100%;
+  min-height: 750px;
+  min-height: max(750px, 100svh);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  overflow: hidden;
+  background: #000;
+
+  color: #fff;
+}
+
+.heroMedia {
+  position: absolute;
+  z-index: -3;
+  inset: 0;
+
+  background-color: #000;
+  background-image:
+    url("/media/home/cultvre_background.png");
+
+  background-size: cover;
+  background-position: center;
+}
+
+.heroVideo {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+.heroShade {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.70) 0%,
+      rgba(0, 0, 0, 0.26) 25%,
+      rgba(0, 0, 0, 0.19) 43%,
+      rgba(0, 0, 0, 0.55) 72%,
+      rgba(0, 0, 0, 0.96) 100%
+    );
+}
+
+.heroCenter {
+  position: absolute;
+  z-index: 2;
+
+  top: 42%;
+  left: 50%;
+
+  width: min(74%, 820px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.heroEyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+
+  text-align: center;
+}
+
+.heroLogo {
+  display: block;
+
+  width: 100%;
+  max-width: 720px;
+  height: auto;
+  max-height: 210px;
+
+  object-fit: contain;
+
+  filter: brightness(0) invert(1);
+}
+
+.heroBottom {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 55px;
+
+  padding:
+    0
+    clamp(24px, 5vw, 88px)
+    clamp(68px, 8vh, 110px);
+}
+
+.heroCopy {
+  max-width: 760px;
+}
+
+.heroCopy h1 {
+  font-size: clamp(40px, 4.8vw, 72px);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+}
+
+.heroCopy p {
+  max-width: 520px;
+  margin-top: 27px;
+
+  font-size: clamp(14px, 1.12vw, 17px);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 1.7;
+
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.heroExplore {
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  padding-bottom: 7px;
+
+  color: #fff;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.17em;
+
+  text-transform: uppercase;
+
+  transition: opacity 250ms ease;
+}
+
+.heroExplore:hover {
+  opacity: 0.6;
+}
+
+.heroExplore span {
+  font-size: 25px;
+  font-weight: 300;
+}
+
+.heroIndex {
+  position: absolute;
+  z-index: 2;
+
+  bottom: 23px;
+  right: clamp(24px, 5vw, 88px);
+
+  font-size: 9px;
+  letter-spacing: 0.18em;
+
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* ==========================================
+   INTRODUCTION
+   GRADIENT: ASSET 6
+========================================== */
+
+.intro {
+  padding:
+    clamp(100px, 11vw, 175px)
+    clamp(24px, 5vw, 88px)
+    clamp(115px, 12vw, 190px);
+
+  scroll-margin-top: 70px;
+}
+
+.intro::before {
+  background-image:
+    url("/media/cultvre/Asset 6.png");
+
+  background-position: right center;
+  background-size: 75% auto;
+
+  opacity: 0.53;
+}
+
+.introGrid {
+  display: grid;
+  grid-template-columns: 1.12fr 0.88fr;
+  gap: clamp(55px, 8vw, 145px);
+
+  margin-top: clamp(80px, 10vw, 145px);
+}
+
+.intro h2 {
+  font-size: clamp(48px, 5.8vw, 88px);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.09;
+}
+
+.intro h2 em {
+  color: var(--cv-cyan);
+}
+
+.introRight {
+  max-width: 510px;
+  padding-top: 7px;
+}
+
+.introLead {
+  margin-bottom: 38px !important;
+
+  font-size: clamp(23px, 2vw, 31px);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+
+  color: var(--cv-white);
+}
+
+.introRight .bodyCopy {
+  margin-bottom: 24px;
+}
+
+.introTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+
+  margin-top: 42px;
+}
+
+.introTags span {
+  padding: 11px 15px;
+
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 100px;
+
+  color: var(--cv-light-gray);
+
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+
+  white-space: nowrap;
+}
+
+/* ==========================================
+   THE WORLD OF CULTVRE
+   GRADIENT: ASSET 9
+========================================== */
+
+.categories {
+  padding:
+    clamp(95px, 10vw, 160px)
+    clamp(24px, 5vw, 88px)
+    clamp(115px, 12vw, 185px);
+
+  scroll-margin-top: 70px;
+}
+
+.categories::before {
+  background-image:
+    url("/media/cultvre/Asset 9.png");
+
+  background-position: center top;
+  background-size: 100% auto;
+
+  opacity: 0.29;
+}
+
+.categoriesHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 65px;
+
+  margin-top: clamp(75px, 9vw, 130px);
+  margin-bottom: clamp(65px, 7vw, 100px);
+}
+
+.categoriesHeader h2 {
+  font-size: clamp(44px, 5.4vw, 80px);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.09;
+}
+
+.categoriesHeader h2 em {
+  color: var(--cv-cyan);
+}
+
+.categoriesHeader p {
+  width: 290px;
+  flex-shrink: 0;
+
+  font-size: 15px;
+  letter-spacing: 0.005em;
+  line-height: 1.75;
+
+  color: var(--cv-mid-gray);
+}
+
+/* ==========================================
+   CATEGORY GRID
+========================================== */
+
+.categoriesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.category {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  min-height: 390px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: clamp(22px, 2vw, 34px);
+
+  background: #0d0d0d;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  transition:
+    border-color 350ms ease,
+    transform 350ms ease;
+}
+
+.category::before {
+  content: "";
+
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  mix-blend-mode: screen;
+  opacity: 0.60;
+
+  transition:
+    opacity 450ms ease,
+    transform 650ms ease;
+
+  pointer-events: none;
+}
+
+.category::after {
+  content: "";
+
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.05),
+      rgba(0, 0, 0, 0.23) 40%,
+      rgba(0, 0, 0, 0.83) 100%
+    );
+
+  pointer-events: none;
+}
+
+.categoryOne::before {
+  background-image:
+    url("/media/cultvre/Asset 10.png");
+}
+
+.categoryTwo::before {
+  background-image:
+    url("/media/cultvre/Asset 11.png");
+}
+
+.categoryThree::before {
+  background-image:
+    url("/media/cultvre/Asset 13.png");
+}
+
+.categoryFour::before {
+  background-image:
+    url("/media/cultvre/Asset 16.png");
+}
+
+.category:hover {
+  border-color: rgba(120, 255, 239, 0.48);
+  transform: translateY(-5px);
+}
+
+.category:hover::before {
+  opacity: 0.95;
+  transform: scale(1.06);
+}
+
+.categoryTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.categoryNumber {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.19em;
+
+  color: var(--cv-light-gray);
+}
+
+.categorySymbol {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1;
+
+  color: var(--cv-cyan);
+}
+
+.categoryContent {
+  margin-top: auto;
+}
+
+.categoryContent h3 {
+  max-width: 250px;
+  margin-bottom: 23px;
+
+  font-size: clamp(26px, 2vw, 35px);
+  font-weight: 400;
+  letter-spacing: -0.012em;
+  line-height: 1.15;
+
+  color: var(--cv-white);
+}
+
+.categoryContent p {
+  max-width: 255px;
+
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 1.7;
+
+  color: var(--cv-light-gray);
+}
+
+.categoriesBottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+
+  margin-top: 30px;
+
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+
+  color: var(--cv-muted);
+}
+
+/* ==========================================
+   FEATURED — NUTCRACKER
+   GRADIENT: ASSET 4
+========================================== */
+
+.feature {
+  padding:
+    clamp(105px, 10vw, 165px)
+    clamp(24px, 5vw, 88px)
+    clamp(115px, 11vw, 175px);
+
+  scroll-margin-top: 70px;
+}
+
+.feature::before {
+  background-image:
+    url("/media/cultvre/Asset 4.png");
+
+  background-position: left center;
+  background-size: 90% auto;
+
+  opacity: 0.35;
+}
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(45px, 6vw, 105px);
+
+  align-items: stretch;
+
+  margin-top: clamp(70px, 8vw, 120px);
+}
+
+.featureCopy {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 80px;
+
+  padding: 7px 0;
+}
+
+.featureEyebrow {
+  margin-bottom: 32px !important;
+
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.21em;
+
+  color: var(--cv-cyan);
+}
+
+.feature h2 {
+  font-size: clamp(43px, 4.45vw, 69px);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+.feature h2 em {
+  color: var(--cv-mid-gray);
+}
+
+.featureDescription {
+  max-width: 535px;
+  margin-top: 38px !important;
+
+  font-size: clamp(21px, 1.85vw, 29px);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.4;
+
+  color: var(--cv-white);
+}
+
+.featureBody {
+  max-width: 520px;
+  margin-top: 29px !important;
+
+  font-size: clamp(15px, 1.1vw, 17px);
+  letter-spacing: 0.005em;
+  line-height: 1.8;
+
+  color: var(--cv-mid-gray);
+}
+
+.featureDetails {
+  padding-top: 26px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.featureDetails p {
+  max-width: 430px;
+  margin-top: 18px;
+
+  font-size: 13px;
+  line-height: 1.7;
+
+  color: var(--cv-mid-gray);
+}
+
+.featureStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+
+  padding: 11px 16px;
+
+  border: 1px solid rgba(120, 255, 239, 0.4);
+  border-radius: 100px;
+
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+
+  color: var(--cv-cyan);
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+  background: var(--cv-cyan);
+}
+
+/* ==========================================
+   FEATURE VISUAL
+========================================== */
+
+.featureVisual {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  min-height: 670px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: clamp(25px, 3vw, 45px);
+
+  background:
+    radial-gradient(
+      ellipse at 65% 30%,
+      #391366 0%,
+      #190b30 38%,
+      #080808 78%
+    );
+
+  color: var(--cv-white);
+}
+
+.featureVisual::before {
+  content: "";
+
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+
+  background-image:
+    url("/media/cultvre/nutcracker_feature.jpg");
+
+  background-size: cover;
+  background-position: center 35%;
+}
+
+.featureVisual::after {
+  content: "";
+
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.37),
+      rgba(0, 0, 0, 0.04) 35%,
+      rgba(0, 0, 0, 0.22) 55%,
+      rgba(0, 0, 0, 0.88) 100%
+    );
+}
+
+.featureVisualTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+}
+
+.featureVisualBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.featureVisualBottom span {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.19em;
+}
+
+.featureVisualBottom strong {
+  margin: 16px 0;
+
+  font-size: clamp(44px, 5vw, 80px);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+/* ==========================================
+   MANIFESTO
+   GRADIENT: ASSET 13
+========================================== */
+
+.manifesto {
+  min-height: 600px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding:
+    clamp(90px, 9vw, 140px)
+    clamp(24px, 5vw, 88px)
+    45px;
+}
+
+.manifesto::before {
+  background-image:
+    url("/media/cultvre/Asset 13.png");
+
+  background-position: center right;
+  background-size: 100% auto;
+
+  opacity: 0.65;
+}
+
+.manifestoEyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+
+  color: var(--cv-mid-gray);
+}
+
+.manifesto > p {
+  margin: 100px 0;
+
+  font-size: clamp(41px, 5.35vw, 82px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.17;
+}
+
+.manifesto > p em {
+  color: var(--cv-cyan);
+}
+
+.manifestoFooter {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+
+  color: var(--cv-mid-gray);
+}
+
+/* ==========================================
+   FINAL CTA
+   GRADIENT: ASSET 9
+========================================== */
+
+.cta {
+  padding:
+    clamp(110px, 11vw, 180px)
+    clamp(24px, 5vw, 88px)
+    clamp(130px, 13vw, 205px);
+}
+
+.cta::before {
+  background-image:
+    url("/media/cultvre/Asset 9.png");
+
+  background-position: right bottom;
+  background-size: 90% auto;
+
+  opacity: 0.28;
+}
+
+.ctaContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 75px;
+
+  margin-top: clamp(80px, 9vw, 135px);
+}
+
+.ctaContent h2 {
+  font-size: clamp(52px, 6vw, 91px);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+.ctaContent h2 em {
+  color: var(--cv-cyan);
+}
+
+.ctaRight {
+  width: 340px;
+  flex-shrink: 0;
+}
+
+.ctaRight p {
+  margin-bottom: 40px;
+
+  font-size: 16px;
+  letter-spacing: 0.005em;
+  line-height: 1.75;
+
+  color: var(--cv-mid-gray);
+}
+
+.ctaButton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 35px;
+
+  width: 100%;
+  padding: 19px 23px;
+
+  border-radius: 100px;
+
+  background: var(--cv-white);
+  color: var(--cv-charcoal);
+
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.015em;
+
+  transition:
+    background 250ms ease,
+    color 250ms ease,
+    transform 250ms ease;
+}
+
+.ctaButton:hover {
+  background: var(--cv-cyan);
+  color: #000;
+  transform: translateY(-2px);
+}
+
+.ctaButton span {
+  font-size: 22px;
+  font-weight: 300;
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 1100px) {
+  .introGrid {
+    gap: 60px;
+  }
+
+  .featureGrid {
+    gap: 45px;
+  }
+
+  .featureVisual {
+    min-height: 585px;
+  }
+
+  .categoriesGrid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .category {
+    min-height: 340px;
+  }
+
+  .categoryContent h3 {
+    font-size: 31px;
+  }
+
+  .ctaContent {
+    gap: 45px;
+  }
+
+  .ctaRight {
+    width: 290px;
+  }
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 760px) {
+  .sectionMeta {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+  }
+
+  /* HERO */
+
+  .hero {
+    min-height: 700px;
+    min-height: 100svh;
+  }
+
+  .heroCenter {
+    top: 37%;
+    width: 82%;
+    gap: 21px;
+  }
+
+  .heroEyebrow {
+    font-size: 9px;
+    letter-spacing: 0.16em;
+  }
+
+  .heroBottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 34px;
+
+    padding: 0 24px 80px;
+  }
+
+  .heroCopy h1 {
+    font-size: clamp(38px, 9vw, 58px);
+    letter-spacing: -0.018em;
+  }
+
+  .heroCopy p {
+    max-width: 430px;
+    margin-top: 23px;
+    font-size: 14px;
+  }
+
+  .heroExplore {
+    font-size: 10px;
+  }
+
+  .heroIndex {
+    bottom: 20px;
+    right: 24px;
+  }
+
+  /* SHARED SECTION SPACING */
+
+  .intro,
+  .categories,
+  .feature,
+  .cta {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  /* INTRO */
+
+  .intro::before {
+    background-size: 140% auto;
+    background-position: 60% center;
+    opacity: 0.34;
+  }
+
+  .introGrid {
+    grid-template-columns: 1fr;
+    gap: 55px;
+    margin-top: 70px;
+  }
+
+  .intro h2 {
+    font-size: clamp(45px, 8.5vw, 69px);
+  }
+
+  .introRight {
+    padding: 0;
+  }
+
+  .introLead {
+    margin-bottom: 28px !important;
+  }
+
+  .introTags {
+    margin-top: 35px;
+  }
+
+  /* CATEGORIES */
+
+  .categories::before {
+    background-size: 150% auto;
+    opacity: 0.25;
+  }
+
+  .categoriesHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+
+    margin-top: 75px;
+    margin-bottom: 55px;
+  }
+
+  .categoriesHeader h2 {
+    font-size: clamp(42px, 8vw, 65px);
+  }
+
+  .categoriesHeader p {
+    width: auto;
+    max-width: 450px;
+  }
+
+  .category {
+    min-height: 310px;
+  }
+
+  /* FEATURE */
+
+  .feature::before {
+    background-size: 150% auto;
+    background-position: center 20%;
+  }
+
+  .featureGrid {
+    grid-template-columns: 1fr;
+    gap: 55px;
+    margin-top: 65px;
+  }
+
+  .featureCopy {
+    gap: 55px;
+  }
+
+  .feature h2 {
+    font-size: clamp(42px, 8vw, 65px);
+  }
+
+  .featureVisual {
+    min-height: 570px;
+  }
+
+  /* MANIFESTO */
+
+  .manifesto {
+    min-height: 540px;
+    padding: 90px 24px 35px;
+  }
+
+  .manifesto::before {
+    background-size: 160% auto;
+    background-position: center;
+  }
+
+  .manifesto > p {
+    font-size: clamp(39px, 7.5vw, 64px);
+  }
+
+  /* CTA */
+
+  .cta::before {
+    background-size: 155% auto;
+    background-position: 60% bottom;
+  }
+
+  .ctaContent {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 65px;
+
+    margin-top: 80px;
+  }
+
+  .ctaContent h2 {
+    font-size: clamp(48px, 9vw, 76px);
+  }
+
+  .ctaRight {
+    width: 100%;
+    max-width: 440px;
+  }
+}
+
+/* ==========================================
+   SMALL MOBILE
+========================================== */
+
+@media (max-width: 480px) {
+  .heroCenter {
+    top: 35%;
+  }
+
+  .heroCopy h1 {
+    font-size: 39px;
+  }
+
+  .intro h2 {
+    font-size: 45px;
+  }
+
+  .categoriesHeader h2 {
+    font-size: 42px;
+  }
+
+  .categoriesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .category {
+    min-height: 290px;
+  }
+
+  .categoryContent h3 {
+    font-size: 31px;
+  }
+
+  .categoriesBottom {
+    font-size: 8px;
+  }
+
+  .feature h2 {
+    font-size: 42px;
+  }
+
+  .featureVisual {
+    min-height: 475px;
+    padding: 23px;
+  }
+
+  .featureVisualBottom strong {
+    font-size: 43px;
+  }
+
+  .manifesto > p {
+    font-size: 39px;
+  }
+
+  .ctaContent h2 {
+    font-size: 48px;
+  }
+}
+
+/* ==========================================
+   ACCESSIBILITY
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .heroVideo {
+    display: none;
+  }
+
+  .heroExplore,
+  .category,
+  .category::before,
+  .ctaButton {
+    transition: none;
+  }
+}

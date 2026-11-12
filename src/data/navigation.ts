@@ -1,3 +1,4 @@
+
 export type NavigationChild = {
   label: string;
   href: string;
@@ -9,23 +10,19 @@ export type NavigationItem = {
   children?: NavigationChild[];
 };
 
-
 export const navigation: NavigationItem[] = [
   {
     label: "Home",
     href: "/",
   },
-
   {
     label: "YB Studios",
     href: "/studios",
   },
-
   {
     label: "YB Sports",
     href: "/sports",
   },
-
   {
     label: "YB Tech",
     href: "/tech",
@@ -36,7 +33,6 @@ export const navigation: NavigationItem[] = [
       },
     ],
   },
-
   {
     label: "Products",
     children: [
@@ -46,7 +42,7 @@ export const navigation: NavigationItem[] = [
       },
       {
         label: "Cultvre",
-        href: "/products/cultvre",
+        href: "/cultvre",
       },
       {
         label: "XMusic",
@@ -54,7 +50,6 @@ export const navigation: NavigationItem[] = [
       },
     ],
   },
-
   {
     label: "News",
     href: "/news",

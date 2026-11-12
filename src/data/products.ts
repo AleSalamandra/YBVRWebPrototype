@@ -1,199 +1,93 @@
-import type {
-  ProductCardData,
-} from "@/types";
 
+import type { ProductCardData } from "@/types";
 
 export const integralProducts: ProductCardData[] = [
-
-  /* ========================================
-     XTADIUM
-  ======================================== */
-
   {
     id: "xtadium",
-
     name: "XTADIUM",
-
     tagline:
-      "SPORT LIKE YOU’VE NEVER EXPERIENCED IT. GET CLOSER TO THE ACTION. FEEL THE GAME.",
-
+      "SPORT LIKE YOU'VE NEVER EXPERIENCED IT. GET CLOSER TO THE ACTION. FEEL THE GAME.",
     href: "/products/xtadium",
-
-    ctaLabel:
-      "DISCOVER THE APP",
-
+    ctaLabel: "Discover the app",
     media: {
-      image:
-        "/media/home/xtadium_background.png",
-
-      objectPosition:
-        "center center",
+      image: "/media/home/xtadium_background.png",
+      objectPosition: "center center",
     },
-
-    logo:
-      "/brand/xtadium_logo.svg",
-
+    logo: "/brand/xtadium_logo.svg",
     credits: [
       {
-        label:
-          "content by",
-
-        division:
-          "studios",
-
-        name:
-          "YB Studios",
-
-        logo:
-          "/brand/ybstudios_logofix.svg",
+        label: "content by",
+        division: "studios",
+        name: "YB Studios",
+        logo: "/brand/ybstudios_logofix.svg",
       },
-
       {
-        label:
-          "developed by",
-
-        division:
-          "tech",
-
-        name:
-          "YB Tech",
-
-        logo:
-          "/brand/ybtech_logofix.svg",
+        label: "developed by",
+        division: "tech",
+        name: "YB Tech",
+        logo: "/brand/ybtech_logofix.svg",
       },
-
       {
-        label:
-          "commercialized by",
-
-        division:
-          "sports",
-
-        name:
-          "YB Sports",
-
-        logo:
-          "/brand/ybsports_logofix.svg",
+        label: "commercialized by",
+        division: "sports",
+        name: "YB Sports",
+        logo: "/brand/ybsports_logofix.svg",
       },
     ],
   },
-
-
-  /* ========================================
-     CULTVRE
-  ======================================== */
 
   {
     id: "cultvre",
-
     name: "CULTVRE",
-
     tagline:
       "STEP INSIDE CULTURE. EXPERIENCE PERFORMANCE, ART, AND CULTURE FROM A NEW PERSPECTIVE.",
-
-    href: "/products/cultvre",
-
-    ctaLabel:
-      "DISCOVER THE APP",
-
+    href: "/cultvre",
+    ctaLabel: "Discover the app",
     media: {
-      image:
-        "/media/home/cultvre_background.png",
-
-      objectPosition:
-        "center center",
+      image: "/media/home/cultvre_background.png",
+      objectPosition: "center center",
     },
-
-    logo:
-      "/brand/cultvre_logo.svg",
-
+    logo: "/brand/cultvre_logo.svg",
     credits: [
       {
-        label:
-          "content by",
-
-        division:
-          "studios",
-
-        name:
-          "YB Studios",
-
-        logo:
-          "/brand/ybstudios_logofix.svg",
+        label: "content by",
+        division: "studios",
+        name: "YB Studios",
+        logo: "/brand/ybstudios_logofix.svg",
       },
-
       {
-        label:
-          "developed by",
-
-        division:
-          "tech",
-
-        name:
-          "YB Tech",
-
-        logo:
-          "/brand/ybtech_logofix.svg",
+        label: "developed by",
+        division: "tech",
+        name: "YB Tech",
+        logo: "/brand/ybtech_logofix.svg",
       },
     ],
   },
 
-
-  /* ========================================
-     XMUSIC
-  ======================================== */
-
   {
     id: "music",
-
-    name: "MUSIC",
-
+    name: "XMUSIC",
     tagline:
-      "MUSIC YOU DON’T JUST HEAR. YOU FEEL. STEP INSIDE THE SOUND. EXPERIENCE THE ENERGY.",
-
+      "MUSIC YOU DON'T JUST HEAR. YOU FEEL. STEP INSIDE THE SOUND. EXPERIENCE THE ENERGY.",
     href: "/products/xmusic",
-
-    ctaLabel:
-      "DISCOVER THE APP",
-
+    ctaLabel: "Discover the app",
     media: {
-      image:
-        "/media/home/music_background.png",
-
-      objectPosition:
-        "center center",
+      image: "/media/home/music_background.png",
+      objectPosition: "center center",
     },
-
-    logo:
-      "/brand/music_logo.svg",
-
+    logo: "/brand/music_logo.svg",
     credits: [
       {
-        label:
-          "content by",
-
-        division:
-          "studios",
-
-        name:
-          "YB Studios",
-
-        logo:
-          "/brand/ybstudios_logofix.svg",
+        label: "content by",
+        division: "studios",
+        name: "YB Studios",
+        logo: "/brand/ybstudios_logofix.svg",
       },
-
       {
-        label:
-          "developed by",
-
-        division:
-          "tech",
-
-        name:
-          "YB Tech",
-
-        logo:
-          "/brand/ybtech_logofix.svg",
+        label: "developed by",
+        division: "tech",
+        name: "YB Tech",
+        logo: "/brand/ybtech_logofix.svg",
       },
     ],
   },

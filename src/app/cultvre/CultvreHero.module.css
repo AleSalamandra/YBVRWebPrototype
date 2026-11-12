@@ -1,0 +1,340 @@
+
+/* ==========================================
+   CULTVRE — HERO
+   ASSET 6 + APP DOWNLOAD
+========================================== */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+
+  width: 100%;
+  min-height: 760px;
+  min-height: 100svh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding:
+    clamp(130px, 15vh, 190px)
+    clamp(24px, 5vw, 88px)
+    clamp(75px, 10vh, 130px);
+
+  overflow: hidden;
+
+  background-color: #000;
+  background-image:
+    url("/media/cultvre/Asset%206.png");
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+
+  color: #fff;
+}
+
+/* ==========================================
+   BACKGROUND SHADE
+========================================== */
+
+.heroShade {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.48) 0%,
+      rgba(0, 0, 0, 0.12) 28%,
+      rgba(0, 0, 0, 0.10) 50%,
+      rgba(0, 0, 0, 0.22) 75%,
+      rgba(0, 0, 0, 0.82) 100%
+    );
+}
+
+/* ==========================================
+   HERO CONTENT
+========================================== */
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  max-width: 1180px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+/* ==========================================
+   EYEBROW
+========================================== */
+
+.eyebrow {
+  display: block;
+
+  margin-bottom: clamp(28px, 4vh, 46px);
+
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.26em;
+
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ==========================================
+   CULTVRE LOGO
+========================================== */
+
+.logo {
+  display: block;
+
+  width: min(75vw, 720px);
+  height: auto;
+  max-height: 230px;
+
+  object-fit: contain;
+  object-position: center;
+
+  filter: brightness(0) invert(1);
+}
+
+/* ==========================================
+   DOWNLOAD SECTION
+========================================== */
+
+.downloadSection {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: clamp(55px, 9vh, 105px);
+}
+
+.downloadTitle {
+  margin: 0 0 27px !important;
+
+  font-size: clamp(22px, 2.05vw, 31px);
+  font-weight: 400;
+  letter-spacing: 0.015em;
+  line-height: 1.35;
+
+  color: #f7f7f5;
+}
+
+/* ==========================================
+   STORE BUTTONS
+========================================== */
+
+.storeButtons {
+  width: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+}
+
+.storeButton {
+  min-width: 225px;
+  min-height: 56px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+
+  padding: 17px 21px;
+
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 100px;
+
+  background: rgba(0, 0, 0, 0.28);
+  color: #fff;
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.015em;
+  line-height: 1.4;
+
+  text-align: left;
+  text-decoration: none;
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    background 250ms ease,
+    border-color 250ms ease,
+    color 250ms ease,
+    transform 250ms ease;
+}
+
+.storeButton:hover {
+  border-color: #78ffef;
+  background: #78ffef;
+  color: #000;
+
+  transform: translateY(-3px);
+}
+
+.storeButton:focus-visible {
+  outline: 2px solid #78ffef;
+  outline-offset: 4px;
+}
+
+.storeArrow {
+  flex-shrink: 0;
+
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1;
+
+  transition: transform 250ms ease;
+}
+
+.storeButton:hover .storeArrow {
+  transform: translate(2px, -2px);
+}
+
+/* No additional text underneath the CTA */
+
+.heroFooter {
+  display: none;
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 1100px) {
+  .hero {
+    padding-top: 150px;
+    padding-bottom: 100px;
+  }
+
+  .logo {
+    width: min(77vw, 660px);
+  }
+
+  .downloadSection {
+    margin-top: 70px;
+  }
+
+  .storeButton {
+    min-width: 205px;
+    padding: 15px 18px;
+    font-size: 11px;
+  }
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 760px) {
+  .hero {
+    min-height: 700px;
+    min-height: 100svh;
+
+    padding: 130px 24px 75px;
+
+    background-position: 62% top;
+  }
+
+  .heroContent {
+    width: 100%;
+  }
+
+  .eyebrow {
+    margin-bottom: 34px;
+
+    font-size: 9px;
+    letter-spacing: 0.18em;
+  }
+
+  .logo {
+    width: min(83vw, 530px);
+    max-height: 180px;
+  }
+
+  .downloadSection {
+    margin-top: 70px;
+  }
+
+  .downloadTitle {
+    margin-bottom: 24px !important;
+    font-size: 24px;
+  }
+
+  .storeButtons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .storeButton {
+    width: min(100%, 340px);
+    min-width: 0;
+    min-height: 54px;
+
+    padding: 16px 22px;
+
+    font-size: 12px;
+  }
+}
+
+/* ==========================================
+   SMALL MOBILE
+========================================== */
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 115px 22px 65px;
+    background-position: 60% top;
+  }
+
+  .logo {
+    width: 87vw;
+  }
+
+  .downloadSection {
+    margin-top: 60px;
+  }
+
+  .downloadTitle {
+    font-size: 22px;
+  }
+
+  .storeButton {
+    width: 100%;
+    max-width: 340px;
+  }
+}
+
+/* ==========================================
+   REDUCED MOTION
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .storeButton,
+  .storeArrow {
+    transition: none;
+  }
+}

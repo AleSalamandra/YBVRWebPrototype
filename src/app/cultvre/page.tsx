@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ExperienceGallery from "./ExperienceGallery";
 import styles from "./page.module.css";
+import heroStyles from "./CultvreHero.module.css";
 
 export const metadata: Metadata = {
   title: "CultVRe | Immersive Culture — YB",
@@ -20,36 +21,43 @@ export const metadata: Metadata = {
   },
 };
 
+const stores = [
+  {
+    id: "apple",
+    label: "Download on the App Store",
+    href: "https://apps.apple.com/es/app/cultvre/id6759247469",
+  },
+  {
+    id: "google",
+    label: "Download on Google Play",
+    href: "https://play.google.com/store/apps/details?id=com.ybvr.androidnativeclient.cultVRe&hl=en",
+  },
+  {
+    id: "meta",
+    label: "Download on Meta Quest",
+    href: "https://www.meta.com/es-la/experiences/cultvre-culture-comes-alive-in-vr/28427588560218368/",
+  },
+] as const;
+
 export default function CultvrePage() {
   return (
     <main className={styles.page}>
-      {/* HERO */}
+
+      {/* =====================================
+          HERO — CULTVRE
+      ===================================== */}
 
       <section
-        className={styles.hero}
-        aria-labelledby="cultvre-title"
+        className={heroStyles.hero}
+        aria-label="CultVRe immersive cultural experiences"
       >
-        <div className={styles.heroMedia} aria-hidden="true">
-          <video
-            className={styles.heroVideo}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster="/media/home/cultvre_background.png"
-          >
-            <source
-              src="/media/cultvre/cultvre_hero.mp4"
-              type="video/mp4"
-            />
-          </video>
-        </div>
+        <div
+          className={heroStyles.heroShade}
+          aria-hidden="true"
+        />
 
-        <div className={styles.heroShade} />
-
-        <div className={styles.heroCenter}>
-          <span className={styles.heroEyebrow}>
+        <div className={heroStyles.heroContent}>
+          <span className={heroStyles.eyebrow}>
             YB IMMERSIVE EXPERIENCES
           </span>
 
@@ -59,40 +67,46 @@ export default function CultvrePage() {
             width={1000}
             height={300}
             priority
-            className={styles.heroLogo}
+            className={heroStyles.logo}
           />
-        </div>
 
-        <div className={styles.heroBottom}>
-          <div className={styles.heroCopy}>
-            <h1 id="cultvre-title">
-              Culture is meant
-              <br />
-              to be experienced.
+          <div className={heroStyles.downloadSection}>
+            <h1 className={heroStyles.downloadTitle}>
+              Download the app!
             </h1>
 
-            <p>
-              Theatre, dance, cinema, art and extraordinary
-              places. A new way to experience culture
-              through mixed reality.
-            </p>
-          </div>
+            <div className={heroStyles.storeButtons}>
+              {stores.map((store) => (
+                <a
+                  key={store.id}
+                  href={store.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={heroStyles.storeButton}
+                  aria-label={`${store.label} (opens in a new tab)`}
+                >
+                  <span>{store.label}</span>
 
-          <a
-            href="#experience"
-            className={styles.heroExplore}
-          >
-            Explore CultVRe
-            <span aria-hidden="true">↓</span>
-          </a>
+                  <span
+                    className={heroStyles.storeArrow}
+                    aria-hidden="true"
+                  >
+                    ↗
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
 
-        <span className={styles.heroIndex}>
-          01 / THE EXPERIENCE
+        <span className={heroStyles.heroFooter}>
+          CULTVRE / BY YB
         </span>
       </section>
 
-      {/* THE PLATFORM */}
+      {/* =====================================
+          THE PLATFORM
+      ===================================== */}
 
       <section
         id="experience"
@@ -147,7 +161,9 @@ export default function CultvrePage() {
         </div>
       </section>
 
-      {/* FOUR WAYS TO EXPLORE */}
+      {/* =====================================
+          FOUR WAYS TO EXPLORE
+      ===================================== */}
 
       <section
         id="discover"
@@ -182,7 +198,9 @@ export default function CultvrePage() {
         </div>
       </section>
 
-      {/* SAN FRANCISCO BALLET */}
+      {/* =====================================
+          SAN FRANCISCO BALLET
+      ===================================== */}
 
       <section
         id="featured"
@@ -275,13 +293,17 @@ export default function CultvrePage() {
 
               <strong>NUTCRACKER</strong>
 
-              <span>THE IMMERSIVE EXPERIENCE</span>
+              <span>
+                THE IMMERSIVE EXPERIENCE
+              </span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* MANIFESTO */}
+      {/* =====================================
+          MANIFESTO
+      ===================================== */}
 
       <section className={styles.manifesto}>
         <span className={styles.manifestoEyebrow}>
@@ -302,7 +324,9 @@ export default function CultvrePage() {
         </div>
       </section>
 
-      {/* FINAL CTA */}
+      {/* =====================================
+          FINAL CTA
+      ===================================== */}
 
       <section className={styles.cta}>
         <div className={styles.sectionMeta}>

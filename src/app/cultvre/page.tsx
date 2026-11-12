@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import ExperienceGallery from "./ExperienceGallery";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -19,43 +20,10 @@ export const metadata: Metadata = {
   },
 };
 
-const experiences = [
-  {
-    number: "01",
-    title: "Theatre & Cinema",
-    description:
-      "Go beyond the audience. Discover storytelling from perspectives traditional screens cannot offer.",
-    className: styles.categoryOne,
-  },
-  {
-    number: "02",
-    title: "Dance & Performance",
-    description:
-      "Get closer to movement, expression and the artistry of world-class performances.",
-    className: styles.categoryTwo,
-  },
-  {
-    number: "03",
-    title: "Art & Heritage",
-    description:
-      "Explore art, history and cultural spaces through immersive storytelling.",
-    className: styles.categoryThree,
-  },
-  {
-    number: "04",
-    title: "Travel & Discovery",
-    description:
-      "Discover extraordinary places, cities and cultural landmarks from wherever you are.",
-    className: styles.categoryFour,
-  },
-];
-
 export default function CultvrePage() {
   return (
     <main className={styles.page}>
-      {/* =====================================
-          HERO
-      ===================================== */}
+      {/* HERO */}
 
       <section
         className={styles.hero}
@@ -110,7 +78,10 @@ export default function CultvrePage() {
             </p>
           </div>
 
-          <a href="#experience" className={styles.heroExplore}>
+          <a
+            href="#experience"
+            className={styles.heroExplore}
+          >
             Explore CultVRe
             <span aria-hidden="true">↓</span>
           </a>
@@ -121,9 +92,7 @@ export default function CultvrePage() {
         </span>
       </section>
 
-      {/* =====================================
-          THE PLATFORM
-      ===================================== */}
+      {/* THE PLATFORM */}
 
       <section
         id="experience"
@@ -136,7 +105,7 @@ export default function CultvrePage() {
         </div>
 
         <div className={styles.introGrid}>
-          <div className={styles.introTitle}>
+          <div>
             <h2 id="experience-title">
               Don't just
               <br />
@@ -178,9 +147,7 @@ export default function CultvrePage() {
         </div>
       </section>
 
-      {/* =====================================
-          THE WORLD OF CULTVRE
-      ===================================== */}
+      {/* FOUR WAYS TO EXPLORE */}
 
       <section
         id="discover"
@@ -205,35 +172,7 @@ export default function CultvrePage() {
           </p>
         </div>
 
-        <div className={styles.categoriesGrid}>
-          {experiences.map((experience) => (
-            <article
-              key={experience.number}
-              className={[
-                styles.category,
-                experience.className,
-              ].join(" ")}
-            >
-              <div className={styles.categoryTop}>
-                <span className={styles.categoryNumber}>
-                  {experience.number}
-                </span>
-
-                <span
-                  className={styles.categorySymbol}
-                  aria-hidden="true"
-                >
-                  +
-                </span>
-              </div>
-
-              <div className={styles.categoryContent}>
-                <h3>{experience.title}</h3>
-                <p>{experience.description}</p>
-              </div>
-            </article>
-          ))}
-        </div>
+        <ExperienceGallery />
 
         <div className={styles.categoriesBottom}>
           <span>
@@ -243,9 +182,7 @@ export default function CultvrePage() {
         </div>
       </section>
 
-      {/* =====================================
-          SAN FRANCISCO BALLET
-      ===================================== */}
+      {/* SAN FRANCISCO BALLET */}
 
       <section
         id="featured"
@@ -309,8 +246,6 @@ export default function CultvrePage() {
             </div>
           </div>
 
-          {/* NUTCRACKER VIDEO PANEL */}
-
           <div className={styles.featureVisual}>
             <video
               className={styles.featureVideo}
@@ -340,17 +275,13 @@ export default function CultvrePage() {
 
               <strong>NUTCRACKER</strong>
 
-              <span>
-                THE IMMERSIVE EXPERIENCE
-              </span>
+              <span>THE IMMERSIVE EXPERIENCE</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* =====================================
-          MANIFESTO
-      ===================================== */}
+      {/* MANIFESTO */}
 
       <section className={styles.manifesto}>
         <span className={styles.manifestoEyebrow}>
@@ -371,9 +302,7 @@ export default function CultvrePage() {
         </div>
       </section>
 
-      {/* =====================================
-          FINAL CTA
-      ===================================== */}
+      {/* FINAL CTA */}
 
       <section className={styles.cta}>
         <div className={styles.sectionMeta}>

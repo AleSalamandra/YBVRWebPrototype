@@ -1,13 +1,21 @@
+
 "use client";
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+
 import FoxSportsXRArticle from "./FoxSportsXRArticle";
 import { foxSportsXRNews } from "./foxSportsXRNews";
+import { beyondTheScreenNews } from "./beyondTheScreenNews";
+
 import styles from "./News.module.css";
 
+// ========================================
+// TYPES
+// ========================================
+
 export type NewsSection = {
-  heading: string;
+  heading?: string;
   paragraphs?: string[];
   bullets?: string[];
   paragraphsAfter?: string[];
@@ -33,29 +41,75 @@ type NewsGridProps = {
   news: NewsItem[];
 };
 
+// ========================================
+// CONFIGURATION
+// ========================================
+
 const NEWS_IMAGE_SIZES =
   "(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw";
 
-function chunkNews(news: NewsItem[], size: number): NewsItem[][] {
+// Featured editorial order.
+// These stories always appear before the
+// remaining news from page.tsx.
+
+const featuredNews: NewsItem[] = [
+  beyondTheScreenNews,
+  foxSportsXRNews,
+];
+
+// ========================================
+// HELPERS
+// ========================================
+
+function chunkNews(
+  news: NewsItem[],
+  size: number,
+): NewsItem[][] {
   const rows: NewsItem[][] = [];
 
-  for (let index = 0; index < news.length; index += size) {
+  for (
+    let index = 0;
+    index < news.length;
+    index += size
+  ) {
     rows.push(news.slice(index, index + size));
   }
 
   return rows;
 }
 
-export default function NewsGrid({ news }: NewsGridProps) {
-  const [activeNewsId, setActiveNewsId] = useState<string | null>(null);
-  const expandedRef = useRef<HTMLDivElement | null>(null);
-  // FOX Sports XR is always the first card, even if page.tsx has not
-  // added it to the news array. Filtering also prevents duplicates.
-  const newsWithFoxFirst = [
-    foxSportsXRNews,
-    ...news.filter((item) => item.id !== foxSportsXRNews.id),
+function orderNews(news: NewsItem[]): NewsItem[] {
+  const featuredIds = new Set(
+    featuredNews.map((item) => item.id),
+  );
+
+  return [
+    ...featuredNews,
+    ...news.filter(
+      (item) => !featuredIds.has(item.id),
+    ),
   ];
-  const rows = chunkNews(newsWithFoxFirst, 3);
+}
+
+// ========================================
+// COMPONENT
+// ========================================
+
+export default function NewsGrid({
+  news,
+}: NewsGridProps) {
+  const [activeNewsId, setActiveNewsId] =
+    useState<string | null>(null);
+
+  const expandedRef =
+    useRef<HTMLDivElement | null>(null);
+
+  const orderedNews = orderNews(news);
+  const rows = chunkNews(orderedNews, 3);
+
+  // ========================================
+  // SCROLL TO EXPANDED ARTICLE
+  // ========================================
 
   useEffect(() => {
     if (!activeNewsId) return;
@@ -71,20 +125,35 @@ export default function NewsGrid({ news }: NewsGridProps) {
   }, [activeNewsId]);
 
   const toggleNews = (id: string) => {
-    setActiveNewsId((current) => (current === id ? null : id));
+    setActiveNewsId((current) =>
+      current === id ? null : id,
+    );
   };
+
+  // ========================================
+  // RENDER
+  // ========================================
 
   return (
     <div className={styles.newsGrid}>
       {rows.map((row, rowIndex) => {
-        const activeNews = row.find((item) => item.id === activeNewsId);
+        const activeNews = row.find(
+          (item) => item.id === activeNewsId,
+        );
 
         return (
-          <div key={`row-${rowIndex}`} className={styles.newsRow}>
-            {/* News cards */}
+          <div
+            key={`row-${rowIndex}`}
+            className={styles.newsRow}
+          >
+            {/* ==============================
+                NEWS CARDS
+            ============================== */}
+
             <div className={styles.newsRowCards}>
               {row.map((item) => {
-                const isActive = activeNewsId === item.id;
+                const isActive =
+                  activeNewsId === item.id;
 
                 return (
                   <button
@@ -92,14 +161,20 @@ export default function NewsGrid({ news }: NewsGridProps) {
                     type="button"
                     className={[
                       styles.newsCard,
-                      isActive ? styles.newsCardActive : "",
+                      isActive
+                        ? styles.newsCardActive
+                        : "",
                     ]
                       .filter(Boolean)
                       .join(" ")}
-                    onClick={() => toggleNews(item.id)}
+                    onClick={() =>
+                      toggleNews(item.id)
+                    }
                     aria-expanded={isActive}
                   >
-                    <div className={styles.newsCardImage}>
+                    <div
+                      className={styles.newsCardImage}
+                    >
                       <Image
                         src={item.image}
                         alt=""
@@ -107,20 +182,50 @@ export default function NewsGrid({ news }: NewsGridProps) {
                         sizes={NEWS_IMAGE_SIZES}
                         className={styles.newsImage}
                         style={{
-                          objectPosition: item.imagePosition ?? "center center",
+                          objectPosition:
+                            item.imagePosition ??
+                            "center center",
                         }}
                       />
+
                       <div
-                        className={styles.newsImageOverlay}
+                        className={
+                          styles.newsImageOverlay
+                        }
                         aria-hidden="true"
                       />
                     </div>
 
-                    <div className={styles.newsCardContent}>
-                      <time className={styles.newsDate}>{item.date}</time>
-                      <div className={styles.newsCardBottom}>
-                        <h2 className={styles.newsTitle}>{item.title}</h2>
-                        <div className={styles.newsCardIcon} aria-hidden="true">
+                    <div
+                      className={
+                        styles.newsCardContent
+                      }
+                    >
+                      <time
+                        className={styles.newsDate}
+                      >
+                        {item.date}
+                      </time>
+
+                      <div
+                        className={
+                          styles.newsCardBottom
+                        }
+                      >
+                        <h2
+                          className={
+                            styles.newsTitle
+                          }
+                        >
+                          {item.title}
+                        </h2>
+
+                        <div
+                          className={
+                            styles.newsCardIcon
+                          }
+                          aria-hidden="true"
+                        >
                           <span />
                           <span />
                         </div>
@@ -131,11 +236,21 @@ export default function NewsGrid({ news }: NewsGridProps) {
               })}
             </div>
 
-            {/* Expanded article: only one open in the selected row */}
+            {/* ==============================
+                EXPANDED ARTICLE
+            ============================== */}
+
             {activeNews && (
-              <div ref={expandedRef} className={styles.expandedNews}>
+              <div
+                ref={expandedRef}
+                className={styles.expandedNews}
+              >
+                {/* Background image */}
+
                 <div
-                  className={styles.expandedBackground}
+                  className={
+                    styles.expandedBackground
+                  }
                   aria-hidden="true"
                 >
                   <Image
@@ -143,25 +258,54 @@ export default function NewsGrid({ news }: NewsGridProps) {
                     alt=""
                     fill
                     sizes="100vw"
-                    className={styles.expandedBackgroundImage}
+                    className={
+                      styles.expandedBackgroundImage
+                    }
                     style={{
                       objectPosition:
-                        activeNews.imagePosition ?? "center center",
+                        activeNews.imagePosition ??
+                        "center center",
                     }}
                   />
-                  <div className={styles.expandedBackgroundOverlay} />
-                  <div className={styles.expandedBackgroundGrain} />
+
+                  <div
+                    className={
+                      styles.expandedBackgroundOverlay
+                    }
+                  />
+
+                  <div
+                    className={
+                      styles.expandedBackgroundGrain
+                    }
+                  />
                 </div>
 
-                <div className={styles.expandedTop}>
-                  <div className={styles.expandedMeta}>
+                {/* Article top */}
+
+                <div
+                  className={styles.expandedTop}
+                >
+                  <div
+                    className={
+                      styles.expandedMeta
+                    }
+                  >
                     <span>YB News</span>
-                    <time>{activeNews.date}</time>
+
+                    <time>
+                      {activeNews.date}
+                    </time>
                   </div>
+
                   <button
                     type="button"
-                    className={styles.closeButton}
-                    onClick={() => setActiveNewsId(null)}
+                    className={
+                      styles.closeButton
+                    }
+                    onClick={() =>
+                      setActiveNewsId(null)
+                    }
                     aria-label="Close article"
                   >
                     <span />
@@ -169,87 +313,188 @@ export default function NewsGrid({ news }: NewsGridProps) {
                   </button>
                 </div>
 
-                <div className={styles.expandedGrid}>
-                  <div className={styles.expandedHeadline}>
-                    <h2>{activeNews.title}</h2>
+                {/* Article layout */}
+
+                <div
+                  className={
+                    styles.expandedGrid
+                  }
+                >
+                  <div
+                    className={
+                      styles.expandedHeadline
+                    }
+                  >
+                    <h2>
+                      {activeNews.title}
+                    </h2>
                   </div>
 
-                  <article className={styles.article}>
-                    <p className={styles.articleIntro}>{activeNews.intro}</p>
+                  <article
+                    className={styles.article}
+                  >
+                    {/* Introduction */}
 
-                    <div className={styles.articleBody}>
-                      {/* Original article sections */}
-                      {activeNews.sections.map((section, sectionIndex) => (
-                        <section
-                          key={`${activeNews.id}-section-${sectionIndex}`}
-                          className={styles.articleSection}
-                        >
-                          <h3>{section.heading}</h3>
+                    <p
+                      className={
+                        styles.articleIntro
+                      }
+                    >
+                      {activeNews.intro}
+                    </p>
 
-                          {section.paragraphs?.map((paragraph, paragraphIndex) => (
-                            <p
-                              key={`${activeNews.id}-${sectionIndex}-p-${paragraphIndex}`}
-                            >
-                              {paragraph}
-                            </p>
-                          ))}
+                    {/* Article body */}
 
-                          {section.bullets && (
-                            <ul className={styles.articleList}>
-                              {section.bullets.map((bullet, bulletIndex) => (
-                                <li
-                                  key={`${activeNews.id}-${sectionIndex}-bullet-${bulletIndex}`}
+                    <div
+                      className={
+                        styles.articleBody
+                      }
+                    >
+                      {activeNews.sections.map(
+                        (
+                          section,
+                          sectionIndex,
+                        ) => (
+                          <section
+                            key={
+                              `${activeNews.id}-section-${sectionIndex}`
+                            }
+                            className={
+                              styles.articleSection
+                            }
+                          >
+                            {section.heading && (
+                              <h3>
+                                {section.heading}
+                              </h3>
+                            )}
+
+                            {section.paragraphs?.map(
+                              (
+                                paragraph,
+                                paragraphIndex,
+                              ) => (
+                                <p
+                                  key={
+                                    `${activeNews.id}-${sectionIndex}-p-${paragraphIndex}`
+                                  }
                                 >
-                                  {bullet}
-                                </li>
-                              ))}
-                            </ul>
-                          )}
+                                  {paragraph}
+                                </p>
+                              ),
+                            )}
 
-                          {section.paragraphsAfter?.map(
-                            (paragraph, paragraphIndex) => (
-                              <p
-                                key={`${activeNews.id}-${sectionIndex}-after-${paragraphIndex}`}
+                            {section.bullets && (
+                              <ul
+                                className={
+                                  styles.articleList
+                                }
                               >
-                                {paragraph}
-                              </p>
-                            ),
-                          )}
-                        </section>
-                      ))}
+                                {section.bullets.map(
+                                  (
+                                    bullet,
+                                    bulletIndex,
+                                  ) => (
+                                    <li
+                                      key={
+                                        `${activeNews.id}-${sectionIndex}-bullet-${bulletIndex}`
+                                      }
+                                    >
+                                      {bullet}
+                                    </li>
+                                  ),
+                                )}
+                              </ul>
+                            )}
 
-                      {/* Dedicated editorial layout for FOX Sports XR */}
-                      {activeNews.id === "fox-sports-xr-2026" && (
+                            {section.paragraphsAfter?.map(
+                              (
+                                paragraph,
+                                paragraphIndex,
+                              ) => (
+                                <p
+                                  key={
+                                    `${activeNews.id}-${sectionIndex}-after-${paragraphIndex}`
+                                  }
+                                >
+                                  {paragraph}
+                                </p>
+                              ),
+                            )}
+                          </section>
+                        ),
+                      )}
+
+                      {/* FOX editorial component */}
+
+                      {activeNews.id ===
+                        "fox-sports-xr-2026" && (
                         <FoxSportsXRArticle />
                       )}
                     </div>
 
-                    {/* Existing external links for standard news items */}
-                    {activeNews.links && activeNews.links.length > 0 && (
-                      <div className={styles.articleLinks}>
-                        {activeNews.links.map((link, index) => (
-                          <a
-                            key={`${link.href}-${index}`}
-                            href={link.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={styles.articleLink}
-                          >
-                            <span>{link.label}</span>
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                              <path
-                                d="M5 12h13M13 6l6 6-6 6"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                            </svg>
-                          </a>
-                        ))}
-                      </div>
-                    )}
+                    {/* ==============================
+                        ARTICLE LINKS
+                    ============================== */}
+
+                    {activeNews.links &&
+                      activeNews.links.length >
+                        0 && (
+                        <div
+                          className={
+                            styles.articleLinks
+                          }
+                        >
+                          {activeNews.links.map(
+                            (link, index) => {
+                              const isExternal =
+                                /^https?:\/\//.test(
+                                  link.href,
+                                );
+
+                              return (
+                                <a
+                                  key={
+                                    `${link.href}-${index}`
+                                  }
+                                  href={link.href}
+                                  target={
+                                    isExternal
+                                      ? "_blank"
+                                      : undefined
+                                  }
+                                  rel={
+                                    isExternal
+                                      ? "noopener noreferrer"
+                                      : undefined
+                                  }
+                                  className={
+                                    styles.articleLink
+                                  }
+                                >
+                                  <span>
+                                    {link.label}
+                                  </span>
+
+                                  <svg
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                  >
+                                    <path
+                                      d="M5 12h13M13 6l6 6-6 6"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      strokeWidth="1.5"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                    />
+                                  </svg>
+                                </a>
+                              );
+                            },
+                          )}
+                        </div>
+                      )}
                   </article>
                 </div>
               </div>

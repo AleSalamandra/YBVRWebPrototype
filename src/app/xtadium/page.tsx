@@ -42,7 +42,6 @@ export const metadata: Metadata = {
 type InstagramMedia = {
   id?: string;
   media_type?: string;
-  media_url?: string;
   thumbnail_url?: string;
   permalink?: string;
 };
@@ -97,7 +96,7 @@ async function getInstagramPosts(): Promise<SocialPost[]> {
 
   endpoint.searchParams.set(
     "fields",
-    "id,media_type,media_url,thumbnail_url,permalink"
+    "id,media_type,thumbnail_url,permalink"
   );
 
   endpoint.searchParams.set("limit", "25");
@@ -219,10 +218,7 @@ const statistics: Statistic[] = [
 ];
 
 /* ==========================================
-   PARTNERS — ORIGINAL SVG FILES
-
-   All paths point to:
-   public/brand/external/
+   PARTNERS
 ========================================== */
 
 const partners: Partner[] = [
@@ -281,12 +277,17 @@ export default async function XtadiumPage() {
 
       {/* =====================================
           01 — HERO
+
+          VIDEO: xtadium_hero.mp4
+          GRADIENT: 50%
       ===================================== */}
 
       <section
         className={styles.hero}
         aria-labelledby="xtadium-hero-title"
       >
+        {/* BACKGROUND VIDEO */}
+
         <video
           className={styles.heroVideo}
           autoPlay
@@ -296,6 +297,7 @@ export default async function XtadiumPage() {
           preload="metadata"
           poster="/media/home/xtadium_background.png"
           aria-hidden="true"
+          disablePictureInPicture
         >
           <source
             src="/media/xtadium/xtadium_hero.mp4"
@@ -303,15 +305,21 @@ export default async function XtadiumPage() {
           />
         </video>
 
+        {/* BLUE GRADIENT — 50% */}
+
         <div
           className={styles.heroGradient}
           aria-hidden="true"
         />
 
+        {/* BLACK FADE */}
+
         <div
           className={styles.heroShade}
           aria-hidden="true"
         />
+
+        {/* HERO CONTENT */}
 
         <div className={styles.heroContent}>
           <span className={styles.heroEyebrow}>
@@ -344,7 +352,6 @@ export default async function XtadiumPage() {
               className={styles.primaryButton}
             >
               Download Xtadium for Meta Quest
-
               <span aria-hidden="true">↗</span>
             </a>
           </div>
@@ -533,10 +540,7 @@ export default async function XtadiumPage() {
 
             <div className={styles.visualBottom}>
               <span>SPORT, EXPERIENCED</span>
-
-              <strong>
-                FROM THE INSIDE.
-              </strong>
+              <strong>FROM THE INSIDE.</strong>
             </div>
           </div>
         </div>
@@ -573,9 +577,7 @@ export default async function XtadiumPage() {
       </section>
 
       {/* =====================================
-          06 — PROUDLY COLLABORATING WITH
-
-          All nine selected original SVGs.
+          06 — PARTNERS
       ===================================== */}
 
       <section
@@ -613,7 +615,7 @@ export default async function XtadiumPage() {
       </section>
 
       {/* =====================================
-          07 — SOCIAL / INSTAGRAM
+          07 — INSTAGRAM
       ===================================== */}
 
       <section

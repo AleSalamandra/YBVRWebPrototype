@@ -1,4 +1,8 @@
 
+/* ========================================
+   NAVIGATION TYPES
+======================================== */
+
 export type NavigationChild = {
   label: string;
   href: string;
@@ -9,6 +13,10 @@ export type NavigationItem = {
   href?: string;
   children?: NavigationChild[];
 };
+
+/* ========================================
+   MAIN NAVIGATION
+======================================== */
 
 export const navigation: NavigationItem[] = [
   {
@@ -38,7 +46,7 @@ export const navigation: NavigationItem[] = [
     children: [
       {
         label: "Xtadium",
-        href: "/products/xtadium",
+        href: "/xtadium",
       },
       {
         label: "Cultvre",

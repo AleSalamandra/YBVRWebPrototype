@@ -1,19 +1,34 @@
 
 import type { ProductCardData } from "@/types";
 
+/* ========================================
+   YB PRODUCTS
+======================================== */
+
 export const integralProducts: ProductCardData[] = [
+  /* ======================================
+     XTADIUM
+  ====================================== */
+
   {
     id: "xtadium",
+
     name: "XTADIUM",
+
     tagline:
       "SPORT LIKE YOU'VE NEVER EXPERIENCED IT. GET CLOSER TO THE ACTION. FEEL THE GAME.",
-    href: "/products/xtadium",
-    ctaLabel: "Discover the app",
+
+    href: "/xtadium",
+
+    ctaLabel: "DISCOVER THE APP",
+
     media: {
       image: "/media/home/xtadium_background.png",
       objectPosition: "center center",
     },
+
     logo: "/brand/xtadium_logo.svg",
+
     credits: [
       {
         label: "content by",
@@ -36,18 +51,29 @@ export const integralProducts: ProductCardData[] = [
     ],
   },
 
+  /* ======================================
+     CULTVRE
+  ====================================== */
+
   {
     id: "cultvre",
+
     name: "CULTVRE",
+
     tagline:
       "STEP INSIDE CULTURE. EXPERIENCE PERFORMANCE, ART, AND CULTURE FROM A NEW PERSPECTIVE.",
+
     href: "/cultvre",
-    ctaLabel: "Discover the app",
+
+    ctaLabel: "DISCOVER THE APP",
+
     media: {
       image: "/media/home/cultvre_background.png",
       objectPosition: "center center",
     },
+
     logo: "/brand/cultvre_logo.svg",
+
     credits: [
       {
         label: "content by",
@@ -64,18 +90,29 @@ export const integralProducts: ProductCardData[] = [
     ],
   },
 
+  /* ======================================
+     XMUSIC
+  ====================================== */
+
   {
     id: "music",
-    name: "XMUSIC",
+
+    name: "MUSIC",
+
     tagline:
       "MUSIC YOU DON'T JUST HEAR. YOU FEEL. STEP INSIDE THE SOUND. EXPERIENCE THE ENERGY.",
+
     href: "/products/xmusic",
-    ctaLabel: "Discover the app",
+
+    ctaLabel: "DISCOVER THE APP",
+
     media: {
       image: "/media/home/music_background.png",
       objectPosition: "center center",
     },
+
     logo: "/brand/music_logo.svg",
+
     credits: [
       {
         label: "content by",

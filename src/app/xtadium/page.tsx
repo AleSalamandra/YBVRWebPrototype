@@ -22,11 +22,14 @@ const INSTAGRAM_URL =
 
 export const metadata: Metadata = {
   title: "Xtadium | Immersive Sports — YB",
+
   description:
     "Step inside the game with Xtadium. Discover immersive sports, multiple camera angles, interactive experiences and mixed reality on Meta Quest.",
+
   alternates: {
-    canonical: "/products/xtadium",
+    canonical: "/xtadium",
   },
+
   openGraph: {
     title: "Xtadium — Sport, Experienced from the Inside",
     description:
@@ -67,11 +70,13 @@ type Partner = {
 };
 
 /* ==========================================
-   INSTAGRAM
+   INSTAGRAM HELPERS
 ========================================== */
 
 function validHttpsUrl(value: unknown): string | null {
-  if (typeof value !== "string") return null;
+  if (typeof value !== "string") {
+    return null;
+  }
 
   try {
     const url = new URL(value);
@@ -88,7 +93,9 @@ async function getInstagramPosts(): Promise<SocialPost[]> {
   const token =
     process.env.XTADIUM_INSTAGRAM_ACCESS_TOKEN;
 
-  if (!token) return [];
+  if (!token) {
+    return [];
+  }
 
   const endpoint = new URL(
     "https://graph.instagram.com/me/media"
@@ -109,24 +116,23 @@ async function getInstagramPosts(): Promise<SocialPost[]> {
       },
     });
 
-    if (!response.ok) return [];
+    if (!response.ok) {
+      return [];
+    }
 
     const result = (await response.json()) as {
       data?: InstagramMedia[];
     };
 
-    if (!Array.isArray(result.data)) return [];
+    if (!Array.isArray(result.data)) {
+      return [];
+    }
 
     return result.data
       .filter((post) => post.media_type === "VIDEO")
       .map((post): SocialPost | null => {
-        const image = validHttpsUrl(
-          post.thumbnail_url
-        );
-
-        const href = validHttpsUrl(
-          post.permalink
-        );
+        const image = validHttpsUrl(post.thumbnail_url);
+        const href = validHttpsUrl(post.permalink);
 
         if (!post.id || !image || !href) {
           return null;
@@ -261,7 +267,7 @@ const partners: Partner[] = [
 ];
 
 /* ==========================================
-   PAGE
+   XTADIUM PAGE
 ========================================== */
 
 export default async function XtadiumPage() {
@@ -274,20 +280,14 @@ export default async function XtadiumPage() {
 
   return (
     <main className={styles.page}>
-
       {/* =====================================
           01 — HERO
-
-          VIDEO: xtadium_hero.mp4
-          GRADIENT: 50%
       ===================================== */}
 
       <section
         className={styles.hero}
         aria-labelledby="xtadium-hero-title"
       >
-        {/* BACKGROUND VIDEO */}
-
         <video
           className={styles.heroVideo}
           autoPlay
@@ -305,21 +305,15 @@ export default async function XtadiumPage() {
           />
         </video>
 
-        {/* BLUE GRADIENT — 50% */}
-
         <div
           className={styles.heroGradient}
           aria-hidden="true"
         />
 
-        {/* BLACK FADE */}
-
         <div
           className={styles.heroShade}
           aria-hidden="true"
         />
-
-        {/* HERO CONTENT */}
 
         <div className={styles.heroContent}>
           <span className={styles.heroEyebrow}>
@@ -615,7 +609,7 @@ export default async function XtadiumPage() {
       </section>
 
       {/* =====================================
-          07 — INSTAGRAM
+          07 — SOCIAL / INSTAGRAM
       ===================================== */}
 
       <section

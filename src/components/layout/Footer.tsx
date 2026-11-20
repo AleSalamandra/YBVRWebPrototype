@@ -58,6 +58,10 @@ export default function Footer() {
               <Link href="/terms-of-use">
                 Terms of Use
               </Link>
+
+              <Link href="/purchase-terms">
+                Purchase Terms
+              </Link>
             </nav>
           </div>
         </div>

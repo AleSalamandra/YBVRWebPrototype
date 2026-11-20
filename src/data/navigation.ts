@@ -48,7 +48,7 @@ export const navigation: NavigationItem[] = [
         href: "/products/xmusic",
       },
       {
-        label: "YB Bowls",
+        label: "YB Bowl",
         href: "/yb-bowl",
       },
     ],
